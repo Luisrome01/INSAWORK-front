@@ -1,0 +1,16 @@
+.InputDiferente {
+	transition: 0.25s;
+	background: rgba(174, 187, 253, 0.25);
+	margin-left: 10px;
+}
+
+.InputDContainer {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.InputDTitle {
+	font-weight: bold;
+	font-size: 15.2444px;
+}

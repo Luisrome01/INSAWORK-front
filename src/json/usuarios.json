@@ -1,0 +1,44 @@
+{
+	"data": [
+		{
+			"name": "Alejandro Avila",
+			"email": "alejandroavila5@gmail.com",
+			"pass": "amesty05"
+		},
+		{
+			"name": "Misael Reverol",
+			"email": "misa24jr@gmail.com",
+			"pass": "misa2003"
+		},
+		{
+			"name": "Luis Romero",
+			"email": "luisromero05@gmail.com",
+			"pass": "luisitoromerito1234"
+		},
+		{
+			"name": "Jose Chacon",
+			"email": "josecheikon09@gmail.com",
+			"pass": "chakichaki"
+		},
+		{
+			"name": "Marcos Vejega",
+			"email": "marquitavejeguita@gmail.com",
+			"pass": "mark2005"
+		},
+		{
+			"name": "Maria Boscan",
+			"email": "mariaboscan@gmail.com",
+			"pass": "mafer123"
+		},
+		{
+			"name": "Miguel Marquez",
+			"email": "miguelmarquez@gmail.com",
+			"pass": "miguelito123"
+		},
+		{
+			"name": "admin",
+			"email": "admin",
+			"pass": "admin"
+		}
+	]
+}

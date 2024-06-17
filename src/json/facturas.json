@@ -1,0 +1,46 @@
+{
+	"data": [
+		{
+			"id": 2548568,
+			"date": "26/03/2024",
+			"monto": 25,
+			"metodosPago": [
+				{ "metodo": "efectivo", "monto": 20 },
+				{ "metodo": "tarjeta", "punto": 1, "monto": 5 }
+			]
+		},
+		{
+			"id": 2548569,
+			"date": "26/03/2024",
+			"monto": 58.5,
+			"metodosPago": [{ "metodo": "efectivo", "monto": 60 }]
+		},
+		{
+			"id": 2548570,
+			"date": "26/03/2024",
+			"monto": 15,
+			"metodosPago": [{ "metodo": "transferencia", "banco": "mercantil", "monto": 15 }]
+		},
+		{
+			"id": 2548571,
+			"date": "26/03/2024",
+			"monto": 18.8,
+			"metodosPago": [{ "metodo": "divisas", "monto": 20 }]
+		},
+		{
+			"id": 2548572,
+			"date": "26/03/2024",
+			"monto": 124.25,
+			"metodosPago": [
+				{ "metodo": "efectivo", "monto": 100 },
+				{ "metodo": "tarjeta", "punto": 2, "monto": 24.25 }
+			]
+		},
+		{
+			"id": 2548573,
+			"date": "26/03/2024",
+			"monto": 40,
+			"metodosPago": [{ "metodo": "tarjeta", "punto": 3, "monto": 40 }]
+		}
+	]
+}

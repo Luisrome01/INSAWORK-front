@@ -1,0 +1,58 @@
+@font-face {
+    font-family: "SF Pro Text";
+    src: url("./assets/fonts/sf-pro-text-regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "SF Pro Display Bold";
+    src: url("./assets/fonts/sf-pro-display-bold.OTF") format("opentype");
+}
+
+@font-face {
+    font-family: "SF Pro Display Regular";
+    src: url("./assets/fonts/sf-pro-display-regular.OTF") format("opentype");
+}
+
+@font-face {
+    font-family: "SF Pro Display Medium";
+    src: url("./assets/fonts/sf-pro-display-medium.OTF") format("opentype");
+}
+
+:root {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #ffffff;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+    cursor: pointer;
+}
+
+p,
+span {
+    font-family: "SF Pro Display Medium", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+div,
+strong,
+button {
+    font-family: "SF Pro Display Bold", sans-serif;
+}
+
+input {
+    font-family: "SF Pro Display Regular", sans-serif;
+}

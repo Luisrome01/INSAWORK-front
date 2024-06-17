@@ -1,0 +1,11 @@
+.BtnGeneral {
+	box-shadow: 1.90278px 3.80556px 0px #000000;
+	border-radius: 11.4167px;
+	border: none;
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+	color: black;
+	font-weight: bold;
+}

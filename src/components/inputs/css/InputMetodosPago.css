@@ -1,0 +1,29 @@
+.IDIFMainContainer {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 10px;
+}
+
+.IDIFSelect {
+	margin-left: 10px;
+	color: black;
+	width: 18px;
+	height: 18px;
+	border: 2px solid black;
+	border-radius: 3px;
+	background-color: #ffffff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.IDIFTitle {
+	font-weight: bold;
+}
+
+.InputMetodoPagoContainer {
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
+}

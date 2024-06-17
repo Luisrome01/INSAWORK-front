@@ -1,0 +1,58 @@
+{
+    "INV1359874830": {
+        "name": "Harina Pan",
+        "price": 0.8,
+        "IVA": 0.024,
+        "total": 0.824,
+        "img": "https://www.svgrepo.com/show/227347/flour.svg" 
+    },
+    "INV7927068486": {
+        "name": "Leche",
+        "price": 1.2,
+        "IVA": 0.036,
+        "total": 1.236,
+        "img": "https://www.svgrepo.com/show/530369/milk.svg"
+    },
+    "INV4022123377": {
+        "name": "Azucar",
+        "price": 0.5,
+        "IVA": 0.015,
+        "total": 0.515,
+        "img": "https://www.svgrepo.com/show/263431/sugar.svg"
+    },
+    "INV8398260084": {
+        "name": "Cafe",
+        "price": 2.5,
+        "IVA": 0.075,
+        "total": 2.575,
+        "img": "https://www.svgrepo.com/show/263380/coffee-beans.svg"
+    },
+    "INV4288587649": {
+        "name": "Arroz",
+        "price": 1.0,
+        "IVA": 0.03,
+        "total": 1.03,
+        "img": "https://www.svgrepo.com/show/492649/rice.svg"
+    },
+    "INV5469188865": {
+        "name": "Pasta",
+        "price": 0.8,
+        "IVA": 0.024,
+        "total": 0.824,
+        "img": "https://www.svgrepo.com/show/128925/pasta.svg"
+    },
+    "INV3860812434": {
+        "name": "Aceite",
+        "price": 2.0,
+        "IVA": 0.06,
+        "total": 2.06,
+        "img": "https://www.svgrepo.com/show/299854/oil-olive-oil.svg"
+    },
+    "INV7176897078": {
+        "name": "Sal",
+        "price": 0.3,
+        "IVA": 0.009,
+        "total": 0.309,
+        "img": "https://www.svgrepo.com/show/227326/salt.svg"
+    }
+}

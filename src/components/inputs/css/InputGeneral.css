@@ -1,0 +1,30 @@
+span {
+	color: black;
+	margin-left: 6%;
+	font-weight: bold;
+}
+.containerName {
+	width: 90%;
+}
+
+input {
+	color: black;
+	font-weight: bold;
+	border: none;
+	outline: none;
+	padding-left: 10px;
+}
+.InputGeneral {
+	width: 300px;
+	height: 50px;
+	transition: 0.25s;
+	background: rgba(174, 187, 253, 0.25);
+	border-radius: 10px;
+	border: none;
+}
+
+.InputGeneral:focus {
+	/* animate color transition */
+	transition: 0.25s;
+	background: rgba(174, 187, 253, 0.75);
+}

@@ -1,0 +1,16 @@
+.containerMain{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 85vh;
+	background-color: #ffff;
+	position: relative;
+}
+.containerCard{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 20px;
+    margin-left: 5%;
+    margin-top: 3%;
+}
