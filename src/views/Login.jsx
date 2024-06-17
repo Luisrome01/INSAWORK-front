@@ -16,30 +16,6 @@ const Login = ({ setUser }) => {
 	const handleLogin = () => {
 		setError("");
 
-		if (localStorage.getItem("cajaBloqueada")) {
-			const currentDate = new Date();
-			if (localStorage.getItem("blockedDate") === currentDate.toLocaleDateString("es-AR")) {
-				setError(
-					`La caja está bloqueada, se desbloquea el dia ${currentDate.getDate() + 1}/${
-						currentDate.getMonth() + 1
-					}/${currentDate.getFullYear()} a las 06:00.`
-				);
-				return;
-			} else {
-				const currentDate = new Date();
-				if (currentDate.getHours() < 6) {
-					setError(
-						`La caja está bloqueada, se desbloquea el dia ${currentDate.getDate()}/${
-							currentDate.getMonth() + 1
-						}/${currentDate.getFullYear()} a las 06:00.`
-					);
-					return;
-				}
-				localStorage.removeItem("cajaBloqueada");
-				localStorage.removeItem("blockedDate");
-			}
-		}
-
 		if (!email || !password) {
 			setError("Por favor ingresa correo electrónico y contraseña.");
 			return;
@@ -56,44 +32,46 @@ const Login = ({ setUser }) => {
 		navigate("/main");
 	};
 
-	return (
-		<div className="LogContainerGeneral">
-			<div className="LogContainer">
-				<div className="LogSubContainer">
-					<div className="LogContainerTitle">
-						<h3 className="LogTitle">Bill Master</h3>
-					</div>
-
-					<div className="LogContainerSubTitle">
-						<p className="LogEnum">Bienvenido</p>
-						<h1 className="LogSubTitle">Iniciar Sesión</h1>
-					</div>
-
-					<InputGeneral
-						name={"Correo Electrónico"}
-						type="text"
-						placeholder=" ej. JubertPerez@gmail.com"
-						width="80%"
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
-					/>
-
-					<InputGeneral
-						name={"Contraseña"}
-						type="password"
-						placeholder=" Contraseña"
-						width="80%"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-						onEnter={handleLogin}
-					/>
-
-					{error && <p style={{ color: "red" }}>{error}</p>}
-					<BtnGeneral text="Ingresar" handleClick={handleLogin} img={image} />
-				</div>
+	return (<div className="LogContainerGeneral">
+		<div className="LogContainer">
+		  <div className="LogSubContainer">
+			<div className="LogContainerTitle">
+			  <h3 className="LogTitle">Isawork</h3>
 			</div>
-			<img src={page} alt="imagen" className="LogImage" />
+	  
+			<div className="LogContainerSubTitle">
+			  <h1 className="LogSubTitle">Iniciar Sesión</h1>
+			</div>
+	  
+			<InputGeneral
+			  name={"Correo Electrónico"}
+			  type="text"
+			  placeholder=" ej. nombre@gmail.com"
+			  width="80%"
+			  value={email}
+			  onChange={(e) => setEmail(e.target.value)}
+			/>
+	  
+			<InputGeneral
+			  name={"Contraseña"}
+			  type="password"
+			  placeholder=" Contraseña"
+			  width="80%"
+			  value={password}
+			  onChange={(e) => setPassword(e.target.value)}
+			  onEnter={handleLogin}
+			/>
+	  
+			{error && <p style={{ color: "red" }}>{error}</p>}
+			<BtnGeneral text="Ingresar" handleClick={handleLogin} img={image} />
+	  
+			<a href="/register" className="LogRegisterLink">
+			  ¿Aún no tienes una cuenta? Regístrate aquí
+			</a>
+		  </div>
 		</div>
+		<img src={page} alt="imagen" className="LogImage" />
+	  </div>
 	);
 };
 

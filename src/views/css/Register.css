@@ -3,15 +3,16 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f5f5f5;
+    background-color: #f2f2f2;
   }
   
   .LogContainer {
     background-color: white;
-    border-radius: 20px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
     padding: 50px;
-    width: 450px;
   }
   
   .LogSubContainer {
@@ -21,17 +22,18 @@
   }
   
   .LogContainerTitle {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
   }
   
   .LogTitle {
-    font-size: 28px;
+    font-size: 24px;
     font-weight: bold;
     color: #333;
   }
   
   .LogContainerSubTitle {
-    margin-bottom: 50px;
+    text-align: center;
+    margin-bottom: 30px;
   }
   
   .LogEnum {
@@ -46,28 +48,36 @@
     color: #333;
   }
   
-  .LogInputContainer {
-    width: 80%;
-    margin-bottom: 30px;
+  .LogImage {
+    display: none;
   }
   
-  .LogButtonContainer {
-    width: 80%;
+  .LogRegisterLink {
+    font-size: 16px;
+    color: #666;
+    text-decoration: none;
     margin-top: 20px;
+    transition: color 0.3s ease;
   }
   
-  @media (max-width: 768px) {
+  .LogRegisterLink:hover {
+    color: #333;
+  }
+  
+  @media (min-width: 768px) {
     .LogContainerGeneral {
-      padding: 20px;
+      justify-content: space-between;
     }
   
     .LogContainer {
-      width: 100%;
-      padding: 40px;
+      width: 50%;
+      max-width: 500px;
     }
   
-    .LogInputContainer,
-    .LogButtonContainer {
-      width: 100%;
+    .LogImage {
+      display: block;
+      width: 50%;
+      max-width: 500px;
+      height: auto;
     }
   }
