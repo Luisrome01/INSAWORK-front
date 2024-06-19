@@ -1,23 +1,24 @@
 import React, { useState } from 'react';
 import BtnGeneral from "../components/buttons/BtnGeneral";
 import InputGeneral from "../components/inputs/InputGeneral";
-import page from "../assets/Group2015.svg";
+import page from "../assets/logomedico.svg";
 import "./css/Register.css";
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleRegister = () => {
-  
-    // Por ahora, solo mostramos un mensaje de error simulado
     if (!name || !email || !password) {
       setError('Por favor, completa todos los campos.');
     } else {
-      // Redirigir al usuario a la pantalla de inicio de sesión o a otro lugar después del registro exitoso
       console.log('Registro exitoso:', { name, email, password });
+      navigate('/'); // Redirige al usuario a la ruta '/login'
     }
   };
 
@@ -64,9 +65,9 @@ const Register = () => {
           {error && <p style={{ color: 'red' }}>{error}</p>}
           <BtnGeneral text="Registrarse" handleClick={handleRegister} />
 
-          <a href="/login" className="LogRegisterLink">
+          <Link to="/" className="LogRegisterLink">
             ¿Ya tienes una cuenta? Inicia sesión aquí
-          </a>
+          </Link>
         </div>
       </div>
       <img src={page} alt="imagen" className="LogImage" />

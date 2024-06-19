@@ -4,7 +4,7 @@ import usuarios from "../json/usuarios.json";
 import BtnGeneral from "../components/buttons/BtnGeneral";
 import InputGeneral from "../components/inputs/InputGeneral";
 import image from "../assets/tabler_login.svg";
-import page from "../assets/Group2015.svg";
+import page from "../assets/logomedico.svg";
 import "./css/Login.css";
 
 const Login = ({ setUser }) => {
