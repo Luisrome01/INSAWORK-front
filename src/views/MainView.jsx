@@ -4,13 +4,13 @@ import "./css/MainView.css";
 // assets
 import UserRound from "../assets/user-round.svg";
 // components
-import Facturacion from "../components/navBar/View/Facturacion";
-import CitasMedicas from "../components/navBar/View/CitasMedicas"; // Cambia esto a CitasMedicas
-import MetodosPago from "../components/navBar/View/MetodosPago";
-import CierreCaja from "../components/navBar/View/CierreCaja";
+import Principal from "../components/navBar/View/principal";
+import CitasMedicas from "../components/navBar/View/CitasMedicas";
+import Reportes from "../components/navBar/View/reportes"; // Cambiado a minúsculas
+import Historias from "../components/navBar/View/historias"; // Cambiado a minúsculas
 
 const MainView = ({ getUser }) => {
-	const [componenteActivo, setComponenteActivo] = useState("Facturacion");
+	const [componenteActivo, setComponenteActivo] = useState("Principal");
 	const [listCitas, setListCitas] = useState([]);
 	const [totalFactura, setTotalFactura] = useState(0);
 	const [cliente, setCliente] = useState({});
@@ -23,11 +23,11 @@ const MainView = ({ getUser }) => {
 		setTotalFactura(total);
 	}, [listCitas]);
 
-	const cambiarMetodoPago = () => {
-		setComponenteActivo("Metodos de Pago");
+	const cambiarReportes = () => {
+		setComponenteActivo("Reportes");
 	};
-	const cambiarFacturacion = () => {
-		setComponenteActivo("Facturacion");
+	const cambiarPrincipal = () => {
+		setComponenteActivo("Principal");
 	};
 
 	if (!getUser) {
@@ -52,26 +52,26 @@ const MainView = ({ getUser }) => {
 					{componenteActivo === "Citas Médicas" && (
 						<CitasMedicas setListaCitas={setListCitas} listaCitas={listCitas} />
 					)}
-					{componenteActivo === "Facturacion" && (
-						<Facturacion
+					{componenteActivo === "Principal" && (
+						<Principal
 							listaCitasInterna={listCitas}
 							setListaCitasExterna={setListCitas}
-							continuarVista={cambiarMetodoPago}
+							continuarVista={cambiarReportes}
 							ClienteExterno={cliente}
 							setClienteExterno={setCliente}
 						/>
 					)}
-					{componenteActivo === "Metodos de Pago" && (
-						<MetodosPago
+					{componenteActivo === "Reportes" && (
+						<Reportes
 							totalCosto={totalFactura.toFixed(2)}
 							listaCitas={listCitas}
 							cliente={cliente}
 							setClienteExterno={setCliente}
 							setListaCitasExterna={setListCitas}
-							continuarVista={cambiarFacturacion}
+							continuarVista={cambiarPrincipal}
 						/>
 					)}
-					{componenteActivo === "Cierre de Caja" && <CierreCaja responsable={getUser} />}
+					{componenteActivo === "Historias" && <Historias responsable={getUser} />}
 				</div>
 			</div>
 		</div>

@@ -1,13 +1,13 @@
 import React from "react";
-import "./css/Facturacion.css";
+import "./css/principal.css";
 
-const Facturacion = () => {
+const Principal = () => {
     return (
         <div className="FacturaContainer">
-            <h1 className="FacturaHeaderContainer">Nueva Factura</h1>
+            <h1 className="FacturaHeaderContainer">PANTALLA PRINCIPAL</h1>
             {/* Añade aquí la estructura básica que necesites */}
         </div>
     );
 };
 
-export default Facturacion;
+export default Principal;

@@ -1,69 +1,73 @@
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: "Poppins", sans-serif;
-}
+/* navBar.css */
 
 .NavNavbar {
-	display: flex;
-	flex-direction: column;
-	height: 100vh;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f8f9fa; /* Cambia el fondo si es necesario */
 }
 
 .NavLogo {
-	flex-basis: 10%;
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: row;
-	gap: 20px;
-	border-bottom: 2px solid #ebebeb;
+    flex-basis: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 20px;
+    border-bottom: 2px solid #ebebeb;
+    padding: 10px; /* Agrega padding si es necesario */
+}
+
+.NavLogo img {
+    max-height: 50px; /* Ajusta el tamaño del logo */
 }
 
 .NavContent {
-	margin-top: 10%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	flex-basis: 80%;
-	gap: 40px;
-	position: relative;
-}
-
-.nav-links {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	height: 100%;
-}
-
-.nav-link-img {
-	width: 30px;
-	height: 30px;
-	margin-left: 15px;
-	margin-right: 15px;
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-basis: 80%;
+    gap: 40px;
+    position: relative;
 }
 
 .nav-link {
-	cursor: pointer;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	height: 50px;
-	border-radius: 10px;
-	width: 80%;
-	transition: 0.5s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 50px;
+    width: 80%;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.nav-last-link {
-	margin-top: auto;
-	margin-left: 50px;
-	margin-bottom: 50px;
-	cursor: pointer;
+.nav-link:hover {
+    background-color: lightGray; /* Cambia el color de fondo en hover */
+}
+
+.nav-link-active {
+    background-color: #AEBBFD;
+    box-shadow: 5px 5px 1px rgba(0, 0, 0, 0.3);
+}
+
+.nav-link-img {
+    width: 30px;
+    height: 30px;
+    margin: 0 15px;
 }
 
 .NavBarTitle {
-	color: black;
+    color: black;
+    font-size: 1.5rem; /* Ajusta el tamaño de la fuente si es necesario */
+}
+
+.NavLogout {
+    margin-top: auto;
+    margin-bottom: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
