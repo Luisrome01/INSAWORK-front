@@ -1,58 +1,9 @@
-.MetodosContainer {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	height: 85vh;
-	background-color: #ffff;
-	position: relative;
+.MetodosPagoContainer {
+    padding: 20px;
+    /* Agrega tus estilos aquí */
 }
 
-.MetodosHeaderContainer {
-	flex-basis: 10%;
-	margin-left: 7%;
-	align-items: center;
-	display: flex;
+h2 {
+    color: #333;
+    /* Agrega más estilos según sea necesario */
 }
-
-.MetodosInput {
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
-   
-}
-
-.MetodoMetododPago {
-	margin-left: 10%;
-	align-items: center;
-	display: flex;
-	flex-direction: row;
-	gap: 25px;
-}
-
-.MetodoMonto-BotonAgregar {
-	display: flex;
-	flex-direction: column;
-	margin-left: 10%;
-	gap: 20px;
-}
-
-.MetodosPagoTableContainer {
-	width: 60%;
-	display: flex;
-	align-self: center;
-	justify-content: center;
-	flex-basis: 50%;
-}
-
-.MetodosCheckoutContainer {
-	align-self: normal;
-	flex-basis: 15%;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	gap: 30px;
-	margin-left: auto;
-	margin-right: 10%;
-}
-
-

@@ -1,27 +1,27 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "../components/navBar/navBar";
 import "./css/MainView.css";
-//assets
+// assets
 import UserRound from "../assets/user-round.svg";
-//components
+// components
 import Facturacion from "../components/navBar/View/Facturacion";
-import Productos from "../components/navBar/View/Productos";
+import CitasMedicas from "../components/navBar/View/CitasMedicas"; // Cambia esto a CitasMedicas
 import MetodosPago from "../components/navBar/View/MetodosPago";
 import CierreCaja from "../components/navBar/View/CierreCaja";
 
 const MainView = ({ getUser }) => {
 	const [componenteActivo, setComponenteActivo] = useState("Facturacion");
-	const [listProductos, setListProductos] = useState([]);
+	const [listCitas, setListCitas] = useState([]);
 	const [totalFactura, setTotalFactura] = useState(0);
 	const [cliente, setCliente] = useState({});
 
 	useEffect(() => {
 		let total = 0;
-		listProductos.forEach((producto) => {
-			total += producto.total;
+		listCitas.forEach((cita) => {
+			total += cita.total;
 		});
 		setTotalFactura(total);
-	}, [listProductos]);
+	}, [listCitas]);
 
 	const cambiarMetodoPago = () => {
 		setComponenteActivo("Metodos de Pago");
@@ -44,16 +44,18 @@ const MainView = ({ getUser }) => {
 					<h1 className="MainTitle">{componenteActivo}</h1>
 
 					<div className="MainUserDiv">
-						<img src={UserRound}></img>
+						<img src={UserRound} alt="User" />
 						<p style={{ fontWeight: "bold" }}>Bienvenido {getUser}</p>
 					</div>
 				</div>
 				<div className="FactContentBottom">
-					{componenteActivo === "Productos" && <Productos setListaProductos={setListProductos} listaProductos={listProductos} />}
+					{componenteActivo === "Citas Médicas" && (
+						<CitasMedicas setListaCitas={setListCitas} listaCitas={listCitas} />
+					)}
 					{componenteActivo === "Facturacion" && (
 						<Facturacion
-							listaProductosInterna={listProductos}
-							setListaProductosExterna={setListProductos}
+							listaCitasInterna={listCitas}
+							setListaCitasExterna={setListCitas}
 							continuarVista={cambiarMetodoPago}
 							ClienteExterno={cliente}
 							setClienteExterno={setCliente}
@@ -62,10 +64,10 @@ const MainView = ({ getUser }) => {
 					{componenteActivo === "Metodos de Pago" && (
 						<MetodosPago
 							totalCosto={totalFactura.toFixed(2)}
-							listaProductos={listProductos}
+							listaCitas={listCitas}
 							cliente={cliente}
 							setClienteExterno={setCliente}
-							setListaProductosExterna={setListProductos}
+							setListaCitasExterna={setListCitas}
 							continuarVista={cambiarFacturacion}
 						/>
 					)}

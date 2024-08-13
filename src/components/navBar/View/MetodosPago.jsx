@@ -9,6 +9,7 @@ import cartSVG from "../../../assets/marketKart.svg";
 import MetodosTable from "../../tables/MetodosTable";
 import { jsPDF } from "jspdf";
 import { showErrorMessage, showSuccessMessage, showWarningMessage, showInfoMessage } from "../../messageBar/MessageBar";
+import "./css/MetodosPago.css";
 
 const MetodosPago = ({ totalCosto, listaProductos, cliente, setClienteExterno, setListaProductosExterna, continuarVista }) => {
 	const [montoTotal, setMontoTotal] = useState(totalCosto ? totalCosto : "0.00");
