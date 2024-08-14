@@ -1,0 +1,113 @@
+/* ModalMedicalRest.css */
+
+.modalMedicalRestContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modalMedicalRestBackgroundBlur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.modalMedicalRestContent {
+    position: relative;
+    width: 80%;
+    max-width: 800px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.modalHeader {
+    display: flex;
+    justify-content: flex-end;
+    padding: 16px;
+    background: #f0f0f0;
+    border-bottom: 1px solid #ddd;
+}
+
+.closeButton {
+    background: #FF0000;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.modalBody {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.modalBodyContainer {
+    padding: 16px;
+    overflow-y: auto; /* Enable vertical scroll */
+    max-height: 60vh; /* Adjust height as needed */
+}
+
+/* Personalización de la barra de desplazamiento */
+.modalBodyContainer::-webkit-scrollbar {
+    width: 8px; /* Ajusta el ancho del scrollbar */
+}
+
+.modalBodyContainer::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color de la pista del scrollbar */
+    border-radius: 10px;
+}
+
+.modalBodyContainer::-webkit-scrollbar-thumb {
+    background: #888; /* Color del thumb del scrollbar */
+    border-radius: 10px;
+}
+
+.modalBodyContainer::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color del thumb al pasar el ratón por encima */
+}
+
+.modalSearchContainer {
+    margin-bottom: 16px;
+}
+
+.searchTitle {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.medicalRestList {
+    display: flex;
+    flex-direction: column;
+}
+
+.medicalRestItem {
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+.itemSeparator {
+    margin: 8px 0;
+    border: 0;
+    border-top: 1px solid #ddd;
+}
+ 

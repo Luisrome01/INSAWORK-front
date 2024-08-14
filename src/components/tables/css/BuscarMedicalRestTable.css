@@ -1,0 +1,48 @@
+.buscarMedicalRestTableContainer {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.medicalRestTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 1em;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.medicalRestTable th,
+.medicalRestTable td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.medicalRestTable th {
+    background-color: #009879;
+    color: #ffffff;
+}
+
+.medicalRestTable tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.medicalRestTable tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.medicalRestTable tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.medicalRestTable button {
+    background-color: #1ed760;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.medicalRestTable button:hover {
+    background-color: #17a24a;
+}
