@@ -7,3 +7,8 @@ h2 {
     color: #333;
     /* Agrega más estilos según sea necesario */
 }
+.buttonContainer {
+    display: flex;
+    gap: 20px; /* Espacio entre los botones */
+    margin-bottom: 20px; /* Margen inferior para separar los botones del contenido */
+}
