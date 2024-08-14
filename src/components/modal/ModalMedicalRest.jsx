@@ -21,7 +21,8 @@ const ModalMedicalRest = ({ closeModal }) => {
     useEffect(() => {
         // Filter data based on search term
         const results = data.filter(medicalRest =>
-            medicalRest.sintomas && medicalRest.sintomas.toLowerCase().includes(searchTerm.toLowerCase())
+            (medicalRest.nombrePaciente && medicalRest.nombrePaciente.toLowerCase().includes(searchTerm.toLowerCase())) ||
+            (medicalRest.cedulaPaciente && medicalRest.cedulaPaciente.toLowerCase().includes(searchTerm.toLowerCase()))
         );
         setFilteredData(results);
     }, [searchTerm, data]);
@@ -94,8 +95,8 @@ const ModalMedicalRest = ({ closeModal }) => {
                                         onClick={() => handleMedicalRestClick(medicalRest._id)}
                                     >
                                         <p><strong>ID:</strong> {medicalRest._id}</p>
-                                        <p><strong>Patient ID:</strong> {medicalRest.patientId}</p>
-                                        <p><strong>Síntomas:</strong> {medicalRest.sintomas}</p>
+                                        <p><strong>Nombre Paciente:</strong> {medicalRest.nombrePaciente}</p>
+                                        <p><strong>Cédula Paciente:</strong> {medicalRest.cedulaPaciente}</p>
                                         <p><strong>Fecha:</strong> {new Date(medicalRest.fecha).toLocaleDateString()}</p>
                                         <hr className="itemSeparator" />
                                     </div>
