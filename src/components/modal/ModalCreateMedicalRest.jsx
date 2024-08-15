@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 import "./css/ModalCreateMedicalRest.css";
 import InputGeneral from "../inputs/InputGeneral";
+import { showErrorMessage, showSuccessMessage, showWarningMessage } from "../messageBar/MessageBar";
 
 const ModalCreateMedicalRest = ({ closeModal }) => {
-    const [cedulaPaciente, setCedulaPaciente] = useState("");  // Cambiado de patientId a cedulaPaciente
+    const [cedulaPaciente, setCedulaPaciente] = useState("");
     const [sintomas, setSintomas] = useState("");
     const [fecha, setFecha] = useState("");
     const [diagnostico, setDiagnostico] = useState("");
     const [fechaInicio, setFechaInicio] = useState("");
     const [fechaFinal, setFechaFinal] = useState("");
     const [comentarios, setComentarios] = useState("");
+    const [message, setMessage] = useState(null);  // Estado para el mensaje
 
     const handleCreate = async () => {
         const newMedicalRest = {
-            cedulaPaciente,  // Cambiado de patientId a cedulaPaciente
+            cedulaPaciente,
             sintomas,
             fecha,
             diagnostico,
@@ -35,12 +37,19 @@ const ModalCreateMedicalRest = ({ closeModal }) => {
                 const blob = await response.blob();
                 const url = window.URL.createObjectURL(blob);
                 window.open(url, "_blank");
-                closeModal(false);
+                setMessage(showSuccessMessage("Reposo Médico creado exitosamente", "center"));
+                setTimeout(() => closeModal(false), 3000);  // Cierra el modal después de mostrar el mensaje
             } else {
-                console.error("Error al crear Medical Rest:", response.statusText);
+                const errorData = await response.json();
+                if (response.status === 404 && errorData.msg === 'Patient not found') {
+                    setMessage(showWarningMessage("La cédula del paciente no se encuentra registrada", "center"));
+                } else {
+                    setMessage(showErrorMessage(`Error: ${errorData.msg}`, "center"));
+                }
             }
         } catch (error) {
             console.error("Error en la solicitud:", error);
+            setMessage(showErrorMessage("Error en la solicitud. Por favor, intente de nuevo.", "center"));
         }
     };
 
@@ -123,6 +132,7 @@ const ModalCreateMedicalRest = ({ closeModal }) => {
                         </button>
                     </div>
                 </div>
+                {message && <div className="messageContainer">{message}</div>} {/* Mostrar el MessageBar */}
             </div>
         </div>
     );
