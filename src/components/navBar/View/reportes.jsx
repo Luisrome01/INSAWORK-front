@@ -20,7 +20,7 @@ const Reportes = ({ totalCosto, listaCitas, cliente, setClienteExterno, setLista
         <div className="ReportesContainer">
             <div className="buttonContainer">
                 <BtnGeneral
-                    text="Buscar Medical Rest"
+                    text="Reposos Medicos"
                     color="#FFFFFF"
                     bgColor="#1E90FF"
                     handleClick={() => setIsModalMedicalRestOpen(true)}

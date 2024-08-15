@@ -56,15 +56,52 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    padding: 16px;
+    position: relative; /* Positioning context for createButton */
+}
+
+.modalSearchContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.searchTitle {
+    font-size: 18px;
+    margin-right: 16px;
+}
+
+.createButton {
+    background: #FF0000;/* Color de fondo */
+    color: white; /* Color del texto */
+    border: 2px solid #7B9ACC; /* Borde para visibilidad */
+    padding: 8px 16px; /* Ajusta el tamaño */
+    border-radius: 8px; /* Forma del botón */
+    cursor: pointer;
+    font-size: 16px; /* Tamaño del texto */
+    margin-left: auto; /* Alineación a la derecha */
+    position: absolute;
+    top: 16px; /* Espacio desde el borde superior del contenedor */
+    right: 16px; /* Espacio desde el borde derecho del contenedor */
+    transition: background 0.3s, border-color 0.3s, transform 0.2s; /* Transición suave */
+}
+
+.createButton:hover {
+    background: #9AB5E1; /* Color de fondo al pasar el ratón */
+    border-color: #8A9ACD; /* Color del borde al pasar el ratón */
+}
+
+.createButton:active {
+    background: #8A9ACD; /* Color de fondo al hacer clic */
+    border-color: #6C8BC1; /* Color del borde al hacer clic */
+    transform: scale(0.95); /* Efecto de presión */
 }
 
 .modalBodyContainer {
-    padding: 16px;
-    overflow-y: auto; /* Enable vertical scroll */
-    max-height: 60vh; /* Adjust height as needed */
+    overflow-y: auto; /* Habilita el desplazamiento vertical */
+    max-height: 60vh; /* Ajusta la altura según sea necesario */
 }
 
-/* Personalización de la barra de desplazamiento */
 .modalBodyContainer::-webkit-scrollbar {
     width: 8px; /* Ajusta el ancho del scrollbar */
 }
@@ -81,15 +118,6 @@
 
 .modalBodyContainer::-webkit-scrollbar-thumb:hover {
     background: #555; /* Color del thumb al pasar el ratón por encima */
-}
-
-.modalSearchContainer {
-    margin-bottom: 16px;
-}
-
-.searchTitle {
-    font-size: 18px;
-    margin-bottom: 8px;
 }
 
 .medicalRestList {
@@ -110,4 +138,3 @@
     border: 0;
     border-top: 1px solid #ddd;
 }
- 
