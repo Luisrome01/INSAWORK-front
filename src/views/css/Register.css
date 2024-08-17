@@ -1,84 +1,92 @@
 .LogContainerGeneral {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f2f2f2;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f2f2f2;
+}
+
+.LogContainer {
+  background-color: white;
+  box-shadow: 05px15pxrgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  width: 90%;
+  max-width: 450px; /* Ajustado a un tamaño adecuado */padding: 40px;
+  margin: 20px;
+  box-sizing: border-box;
+}
+
+.LogSubContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.LogContainerTitle {
+  margin-bottom: 20px;
+}
+
+.LogTitle, .LogSubTitle {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin: 10px0;
+}
+
+.LogContainerSubTitle {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.LogEnum {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.LogImage {
+  width: 80px; /* Ajustado a un tamaño más pequeño */margin: 20px0; 
+  height: auto;
+}
+
+.LastInput {
+  margin-bottom: 20px; /* Espacio adicional entre el último input y el botón */
+}
+
+.RegisterButton {
+  margin-top: 30px; /* Aumentado para mayor separación */
+}
+
+.LogRegisterLink {
+  font-size: 16px;
+  color: #666;
+  text-decoration: none;
+  margin-top: 20px;
+  transition: color 0.3s ease;
+}
+
+.LogRegisterLink:hover {
+  color: #333;
+}
+
+@media (min-width: 768px) {
   .LogContainer {
-    background-color: white;
-    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    width: 80%;
-    max-width: 600px;
-    padding: 50px;
-  }
-  
-  .LogSubContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .LogContainerTitle {
-    margin-bottom: 30px;
-  }
-  
-  .LogTitle {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .LogContainerSubTitle {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  
-  .LogEnum {
-    font-size: 16px;
-    color: #666;
-    margin-bottom: 10px;
-  }
-  
-  .LogSubTitle {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
+      width: 50%;
+      max-width: 600px;
+      padding: 50px;
   }
   
   .LogImage {
-    width: 80px; 
-    margin-bottom: 20px; 
+      width: 80%; /* Ajustado para pantallas más grandes */max-width: 500px; /* Tamaño máximo para pantallas grandes */
   }
-  
-  .LogRegisterLink {
-    font-size: 16px;
-    color: #666;
-    text-decoration: none;
-    margin-top: 20px;
-    transition: color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .LogContainer {
+      padding: 20px;
   }
-  
-  .LogRegisterLink:hover {
-    color: #333;
+
+  .LogTitle, .LogSubTitle {
+      font-size: 22px;
   }
-  
-  @media (min-width: 768px) {
-    .LogContainerGeneral {
-      justify-content: space-between;
-    }
-  
-    .LogContainer {
-      width: 50%;
-      max-width: 500px;
-    }
-  
-    .LogImage {
-      display: block;
-      width: 50%;
-      max-width: 500px;
-      height: auto;
-    }
-  }
+}

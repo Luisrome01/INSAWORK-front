@@ -36,7 +36,7 @@ const Login = ({ setUser }) => {
 		<div className="LogContainer">
 		  <div className="LogSubContainer">
 			<div className="LogContainerTitle">
-			  <h3 className="LogTitle">Isawork</h3>
+			  <h3 className="LogTitle">INSAWORK</h3>
 			</div>
 	  
 			<div className="LogContainerSubTitle">
