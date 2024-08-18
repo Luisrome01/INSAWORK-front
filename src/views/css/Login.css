@@ -8,7 +8,7 @@
 
 .LogContainer {
   background-color: #f5f5f5; /* Fondo blanco */
-  border-radius: 10px; /* Bordes más redondeados */
+  border-radius: 10px; /* Bordes más redondeados */ 
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.2); /* Sombra más suave */
   padding: 30px; /* Menos padding */
   width: 400px; /* Ancho más pequeño */
@@ -46,10 +46,30 @@
   color: #333;
 }
 
-.LogInputContainer,
-.LogButtonContainer {
-  width: 100%; /* Ancho completo */
-  margin-bottom: 20px; /* Menos margen inferior */
+.InputWrapper {
+  position: relative;
+  width: 80%;
+  margin-bottom: 20px;
+}
+
+.PasswordInput {
+  padding-right: 40px; /* Espacio para el botón de toggle */
+}
+
+.PasswordToggle {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px; /* Tamaño del icono */
+  color: #333; /* Color del icono */
+}
+
+.PasswordToggle:focus {
+  outline: none;
 }
 
 @media (max-width: 768px) {
@@ -62,7 +82,15 @@
     padding: 30px; /* Menos padding */
   }
 }
+
 .LogImage {
   width: 80px; 
   margin-bottom: 20px; 
+}
+
+.ErrorText {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-bottom: 10px;
 }

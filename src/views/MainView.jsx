@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import NavBar from "../components/navBar/navBar";
 import "./css/MainView.css";
 // assets
@@ -6,14 +7,27 @@ import UserRound from "../assets/user-round.svg";
 // components
 import Principal from "../components/navBar/View/principal";
 import CitasMedicas from "../components/navBar/View/CitasMedicas";
-import Reportes from "../components/navBar/View/reportes"; // Cambiado a minúsculas
-import Historias from "../components/navBar/View/historias"; // Cambiado a minúsculas
+import Reportes from "../components/navBar/View/reportes";
+import Historias from "../components/navBar/View/historias";
 
-const MainView = ({ getUser }) => {
+const MainView = () => {
 	const [componenteActivo, setComponenteActivo] = useState("Principal");
 	const [listCitas, setListCitas] = useState([]);
 	const [totalFactura, setTotalFactura] = useState(0);
 	const [cliente, setCliente] = useState({});
+	const [user, setUser] = useState(null);
+
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		// Get user from localStorage
+		const storedUser = JSON.parse(localStorage.getItem("user"));
+		if (storedUser) {
+			setUser(storedUser.username || storedUser.email);
+		} else {
+			navigate("/");
+		}
+	}, [navigate]);
 
 	useEffect(() => {
 		let total = 0;
@@ -30,10 +44,6 @@ const MainView = ({ getUser }) => {
 		setComponenteActivo("Principal");
 	};
 
-	if (!getUser) {
-		window.location.href = "/";
-	}
-
 	return (
 		<div className="MainContainer">
 			<div className="MainNavContainer">
@@ -45,7 +55,7 @@ const MainView = ({ getUser }) => {
 
 					<div className="MainUserDiv">
 						<img src={UserRound} alt="User" />
-						<p style={{ fontWeight: "bold" }}>Bienvenido {getUser}</p>
+						<p style={{ fontWeight: "bold" }}>Bienvenido {user}</p>
 					</div>
 				</div>
 				<div className="FactContentBottom">
@@ -71,7 +81,7 @@ const MainView = ({ getUser }) => {
 							continuarVista={cambiarPrincipal}
 						/>
 					)}
-					{componenteActivo === "Historias" && <Historias responsable={getUser} />}
+					{componenteActivo === "Historias" && <Historias responsable={user} />}
 				</div>
 			</div>
 		</div>
