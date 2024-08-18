@@ -4,6 +4,8 @@ import InputGeneral from "../components/inputs/InputGeneral";
 import page from "../assets/logomedico.svg";
 import "./css/Register.css";
 import { Link, useNavigate } from 'react-router-dom';
+import { showSuccessMessage, showErrorMessage } from '../components/messageBar/MessageBar';
+import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Asegúrate de tener react-icons instalado
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -11,14 +13,26 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [message, setMessage] = useState(null); // Estado para el mensaje
   const navigate = useNavigate();
 
+  const validateForm = () => {
+    const newErrors = {};
+    if (!name) newErrors.name = 'Nombre es requerido';
+    if (!lastname) newErrors.lastname = 'Apellido es requerido';
+    if (!email) newErrors.email = 'Correo electrónico es requerido';
+    else if (!/\S+@\S+\.\S+/.test(email)) newErrors.email = 'Formato de correo electrónico inválido';
+    if (!username) newErrors.username = 'Nombre de usuario es requerido';
+    if (!password) newErrors.password = 'Contraseña es requerida';
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleRegister = async () => {
-    if (!name || !lastname || !email || !username || !password) {
-      setError('Por favor, completa todos los campos.');
-      return;
-    }
+    if (!validateForm()) return;
 
     try {
       const response = await fetch('http://localhost:3000/signup', {
@@ -36,16 +50,24 @@ const Register = () => {
       });
 
       if (response.ok) {
-        console.log('Registro exitoso');
-        navigate('/'); // Redirige al usuario a la ruta '/'
+        setMessage(showSuccessMessage('Registro exitoso', 'center')); // Mostrar mensaje de éxito
+        setTimeout(() => {
+          navigate('/'); // Redirige al usuario a la ruta '/'
+        }, 3000); // Espera 3 segundos antes de redirigir
       } else {
         const data = await response.json();
-        setError(data.msg || 'Error al registrar el usuario');
+        setErrors({ general: data.msg || 'Error al registrar el usuario' });
+        setMessage(showErrorMessage(data.msg || 'Error al registrar el usuario', 'center')); // Mostrar mensaje de error
       }
     } catch (error) {
       console.error('Error:', error);
-      setError('Error al conectar con el servidor');
+      setErrors({ general: 'Error al conectar con el servidor' });
+      setMessage(showErrorMessage('Error al conectar con el servidor', 'center')); // Mostrar mensaje de error
     }
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -66,7 +88,9 @@ const Register = () => {
             width="80%"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            className={errors.name ? 'InputError' : ''}
           />
+          {errors.name && <p className="ErrorText">{errors.name}</p>}
           <InputGeneral
             name={'Apellido'}
             type="text"
@@ -74,7 +98,9 @@ const Register = () => {
             width="80%"
             value={lastname}
             onChange={(e) => setLastname(e.target.value)}
+            className={errors.lastname ? 'InputError' : ''}
           />
+          {errors.lastname && <p className="ErrorText">{errors.lastname}</p>}
           <InputGeneral
             name={'Correo Electrónico'}
             type="email"
@@ -82,7 +108,9 @@ const Register = () => {
             width="80%"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            className={errors.email ? 'InputError' : ''}
           />
+          {errors.email && <p className="ErrorText">{errors.email}</p>}
           <InputGeneral
             name={'Nombre de Usuario'}
             type="text"
@@ -90,20 +118,30 @@ const Register = () => {
             width="80%"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            className={errors.username ? 'InputError' : ''}
           />
-          <InputGeneral
-            name={'Contraseña'}
-            type="password"
-            placeholder="Contraseña"
-            width="80%"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="LastInput"
-          />
-          {error && <p style={{ color: 'red' }}>{error}</p>}
-          <Link to="/" className="LogRegisterLink">
-            
-          </Link>
+          {errors.username && <p className="ErrorText">{errors.username}</p>}
+          <div className="PasswordContainer">
+            <InputGeneral
+              name={'Contraseña'}
+              type={showPassword ? "text" : "password"}
+              placeholder="Contraseña"
+              width="100%"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className={`LastInput ${errors.password ? 'InputError' : ''}`}
+            />
+            <button
+              type="button"
+              className="PasswordToggle"
+              onClick={togglePasswordVisibility}
+            >
+              {showPassword ? <FaEye /> : <FaEyeSlash />}
+            </button>
+          </div>
+          {errors.password && <p className="ErrorText">{errors.password}</p>}
+          {errors.general && <p className="ErrorText">{errors.general}</p>}
+          <Link to="/" className="LogRegisterLink"></Link>
           <BtnGeneral text="Registrarse" handleClick={handleRegister} className="RegisterButton" />
           <Link to="/" className="LogRegisterLink">
             ¿Ya tienes una cuenta? Inicia sesión aquí
@@ -111,6 +149,7 @@ const Register = () => {
         </div>
       </div>
       <img src={page} alt="imagen" className="LogImage" />
+      {message}
     </div>
   );
 };

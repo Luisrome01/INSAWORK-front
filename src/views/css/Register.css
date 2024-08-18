@@ -8,10 +8,11 @@
 
 .LogContainer {
   background-color: white;
-  box-shadow: 05px15pxrgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   width: 90%;
-  max-width: 450px; /* Ajustado a un tamaño adecuado */padding: 40px;
+  max-width: 450px;
+  padding: 40px;
   margin: 20px;
   box-sizing: border-box;
 }
@@ -30,7 +31,7 @@
   font-size: 24px;
   font-weight: bold;
   color: #333;
-  margin: 10px0;
+  margin: 10px 0;
 }
 
 .LogContainerSubTitle {
@@ -45,16 +46,50 @@
 }
 
 .LogImage {
-  width: 80px; /* Ajustado a un tamaño más pequeño */margin: 20px0; 
+  width: 80px;
+  margin: 20px 0;
   height: auto;
 }
 
+.InputContainer {
+  position: relative;
+  width: 80%;
+  margin-bottom: 20px;
+}
+
+.PasswordContainer {
+  position: relative;
+  width: 80%;
+  margin-bottom: 20px;
+}
+
+.PasswordToggle {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #333;
+}
+
+.InputGeneral {
+  width: 100%;
+  padding: 10px;
+  border: none; /* Sin borde */
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
 .LastInput {
-  margin-bottom: 20px; /* Espacio adicional entre el último input y el botón */
+  margin-bottom: 20px;
 }
 
 .RegisterButton {
-  margin-top: 30px; /* Aumentado para mayor separación */
+  margin-top: 30px;
 }
 
 .LogRegisterLink {
@@ -69,24 +104,40 @@
   color: #333;
 }
 
+/* Estilos para el messageBar */
+.messageBar {
+  color: red;
+  font-size: 16px;
+  margin-top: 15px;
+  text-align: center;
+}
+
 @media (min-width: 768px) {
   .LogContainer {
-      width: 50%;
-      max-width: 600px;
-      padding: 50px;
+    width: 50%;
+    max-width: 600px;
+    padding: 50px;
   }
   
   .LogImage {
-      width: 80%; /* Ajustado para pantallas más grandes */max-width: 500px; /* Tamaño máximo para pantallas grandes */
+    width: 80%;
+    max-width: 500px;
   }
 }
 
 @media (max-width: 768px) {
   .LogContainer {
-      padding: 20px;
+    padding: 20px;
   }
 
   .LogTitle, .LogSubTitle {
-      font-size: 22px;
+    font-size: 22px;
   }
+}
+
+.ErrorText {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-bottom: 10px;
 }

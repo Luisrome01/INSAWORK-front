@@ -10,7 +10,7 @@ const MessageBar = ({ text, showTime, position, severity }) => {
         }, showTime);
 
         return () => {
-            clearTimeout(timeout);
+            clearTimeout(timeout); 
         };
     }, [showTime]);
 
