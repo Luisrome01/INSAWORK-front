@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaCalendarAlt, FaFileInvoice, FaCreditCard, FaCashRegister, FaSignOutAlt } from "react-icons/fa";
-import BtnGeneral from "../buttons/BtnGeneral";
 import logo from "../../assets/BillMasterLogo.svg";
 import "./navBar.css";
 
@@ -42,13 +41,26 @@ const NavBar = ({ componenteActivo, setComponenteActivo }) => {
   };
 
   const handleLogout = () => {
-	console.log("Logout button clicked"); // Verifica si se está llamando
-	const token = localStorage.getItem("authToken");
-	console.log("Current authToken:", token); // Verifica si el token está presente
-	localStorage.removeItem("authToken");
-	console.log("authToken removed"); // Verifica si el token se eliminó
-	navigate("/");
-	console.log("Navigating to home page"); // Verifica si se está navegando
+    console.log("Logout button clicked");
+
+    // Verifica y elimina authToken del localStorage
+    const token = localStorage.getItem("authToken");
+    console.log("Current authToken:", token);
+
+    if (token) {
+      localStorage.removeItem("authToken");
+      console.log("authToken removed");
+    } else {
+      console.log("No authToken found");
+    }
+
+    // Limpia cualquier otro dato relevante del localStorage
+    localStorage.clear();
+    console.log("All localStorage cleared");
+
+    // Navega a la ruta "/"
+    navigate("/");
+    console.log("Navigating to home page");
   };
 
   return (
@@ -113,12 +125,22 @@ const NavBar = ({ componenteActivo, setComponenteActivo }) => {
         </div>
       </div>
       <div className="NavLogout">
-        <BtnGeneral
+        <button
           onClick={handleLogout}
-          icon={<FaSignOutAlt />}
-          iconColor="#FF0000"
-          text="Cerrar Sesión"
-        />
+          style={{
+            display: "flex",
+            alignItems: "center",
+            backgroundColor: "transparent",
+            border: "none",
+            cursor: "pointer",
+            color: "#FF0000",
+            padding: "10px",
+            fontSize: "16px",
+          }}
+        >
+          <FaSignOutAlt style={{ marginRight: "8px" }} />
+          Cerrar Sesión
+        </button>
       </div>
     </nav>
   );
