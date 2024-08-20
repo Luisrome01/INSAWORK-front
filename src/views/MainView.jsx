@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../components/navBar/navBar";
+import ModalUsuario from "../components/modal/ModalUsuario";
 import "./css/MainView.css";
 // assets
 import UserRound from "../assets/user-round.svg";
@@ -16,6 +17,7 @@ const MainView = () => {
 	const [totalFactura, setTotalFactura] = useState(0);
 	const [cliente, setCliente] = useState({});
 	const [user, setUser] = useState(null);
+	const [isModalOpen, setIsModalOpen] = useState(false); // Estado para controlar el modal
 
 	const navigate = useNavigate();
 
@@ -44,6 +46,10 @@ const MainView = () => {
 		setComponenteActivo("Principal");
 	};
 
+	const handleUserClick = () => {
+		setIsModalOpen(true); // Abrir el modal cuando se hace clic en el div del usuario
+	};
+
 	return (
 		<div className="MainContainer">
 			<div className="MainNavContainer">
@@ -53,10 +59,14 @@ const MainView = () => {
 				<div className="MainContentTop">
 					<h1 className="MainTitle">{componenteActivo}</h1>
 
-					<div className="MainUserDiv">
-						<img src={UserRound} alt="User" />
-						<p style={{ fontWeight: "bold" }}>Bienvenido {user}</p>
-					</div>
+					<div
+   					 className="MainUserDiv"
+    					onClick={() => setIsModalOpen(true)}
+   						 style={{ cursor: "pointer" }}
+					>
+    <img src={UserRound} alt="User" />
+    <p style={{ fontWeight: "bold" }}>Bienvenido {user}</p>
+</div>
 				</div>
 				<div className="FactContentBottom">
 					{componenteActivo === "Citas Médicas" && (
@@ -84,6 +94,7 @@ const MainView = () => {
 					{componenteActivo === "Historias" && <Historias responsable={user} />}
 				</div>
 			</div>
+			{isModalOpen && <ModalUsuario closeModal={setIsModalOpen} user={user} />}
 		</div>
 	);
 };
