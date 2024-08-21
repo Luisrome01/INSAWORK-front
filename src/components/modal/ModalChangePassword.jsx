@@ -71,57 +71,57 @@ const ModalChangePassword = ({ closeModal }) => {
     };
 
     return (
-        <div className="modalChangePasswordContainer">
-            <div className="modalChangePasswordBackgroundBlur"></div>
-            <div className="modalChangePasswordContent">
-                <div className="modalHeader">
-                    <h2 className="modalTitle">Cambiar Contraseña</h2>
-                    <button className="closeButton" onClick={() => closeModal(false)}>
+        <div className="changePasswordModalContainer">
+            <div className="changePasswordModalBackgroundBlur"></div>
+            <div className="changePasswordModalContent">
+                <div className="changePasswordModalHeader">
+                    <h2 className="changePasswordModalTitle">Cambiar Contraseña</h2>
+                    <button className="changePasswordCloseButton" onClick={() => closeModal(false)}>
                         X
                     </button>
                 </div>
-                <div className="modalBody">
+                <div className="changePasswordModalBody">
                     {messageBar}
-                    <input
+                    <input 
                         type="email"
                         placeholder="Correo Electrónico"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="inputField"
+                        className="changePasswordInputField"
                     />
-                    <div className="passwordField">
+                    <div className="changePasswordField">
                         <input
                             type={showCurrentPassword ? "text" : "password"}
                             placeholder="Contraseña actual"
                             value={currentPassword}
                             onChange={(e) => setCurrentPassword(e.target.value)}
-                            className="inputField"
+                            className="changePasswordInputField"
                         />
                         <button
                             type="button"
-                            className="toggleVisibility"
+                            className="changePasswordToggleVisibility"
                             onClick={() => setShowCurrentPassword(!showCurrentPassword)}
                         >
                             {showCurrentPassword ? <FaEye /> : <FaEyeSlash />}
                         </button>
                     </div>
-                    <div className="passwordField">
+                    <div className="changePasswordField">
                         <input
                             type={showNewPassword ? "text" : "password"}
                             placeholder="Nueva contraseña"
                             value={newPassword}
                             onChange={(e) => setNewPassword(e.target.value)}
-                            className="inputField"
+                            className="changePasswordInputField"
                         />
                         <button
                             type="button"
-                            className="toggleVisibility"
+                            className="changePasswordToggleVisibility"
                             onClick={() => setShowNewPassword(!showNewPassword)}
                         >
                             {showNewPassword ? <FaEye /> : <FaEyeSlash />}
                         </button>
                     </div>
-                    <button className="changePasswordButton" onClick={handlePasswordChange}>
+                    <button className="changePasswordSubmitButton" onClick={handlePasswordChange}>
                         Cambiar Contraseña
                     </button>
                 </div>

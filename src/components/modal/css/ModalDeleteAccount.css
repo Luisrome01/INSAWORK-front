@@ -1,4 +1,4 @@
-.modalDeleteAccountContainer {
+.deleteAccountModalContainer {
     position: fixed;
     top: 0;
     left: 0;
@@ -9,8 +9,8 @@
     align-items: center;
     z-index: 1000;
 }
- 
-.modalDeleteAccountBackgroundBlur {
+
+.deleteAccountModalBackgroundBlur {
     position: absolute;
     top: 0;
     left: 0;
@@ -19,7 +19,7 @@
     background: rgba(0, 0, 0, 0.5);
 }
 
-.modalDeleteAccountContent {
+.deleteAccountModalContent {
     position: relative;
     width: 90%;
     max-width: 400px;
@@ -31,20 +31,21 @@
     gap: 20px;
 }
 
-.modalHeader {
+.deleteAccountModalHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
 }
 
-.modalTitle {
+.deleteAccountModalTitle {
     margin: 0;
     font-size: 20px;
     font-weight: bold;
+    flex-grow: 1; /* Asegura que el título use todo el espacio disponible */
 }
 
-.closeButton {
+.deleteAccountCloseButton {
     background: #FF0000;
     color: white;
     border: none;
@@ -55,21 +56,25 @@
     cursor: pointer;
 }
 
-.modalBody {
+.deleteAccountModalBody {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.inputField {
-    padding: 10px;
+.deleteAccountInputField {
+    padding: 10px; /* Aumentar el padding */
     font-size: 16px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    width: 100%;
+    width: 95%; /* Ajustar el ancho al 95% */
+    max-width: 400px; /* Aumentar el ancho máximo */
+    background-color: white; /* Fondo blanco */
+    color: black; /* Texto negro */
 }
 
-.deleteAccountButton {
+
+.deleteAccountConfirmButton {
     padding: 12px;
     background-color: rgba(174, 187, 253, 0.9);
     color: white;
@@ -80,6 +85,6 @@
     width: 100%;
 }
 
-.deleteAccountButton:hover {
+.deleteAccountConfirmButton:hover {
     background-color: rgba(174, 187, 253, 0.75);
 }

@@ -50,22 +50,22 @@ const ModalDeleteAccount = ({ closeModal }) => {
     };
 
     return (
-        <div className="modalDeleteAccountContainer">
-            <div className="modalDeleteAccountBackgroundBlur"></div>
-            <div className="modalDeleteAccountContent">
-                <div className="modalHeader">
-                    <h2 className="modalTitle">Eliminar Cuenta</h2>
-                    <button className="closeButton" onClick={() => closeModal(false)}>X</button>
+        <div className="deleteAccountModalContainer">
+            <div className="deleteAccountModalBackgroundBlur"></div>
+            <div className="deleteAccountModalContent">
+                <div className="deleteAccountModalHeader">
+                    <h2 className="deleteAccountModalTitle">Eliminar Cuenta</h2>
+                    <button className="deleteAccountCloseButton" onClick={() => closeModal(false)}>X</button>
                 </div>
-                <div className="modalBody">
+                <div className="deleteAccountModalBody">
                     <input
                         type="email"
                         placeholder="Ingrese su correo electrónico"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="inputField"
+                        className="deleteAccountInputField"
                     />
-                    <button className="deleteAccountButton" onClick={handleDeleteAccount}>
+                    <button className="deleteAccountConfirmButton" onClick={handleDeleteAccount}>
                         Eliminar Cuenta
                     </button>
                 </div>
