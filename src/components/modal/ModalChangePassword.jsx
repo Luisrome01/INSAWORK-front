@@ -9,11 +9,18 @@ const ModalChangePassword = ({ closeModal }) => {
     const [newPassword, setNewPassword] = useState("");
     const [showCurrentPassword, setShowCurrentPassword] = useState(false);
     const [showNewPassword, setShowNewPassword] = useState(false);
-    const [message, setMessage] = useState(null);
+    const [messageBar, setMessageBar] = useState(null);
+
+    const displayMessage = (messageComponent) => {
+        setMessageBar(messageComponent);
+        setTimeout(() => {
+            setMessageBar(null);
+        }, 3000);
+    };
 
     const handlePasswordChange = async () => {
         if (!email || !currentPassword || !newPassword) {
-            setMessage(showErrorMessage("Por favor, complete todos los campos.", "center"));
+            displayMessage(showErrorMessage("Por favor, complete todos los campos.", "center"));
             return;
         }
 
@@ -33,13 +40,11 @@ const ModalChangePassword = ({ closeModal }) => {
             const result = await response.json();
 
             if (response.ok) {
-                setMessage(showSuccessMessage("Contraseña cambiada exitosamente.", "center"));
+                displayMessage(showSuccessMessage("Contraseña cambiada exitosamente.", "center"));
                 setTimeout(() => {
-                    setMessage(null); // Limpiar mensaje después de mostrar
                     closeModal(false);
                 }, 3000);
             } else {
-                // Manejo de diferentes tipos de errores
                 let errorMessage;
                 switch (result.errorCode) {
                     case "USER_NOT_FOUND":
@@ -58,10 +63,10 @@ const ModalChangePassword = ({ closeModal }) => {
                         errorMessage = result.msg || "Error desconocido.";
                         break;
                 }
-                setMessage(showErrorMessage(errorMessage, "center"));
+                displayMessage(showErrorMessage(errorMessage, "center"));
             }
         } catch (error) {
-            setMessage(showErrorMessage("Error de conexión. Inténtelo de nuevo más tarde.", "center"));
+            displayMessage(showErrorMessage("Error de conexión. Inténtelo de nuevo más tarde.", "center"));
         }
     };
 
@@ -76,7 +81,7 @@ const ModalChangePassword = ({ closeModal }) => {
                     </button>
                 </div>
                 <div className="modalBody">
-                    {message}
+                    {messageBar}
                     <input
                         type="email"
                         placeholder="Correo Electrónico"
