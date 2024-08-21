@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import BtnGeneral from "../components/buttons/BtnGeneral";
 import InputGeneral from "../components/inputs/InputGeneral";
 import page from "../assets/logomedico.svg";
-import "./css/Register.css";
+import { FaEye, FaEyeSlash, FaCamera } from 'react-icons/fa'; // Asegúrate de tener react-icons instalado
 import { Link, useNavigate } from 'react-router-dom';
 import { showSuccessMessage, showErrorMessage } from '../components/messageBar/MessageBar';
-import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Asegúrate de tener react-icons instalado
+import "./css/Register.css";
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -13,6 +13,7 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [profileImg, setProfileImg] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState(null); // Estado para el mensaje
@@ -34,19 +35,20 @@ const Register = () => {
   const handleRegister = async () => {
     if (!validateForm()) return;
 
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('lastname', lastname);
+    formData.append('email', email);
+    formData.append('username', username);
+    formData.append('password', password);
+    if (profileImg) {
+      formData.append('profileImg', profileImg);
+    }
+
     try {
       const response = await fetch('http://localhost:3000/signup', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name,
-          lastname,
-          email,
-          username,
-          password,
-        }),
+        body: formData,
       });
 
       if (response.ok) {
@@ -66,6 +68,11 @@ const Register = () => {
     }
   };
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setProfileImg(file);
+  };
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -81,10 +88,37 @@ const Register = () => {
             <p className="LogEnum">Regístrate</p>
             <h1 className="LogSubTitle">Crea tu cuenta</h1>
           </div>
+
+          <div className="ImageUploadContainer">
+            <label htmlFor="profileImg" className="ImageUploadLabel">
+              {!profileImg && (
+                <>
+                  <FaCamera className="CameraIcon" />
+                  <span>Ingresa una foto de perfil</span>
+                </>
+              )}
+              <input
+                type="file"
+                id="profileImg"
+                name="profileImg"
+                accept="image/*"
+                onChange={handleImageChange}
+                style={{ display: 'none' }}
+              />
+              {profileImg && (
+                <img
+                  src={URL.createObjectURL(profileImg)}
+                  alt="Vista previa"
+                  className="ImagePreview"
+                />
+              )}
+            </label>
+          </div>
+
           <InputGeneral
             name={'Nombre Completo'}
             type="text"
-            placeholder="ej. Juan"
+            placeholder="ej. Jubert"
             width="80%"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -94,7 +128,7 @@ const Register = () => {
           <InputGeneral
             name={'Apellido'}
             type="text"
-            placeholder="ej. Pérez"
+            placeholder="ej. Perez"
             width="80%"
             value={lastname}
             onChange={(e) => setLastname(e.target.value)}
@@ -104,7 +138,7 @@ const Register = () => {
           <InputGeneral
             name={'Correo Electrónico'}
             type="email"
-            placeholder="ej. juan.perez@example.com"
+            placeholder="ej. jubert.perez@example.com"
             width="80%"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -114,7 +148,7 @@ const Register = () => {
           <InputGeneral
             name={'Nombre de Usuario'}
             type="text"
-            placeholder="ej. juanperez123"
+            placeholder="ej. jubertperez123"
             width="80%"
             value={username}
             onChange={(e) => setUsername(e.target.value)}

@@ -12,7 +12,7 @@
   border-radius: 10px;
   width: 90%;
   max-width: 450px;
-  padding: 40px;
+  padding: 40px; 
   margin: 20px;
   box-sizing: border-box;
 }
@@ -140,4 +140,54 @@
   font-size: 14px;
   margin-top: 5px;
   margin-bottom: 10px;
+}
+
+.ImageUploadContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.ImageUploadLabel {
+  width: 120px;
+  height: 120px;
+  background-color: #fff;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  flex-direction: column;
+  color: #999;
+  font-size: 14px;
+  text-align: center;
+}
+
+.CameraIcon {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.ImageUploadLabel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ImagePreview {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.LogContainerGeneral {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f2f2f2;
 }
