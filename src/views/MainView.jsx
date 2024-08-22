@@ -7,7 +7,7 @@ import "./css/MainView.css";
 import UserRound from "../assets/user-round.svg";
 // components
 import Principal from "../components/navBar/View/principal";
-import CitasMedicas from "../components/navBar/View/CitasMedicas";
+import CitasMedicas from "../components/navBar/View/citasMedicas";
 import Reportes from "../components/navBar/View/reportes";
 import Historias from "../components/navBar/View/historias";
 
@@ -22,7 +22,6 @@ const MainView = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		// Get user from localStorage
 		const storedUser = JSON.parse(localStorage.getItem("user"));
 		if (storedUser) {
 			setUser(storedUser.username || storedUser.email);
@@ -47,7 +46,7 @@ const MainView = () => {
 	};
 
 	const handleUserClick = () => {
-		setIsModalOpen(true); // Abrir el modal cuando se hace clic en el div del usuario
+		setIsModalOpen(true);
 	};
 
 	return (
@@ -58,18 +57,13 @@ const MainView = () => {
 			<div className="MainContentContainer">
 				<div className="MainContentTop">
 					<h1 className="MainTitle">{componenteActivo}</h1>
-
-					<div
-   					 className="MainUserDiv"
-    					onClick={() => setIsModalOpen(true)}
-   						 style={{ cursor: "pointer" }}
-					>
-    <img src={UserRound} alt="User" />
-    <p style={{ fontWeight: "bold" }}>Bienvenido {user}</p>
-</div>
+					<div className="MainUserDiv" onClick={handleUserClick} style={{ cursor: "pointer" }}>
+						<img src={UserRound} alt="User" />
+						<p style={{ fontWeight: "bold" }}>Bienvenido {user}</p>
+					</div>
 				</div>
 				<div className="FactContentBottom">
-					{componenteActivo === "Citas Médicas" && (
+					{componenteActivo === "CitasMedicas" && (
 						<CitasMedicas setListaCitas={setListCitas} listaCitas={listCitas} />
 					)}
 					{componenteActivo === "Principal" && (

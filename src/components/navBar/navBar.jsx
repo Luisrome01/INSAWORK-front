@@ -63,6 +63,11 @@ const NavBar = ({ componenteActivo, setComponenteActivo }) => {
     console.log("Navigating to home page");
   };
 
+  const handleComponenteClick = (componente) => {
+    setComponenteActivo(componente);
+    console.log(`${componente} está seleccionado`);
+  };
+
   return (
     <nav className="NavNavbar">
       <div className="NavLogo">
@@ -73,7 +78,7 @@ const NavBar = ({ componenteActivo, setComponenteActivo }) => {
         <h2 style={{ color: "#A4A4A5" }}>MENÚ PRINCIPAL</h2>
         <div
           className="nav-link"
-          onClick={() => setComponenteActivo("CitasMedicas")}
+          onClick={() => handleComponenteClick("CitasMedicas")}
           style={componenteActivo === "CitasMedicas" ? styleSelected : componenteHover.CitasMedicas ? styleHover : {}}
           onMouseEnter={() => handleMouseEnter("CitasMedicas")}
           onMouseLeave={() => handleMouseLeave("CitasMedicas")}
@@ -86,7 +91,7 @@ const NavBar = ({ componenteActivo, setComponenteActivo }) => {
         </div>
         <div
           className="nav-link"
-          onClick={() => setComponenteActivo("Principal")}
+          onClick={() => handleComponenteClick("Principal")}
           style={componenteActivo === "Principal" ? styleSelected : componenteHover.Principal ? styleHover : {}}
           onMouseEnter={() => handleMouseEnter("Principal")}
           onMouseLeave={() => handleMouseLeave("Principal")}
@@ -99,7 +104,7 @@ const NavBar = ({ componenteActivo, setComponenteActivo }) => {
         </div>
         <div
           className="nav-link"
-          onClick={() => setComponenteActivo("Reportes")}
+          onClick={() => handleComponenteClick("Reportes")}
           style={componenteActivo === "Reportes" ? styleSelected : componenteHover.Reportes ? styleHover : {}}
           onMouseEnter={() => handleMouseEnter("Reportes")}
           onMouseLeave={() => handleMouseLeave("Reportes")}
@@ -112,7 +117,7 @@ const NavBar = ({ componenteActivo, setComponenteActivo }) => {
         </div>
         <div
           className="nav-link"
-          onClick={() => setComponenteActivo("Historias")}
+          onClick={() => handleComponenteClick("Historias")}
           style={componenteActivo === "Historias" ? styleSelected : componenteHover.Historias ? styleHover : {}}
           onMouseEnter={() => handleMouseEnter("Historias")}
           onMouseLeave={() => handleMouseLeave("Historias")}
