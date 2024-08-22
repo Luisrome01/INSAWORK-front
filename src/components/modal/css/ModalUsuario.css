@@ -21,8 +21,8 @@
 
 .usuarioModalContent {
     position: relative;
-    width: 80%;
-    max-width: 800px;
+    width: 90%; /* Ajustar el ancho para que sea más grande */
+    max-width: 900px; /* Aumentar el ancho máximo */
     background: white;
     border-radius: 8px;
     overflow: hidden;
@@ -43,7 +43,6 @@
     margin: 0;
     font-size: 24px;
     font-weight: bold;
-    text-align: left;
 }
 
 .usuarioCloseButton {
@@ -64,58 +63,118 @@
     align-items: flex-start; /* Alinear todo a la izquierda */
 }
 
+.usuarioInfoContainer {
+    display: flex;
+    justify-content: space-between; /* Espacio entre la información del usuario y la imagen */
+    width: 100%; /* Para que ocupe todo el ancho disponible */
+}
+
 .usuarioInfo {
     display: flex;
     flex-direction: column;
     align-items: flex-start; /* Alinear la información del usuario a la izquierda */
     flex: 1; /* Para ocupar espacio a la izquierda */
+    margin-right: 20px; /* Espacio entre la info y la imagen */
+}
+
+.usuarioUsernameWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.usuarioUsernameInput {
+    margin-right: 8px;
+    padding: 5px;
+    font-size: 16px;
+    background-color: white; /* Cambiar color de fondo a blanco */
+    color: black; /* Asegurar que el texto sea negro para contraste */
+    border: 1px solid #ccc; /* Estilo de borde */
+    border-radius: 4px; /* Bordes redondeados */
+}
+
+.usuarioEditIcon {
+    cursor: pointer;
+    color: #555;
 }
 
 .usuarioProfilePictureContainer {
     display: flex;
     flex-direction: column;
     align-items: center; /* Centrar la foto de perfil */
-    margin-left: 20px; /* Espaciado entre la info y la foto */
 }
 
 .usuarioProfilePictureWrapper {
-    width: 100px; /* Ancho del contenedor de la foto */
-    height: 100px; /* Alto del contenedor de la foto */
-    border-radius: 50%; /* Hacerlo circular */
-    overflow: hidden; /* Ocultar desbordamiento */
+    width: 180px; /* Aumentar tamaño del contenedor */
+    height: 180px; /* Aumentar tamaño del contenedor */
+    border-radius: 50%;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #ffffff; /* Fondo blanco */
+    position: relative;
+    cursor: pointer;
+    margin: 0 auto; /* Centrar el contenedor de la imagen */
 }
 
-.usuarioProfilePicture {
-    width: 100%; /* Ancho de la imagen */
-    height: auto; /* Alto automático para mantener proporciones */
+.usuarioProfilePictureWrapper input[type="file"] {
+    display: none;
 }
 
-.usuarioEditProfileButton {
-    padding: 8px 16px;
-    margin-top: 10px; /* Espacio entre la imagen y el botón */
+.usuarioImagePreview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.usuarioImagePreview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Mantener proporciones */
+    border-radius: 50%;
+}
+
+.cameraIcon {
+    font-size: 24px;
+    color: #999999;
+}
+
+.usuarioImagePreview p {
+    margin: 0;
+    font-size: 14px;
+    color: #666666;
+    text-align: center;
+}
+
+.usuarioConfirmButton {
+    margin-top: 10px;
+    padding: 10px;
     background-color: rgba(174, 187, 253, 0.9);
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 16px;
+    width: 100%; /* Botón ocupa todo el ancho */
 }
 
-.usuarioEditProfileButton:hover {
+.usuarioConfirmButton:hover {
     background-color: rgba(174, 187, 253, 0.75);
 }
 
 .usuarioModalActions {
     display: flex;
-    flex-direction: column; /* Colocar botones uno encima del otro */
-    align-items: flex-start; /* Alinear botones a la izquierda */
+    justify-content: space-between; /* Espacio entre los botones */
     margin-top: 20px; /* Espaciado superior entre la información y los botones */
 }
 
-.usuarioChangePasswordOpenButton, .usuarioDeleteAccountOpenButton {
+.usuarioChangePasswordOpenButton,
+.usuarioDeleteAccountOpenButton {
     padding: 10px 20px;
     background-color: rgba(174, 187, 253, 0.9);
     color: white;
@@ -123,10 +182,10 @@
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
-    width: 100%; /* Hacer que los botones ocupen todo el ancho */
-    margin-top: 10px; /* Espaciado entre botones */
+    width: 48%; /* Ajustar ancho para que ocupen el espacio */
 }
 
-.usuarioChangePasswordOpenButton:hover, .usuarioDeleteAccountOpenButton:hover {
+.usuarioChangePasswordOpenButton:hover,
+.usuarioDeleteAccountOpenButton:hover {
     background-color: rgba(174, 187, 253, 0.75);
 }
