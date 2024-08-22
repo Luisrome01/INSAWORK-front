@@ -1,40 +1,36 @@
-/* ModalChangePassword.css */
-
-.changePasswordModalContainer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+.userInfoModalContainer {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.5);
+    
 }
 
-.changePasswordModalBackgroundBlur {
+.userInfoModalBackgroundBlur {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    right: 0;
+    bottom: 0;
+    /* Elimina backdrop-filter */
 }
 
-.changePasswordModalContent {
-    position: relative;
-    width: 90%;
-    max-width: 500px;
+.userInfoModalContent {
     background: white;
-    border-radius: 8px;
+    border-radius: 8px; /* Bordes redondeados */
     padding: 30px;
+    width: 90%;
+    max-width: 500px; /* Mismo ancho que el modal de cambio de contraseña */
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
 }
 
-.changePasswordModalHeader {
+.userInfoModalHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -44,14 +40,14 @@
     border-radius: 4px; /* Bordes redondeados */
 }
 
-.changePasswordModalTitle {
+.userInfoModalTitle {
     margin: 0;
     font-size: 24px;
     font-weight: bold;
 }
 
-.changePasswordCloseButton {
-    background: #FF0000;
+.userInfoCloseButton {
+    background: #FF0000; /* Color de fondo para el botón de cierre */
     color: white;
     border: none;
     border-radius: 50%;
@@ -60,44 +56,39 @@
     font-size: 18px;
     cursor: pointer;
 }
- 
-.changePasswordModalBody {
+
+.userInfoModalBody {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.changePasswordInputField {
+.userInfoField {
+    margin-bottom: 15px;
+}
+
+.userInfoField label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.userInfoInputField {
+    width: 100%;
     padding: 6px; /* Reducción del padding */
     font-size: 14px; /* Tamaño de fuente más pequeño */
     border: 1px solid #ddd;
     border-radius: 4px;
-    width: 95%;
-    max-width: 100%; /* Evita que se salga por la derecha */
     background-color: white;
 }
 
-.changePasswordField {
-    position: relative;
+.userInfoFileInput {
+    padding: 6px; /* Añadir padding similar al de los input de texto */
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 
-.changePasswordField input {
-    padding-right: 40px; /* Espacio para el icono del toggle */
-}
-
-.changePasswordToggleVisibility {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    font-size: 16px;
-    color: #888;
-    border: none;
-    background: none;
-}
-
-.changePasswordSubmitButton {
+.userInfoSubmitButton {
     padding: 12px;
     background-color: rgba(174, 187, 253, 0.75);
     color: white;
@@ -108,6 +99,6 @@
     width: 100%;
 }
 
-.changePasswordSubmitButton:hover {
+.userInfoSubmitButton:hover {
     background-color: rgba(150, 170, 240, 0.75);
 }

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./css/ModalUsuario.css";
 import ModalChangePassword from "./ModalChangePassword";
 import ModalDeleteAccount from "./ModalDeleteAccount"; 
+import ModalUserInfo from "./ModalUserInfo"; // Importar el nuevo modal
 import { FaCamera, FaEdit } from 'react-icons/fa';
 
 const ModalUsuario = ({ closeModal }) => {
@@ -12,7 +13,8 @@ const ModalUsuario = ({ closeModal }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [showChangePasswordModal, setShowChangePasswordModal] = useState(false);
     const [showDeleteAccountModal, setShowDeleteAccountModal] = useState(false);
-    
+    const [showUserInfoModal, setShowUserInfoModal] = useState(false); // Estado para el nuevo modal
+
     useEffect(() => {
         const storedUser = JSON.parse(localStorage.getItem("user"));
         if (storedUser) {
@@ -141,11 +143,15 @@ const ModalUsuario = ({ closeModal }) => {
                         <button onClick={() => setShowDeleteAccountModal(true)} className="usuarioDeleteAccountOpenButton">
                             Eliminar Cuenta
                         </button>
+                        <button onClick={() => setShowUserInfoModal(true)} className="usuarioUserInfoOpenButton">
+                            Información del Usuario
+                        </button>
                     </div>
                 </form>
             </div>
             {showChangePasswordModal && <ModalChangePassword closeModal={setShowChangePasswordModal} />}
             {showDeleteAccountModal && <ModalDeleteAccount closeModal={setShowDeleteAccountModal} />}
+            {showUserInfoModal && <ModalUserInfo closeModal={setShowUserInfoModal} userId={user._id} />} {/* Agregar el nuevo modal */}
         </div>
     );
 };

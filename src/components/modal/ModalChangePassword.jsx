@@ -123,7 +123,7 @@ const ModalChangePassword = ({ closeModal }) => {
                     </div>
                     <button className="changePasswordSubmitButton" onClick={handlePasswordChange}>
                         Cambiar Contraseña
-                    </button>
+                    </button> 
                 </div>
             </div>
         </div>
