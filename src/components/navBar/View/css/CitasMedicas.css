@@ -1,28 +1,28 @@
-/* citasMedicas.css */
-
-.citas-container {
-	padding: 20px;
-	background-color: #f9f9f9;
-	border-radius: 8px;
-	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+.appointments-container {
+	display: flex;
+	flex-direction: column;
+	gap: 20px; /* Espacio entre las tarjetas */
   }
   
-  .citas-header {
-	font-size: 24px;
-	font-weight: bold;
-	color: #333;
-	margin-bottom: 15px;
+  .appointment-card {
+	background-color: #f9f9f9; /* Color de fondo de la tarjeta */
+	border: 1px solid #ccc; /* Borde de la tarjeta */
+	border-radius: 8px; /* Bordes redondeados */
+	padding: 20px; /* Espaciado interno */
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+	transition: transform 0.2s; /* Transición para efecto de hover */
   }
   
-  .citas-content {
-	font-size: 16px;
-	color: #666;
+  .appointment-card:hover {
+	transform: scale(1.02); /* Efecto de zoom al pasar el mouse */
   }
   
-  .citas-content p {
-	margin: 0;
-	line-height: 1.5;
+  .appointment-card h2 {
+	font-size: 1.5rem; /* Tamaño del encabezado */
+	margin-bottom: 10px; /* Espaciado inferior */
   }
   
-  /* Añade más estilos según sea necesario */
+  .appointment-card p {
+	margin: 5px 0; /* Espaciado superior e inferior para los párrafos */
+  }
   
