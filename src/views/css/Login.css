@@ -34,12 +34,6 @@
   margin-bottom: 40px; /* Menos margen inferior */
 }
 
-.LogEnum {
-  font-size: 14px; /* Tamaño de letra más pequeño */
-  color: #666;
-  margin-bottom: 8px; /* Menos margen inferior */
-}
-
 .LogSubTitle {
   font-size: 20px; /* Tamaño de letra más pequeño */
   font-weight: bold;
@@ -93,4 +87,30 @@
   font-size: 14px;
   margin-top: 5px;
   margin-bottom: 10px;
+}
+
+.ForgotPasswordLink {
+  font-size: 16px;
+  color: #666; /* Color del enlace */
+  cursor: pointer;
+  margin-top: 15px;
+  text-align: center;
+  text-decoration: none; /* Sin subrayado */
+  transition: color 0.3s ease; /* Transición suave */
+}
+
+.ForgotPasswordLink:hover {
+  color: #333; /* Color en hover */
+}
+
+.LogRegisterLink {
+  font-size: 16px;
+  color: #666;
+  text-decoration: none;
+  margin-top: 20px;
+  transition: color 0.3s ease;
+}
+
+.LogRegisterLink:hover {
+  color: #333;
 }

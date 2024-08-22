@@ -125,7 +125,7 @@ const ModalChangePassword = ({ closeModal }) => {
                         Cambiar Contraseña
                     </button> 
                 </div>
-            </div>
+            </div> 
         </div>
     );
 };

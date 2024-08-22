@@ -6,12 +6,14 @@ import image from "../assets/tabler_login.svg";
 import page from "../assets/logomedico.svg";
 import "./css/Login.css";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import ModalResetPassword from "../components/modal/ModalResetPassword";
 
 const Login = ({ setUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [isResetPasswordModalOpen, setIsResetPasswordModalOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -45,7 +47,7 @@ const Login = ({ setUser }) => {
             "Authorization": `Bearer ${data.token}`,
           },
         });
-
+ 
         const userData = await userResponse.json();
 
         if (userResponse.ok) {
@@ -77,6 +79,14 @@ const Login = ({ setUser }) => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
     console.log("Password visibility toggled:", !showPassword);
+  };
+
+  const handleOpenResetPasswordModal = () => {
+    setIsResetPasswordModalOpen(true);
+  };
+
+  const handleCloseResetPasswordModal = () => {
+    setIsResetPasswordModalOpen(false);
   };
 
   return (
@@ -126,9 +136,17 @@ const Login = ({ setUser }) => {
           <a href="/register" className="LogRegisterLink">
             ¿Aún no tienes una cuenta? Regístrate aquí
           </a>
+
+          <p className="ForgotPasswordLink" onClick={handleOpenResetPasswordModal}>
+            ¿Olvidaste tu contraseña?
+          </p>
         </div>
       </div>
       <img src={page} alt="imagen" className="LogImage" />
+
+      {isResetPasswordModalOpen && (
+        <ModalResetPassword onClose={handleCloseResetPasswordModal} />
+      )}
     </div>
   );
 };

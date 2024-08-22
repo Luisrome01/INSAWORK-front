@@ -183,7 +183,7 @@ const Register = () => {
         </div>
       </div>
       <img src={page} alt="imagen" className="LogImage" />
-      {message}
+      {message} 
     </div>
   );
 };
