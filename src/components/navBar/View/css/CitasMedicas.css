@@ -1,28 +1,112 @@
-.appointments-container {
+/* Estilo del contenedor principal */
+.appointments-main-container {
 	display: flex;
 	flex-direction: column;
-	gap: 20px; /* Espacio entre las tarjetas */
-  }
-  
-  .appointment-card {
-	background-color: #f9f9f9; /* Color de fondo de la tarjeta */
-	border: 1px solid #ccc; /* Borde de la tarjeta */
-	border-radius: 8px; /* Bordes redondeados */
-	padding: 20px; /* Espaciado interno */
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-	transition: transform 0.2s; /* Transición para efecto de hover */
-  }
-  
-  .appointment-card:hover {
-	transform: scale(1.02); /* Efecto de zoom al pasar el mouse */
-  }
-  
-  .appointment-card h2 {
-	font-size: 1.5rem; /* Tamaño del encabezado */
-	margin-bottom: 10px; /* Espaciado inferior */
-  }
-  
-  .appointment-card p {
-	margin: 5px 0; /* Espaciado superior e inferior para los párrafos */
-  }
-  
+	align-items: center;
+	padding: 20px;
+}
+
+/* Contenedor para los filtros */
+.filter-container {
+	margin-bottom: 20px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	flex-wrap: wrap;
+}
+
+/* Estilo del input de fecha */
+.filter-container input[type="date"],
+.filter-container input[type="text"] {
+	background-color: #fff;
+	color: #000;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	padding: 8px 12px;
+	font-size: 1rem;
+}
+
+/* Estilo del botón de filtros avanzados */
+.toggle-advanced-filters {
+	background-color: #008CBA;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	padding: 8px 12px;
+	font-size: 1rem;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.toggle-advanced-filters:hover {
+	background-color: #005f7a;
+}
+
+/* Estilo de los filtros avanzados */
+.advanced-filters {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-top: 10px;
+}
+
+/* Estilo del botón de reset */
+.reset-filters {
+	background-color: #f44336;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	padding: 8px 12px;
+	font-size: 1rem;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.reset-filters:hover {
+	background-color: #c23628;
+}
+
+/* Estilo del contenedor de scroll */
+.appointments-scroll-container {
+	max-height: 60vh; /* Ajusta la altura máxima */
+	overflow-y: auto; /* Scroll solo en el eje Y */
+	width: 100%; /* Asegura que tome el 100% del ancho disponible */
+}
+
+/* Estilo del contenedor de citas */
+.appointments-container {
+	display: flex;
+	flex-direction: column; /* Cambiado para alineación vertical */
+	gap: 20px; /* Espaciado entre citas */
+	padding: 20px;
+}
+
+/* Estilo de las tarjetas de citas */
+.appointment-card {
+	background-color: #f9f9f9;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	padding: 20px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	min-width: 200px;
+}
+
+
+.open-modal-button {
+    padding: 10px 15px;
+    background-color: #4CAF50; /* Verde */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px; /* Espacio entre el botón y los filtros */
+}
+
+.open-modal-button:hover {
+    background-color: #45a049; /* Verde más oscuro al pasar el mouse */
+}
