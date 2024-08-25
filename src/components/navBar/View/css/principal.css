@@ -1,0 +1,71 @@
+.principalContainer {
+    padding: 20px;
+    text-align: center;
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.cardsContainer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    height: 30%; /* Ocupar el 40% de la altura total */
+    width: 100%;
+    margin-bottom: 0; /* Eliminamos el margen para que no haya espacio extra */
+}
+
+.card {
+    box-sizing: border-box;
+    width: 100%;
+    height: 80%; /* Reducimos la altura de las tarjetas al 80% */
+    background: rgb(255, 255, 255);
+    border: 1px solid white;
+    box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(6px);
+    border-radius: 17px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.5s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    font-weight: bolder;
+    color: black;
+}
+
+.card:hover {
+    border: 1px solid black;
+    background-color: rgba(150, 170, 240, 0.75);
+    transform: scale(1.05);
+}
+
+.card:active {
+    transform: scale(0.95) rotateZ(1.7deg);
+}
+
+.bottomContainers {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 columnas */
+    gap: 15px;
+    height: 60%; /* Ocupar el 60% de la altura total */
+    margin-top: 0; /* Eliminamos el margen superior para que los contenedores estén pegados a las tarjetas */
+}
+
+.imminentAppointmentsContainer, .notesContainer {
+    background: rgba(217, 217, 217, 0.58);
+    border: 1px solid white;
+    box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(6px);
+    border-radius: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: bolder;
+    color: black;
+    padding: 20px;
+    font-size: 18px;
+}
