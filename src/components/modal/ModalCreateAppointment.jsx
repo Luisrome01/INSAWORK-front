@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./css/ModalCreateAppointment.css";
 import MessageBar, { showErrorMessage, showSuccessMessage } from "../messageBar/MessageBar";
 
-const ModalCreateAppointment = ({ doctorId, closeModal }) => {
+const ModalCreateAppointment = ({ doctorId }) => {
     const [patients, setPatients] = useState([]);
     const [filteredPatients, setFilteredPatients] = useState([]);
     const [selectedPatient, setSelectedPatient] = useState(null);
@@ -12,6 +12,7 @@ const ModalCreateAppointment = ({ doctorId, closeModal }) => {
     const [messageBar, setMessageBar] = useState("");
     const [filter, setFilter] = useState("");
     const [selectedTimePeriod, setSelectedTimePeriod] = useState("AM");
+    const [isOpen, setIsOpen] = useState(true); // Controlar la apertura del modal
 
     const displayMessage = (messageComponent) => {
         setMessageBar(messageComponent);
@@ -45,7 +46,7 @@ const ModalCreateAppointment = ({ doctorId, closeModal }) => {
 
     const handlePatientSelect = (patient) => {
         setSelectedPatient(patient);
-        setPatients([]);
+        setFilter(""); // Limpiar el filtro al seleccionar un paciente
     };
 
     const handleAppointmentCreate = async () => {
@@ -86,7 +87,7 @@ const ModalCreateAppointment = ({ doctorId, closeModal }) => {
             if (response.ok) {
                 displayMessage(showSuccessMessage("Cita creada exitosamente.", "center"));
                 setTimeout(() => {
-                    window.location.reload(); // Recargar la página si la cita fue creada
+                    setIsOpen(false); // Cerrar el modal después de crear la cita
                 }, 3000);
             } else {
                 displayMessage(showErrorMessage(result.msg || "Error al crear la cita.", "center"));
@@ -97,7 +98,7 @@ const ModalCreateAppointment = ({ doctorId, closeModal }) => {
     };
 
     const handleCloseModal = () => {
-        closeModal(); // Llama a la función para cerrar el modal
+        setIsOpen(false); // Cambiar el estado para cerrar el modal
     };
 
     const handleTimePeriodChange = (period) => {
@@ -117,6 +118,8 @@ const ModalCreateAppointment = ({ doctorId, closeModal }) => {
             setTime(formattedValue);
         }
     };
+
+    if (!isOpen) return null; // No renderizar el modal si isOpen es false
 
     return (
         <div className="createAppointmentModalContainer">

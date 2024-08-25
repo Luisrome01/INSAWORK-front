@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import './css/citasMedicas.css';
 import ModalCreateAppointment from '../../modal/ModalCreateAppointment';
-
-
+import BtnGeneral from '../../buttons/BtnGeneral';
 
 const CitasMedicas = () => {
   const [appointments, setAppointments] = useState([]);
   const [filteredAppointments, setFilteredAppointments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [filterDate, setFilterDate] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
-  const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
-  const [showModal, setShowModal] = useState(false); // Estado para controlar el modal
+  const [showModal, setShowModal] = useState(false);
+  const [isImminentFilter, setIsImminentFilter] = useState(false);
+  const [monthFilter, setMonthFilter] = useState('');
+  const [showFilters, setShowFilters] = useState(false);
 
   useEffect(() => {
     const fetchAppointments = async () => {
@@ -33,7 +31,7 @@ const CitasMedicas = () => {
         }
         const data = await response.json();
         setAppointments(data);
-        setFilteredAppointments(data); // Inicialmente, mostrar todas las citas
+        setFilteredAppointments(data);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -44,157 +42,154 @@ const CitasMedicas = () => {
     fetchAppointments();
   }, []);
 
-  const formatDate = (dateString) => {
-    const [day, month, year] = dateString.split('/');
-    return new Date(`${year}-${month}-${day}`);
+  const fetchImminentAppointments = async () => {
+    const doctorData = JSON.parse(localStorage.getItem('user'));
+    const doctorId = doctorData ? doctorData._id : null;
+
+    if (!doctorId) {
+      setError('Doctor ID not found in local storage.');
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const response = await fetch(`http://localhost:3000/appointments/${doctorId}/imminent`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch imminent appointments');
+      }
+      const data = await response.json();
+      setFilteredAppointments(data);
+      setIsImminentFilter(true);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const resetFilters = () => {
+    setFilteredAppointments(appointments);
+    setIsImminentFilter(false);
+    setMonthFilter('');
+  };
+
+  const handleMonthFilter = () => {
+    if (!monthFilter) {
+      return;
+    }
+
+    const month = parseInt(monthFilter);
+    if (isNaN(month) || month < 1 || month > 12) {
+      alert('Por favor, selecciona un mes válido.');
+      return;
+    }
+
+    const filtered = appointments.filter((appointment) => {
+      const appointmentDate = new Date(appointment.date);
+      return appointmentDate.getMonth() === month - 1;
+    });
+
+    setFilteredAppointments(filtered);
+    setIsImminentFilter(false);
   };
 
   const formatDateWithLeadingZero = (date) => {
     const d = String(date.getDate()).padStart(2, '0');
-    const m = String(date.getMonth() + 1).padStart(2, '0'); // Los meses comienzan desde 0
+    const m = String(date.getMonth() + 1).padStart(2, '0');
     const y = date.getFullYear();
     return `${d}/${m}/${y}`;
-  };
-
-  const handleDateChange = (e) => {
-    const selectedDate = e.target.value;
-    setFilterDate(selectedDate);
-
-    const formattedDate = formatDate(selectedDate).toLocaleDateString('es-ES');
-
-    const filtered = appointments.filter((appointment) => {
-      const appointmentDate = new Date(appointment.date).toLocaleDateString('es-ES');
-      return appointmentDate === formattedDate;
-    });
-
-    setFilteredAppointments(filtered.length > 0 ? filtered : []);
-  };
-
-  const handleRangeChange = () => {
-    const start = formatDate(startDate);
-    const end = formatDate(endDate);
-
-    const filtered = appointments.filter((appointment) => {
-      const appointmentDate = new Date(appointment.date);
-      return appointmentDate >= start && appointmentDate <= end;
-    });
-
-    setFilteredAppointments(filtered.length > 0 ? filtered : []);
-  };
-
-  const resetFilters = () => {
-    setFilterDate('');
-    setStartDate('');
-    setEndDate('');
-    setFilteredAppointments(appointments);
-  };
-
-  const handleDateInput = (e) => {
-    const value = e.target.value;
-    const formattedValue = value.replace(/\D/g, '');
-
-    let output = '';
-    for (let i = 0; i < formattedValue.length; i++) {
-      output += formattedValue[i];
-      if (i === 1 || i === 3) {
-        output += '/';
-      }
-    }
-
-    setFilterDate(output);
   };
 
   const handleModalToggle = () => {
     setShowModal(!showModal);
   };
 
+  const toggleFilters = () => {
+    setShowFilters(!showFilters);
+  };
+
   return (
     <div className="appointments-main-container">
       <h1>Citas Médicas</h1>
       
-      <button className="open-modal-button" onClick={handleModalToggle}>
-        Crear Cita
-      </button>
+
+      <BtnGeneral
+            text=" Crear Cita"
+            color="#FFFFFF"
+            bgColor="#1E90FF"
+            handleClick={handleModalToggle}
+            className="open-modal-button"
+          />
       
-      <div className="filter-container">
-        <label htmlFor="dateFilter">Filtrar por fecha:</label>
-        <input
-          type="text"
-          id="dateFilter"
-          value={filterDate}
-          placeholder="dd/mm/yyyy"
-          onChange={handleDateInput}
-          onBlur={handleDateChange}
+      <div className="filter-toggle-container">
+        <BtnGeneral
+          text={showFilters ? 'Cerrar Filtros' : 'Desplegar Filtros'}
+          color="#FFFFFF"
+          bgColor="#1E90FF"
+          handleClick={toggleFilters}
+          className="filter-toggle-button"
         />
-
-        <input
-          type="date"
-          onChange={(e) => {
-            const selectedDate = new Date(e.target.value).toLocaleDateString('es-ES');
-            setFilterDate(selectedDate.split('/').reverse().join('/'));
-            handleDateChange({ target: { value: selectedDate.split('/').reverse().join('/') } });
-          }}
-        />
-
-        <button className="toggle-advanced-filters" onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}>
-          {showAdvancedFilters ? '-' : '+'}
-        </button>
-
-        {showAdvancedFilters && (
-          <div className="advanced-filters">
-            <label htmlFor="startDate">Desde:</label>
-            <input
-              type="text"
-              id="startDate"
-              value={startDate}
-              placeholder="dd/mm/yyyy"
-              onChange={(e) => setStartDate(e.target.value)}
-            />
-            <input
-              type="date"
-              onChange={(e) => {
-                const selectedStartDate = new Date(e.target.value).toLocaleDateString('es-ES');
-                setStartDate(selectedStartDate.split('/').reverse().join('/'));
-              }}
-            />
-
-            <label htmlFor="endDate">Hasta:</label>
-            <input
-              type="text"
-              id="endDate"
-              value={endDate}
-              placeholder="dd/mm/yyyy"
-              onChange={(e) => setEndDate(e.target.value)}
-            />
-            <input
-              type="date"
-              onChange={(e) => {
-                const selectedEndDate = new Date(e.target.value).toLocaleDateString('es-ES');
-                setEndDate(selectedEndDate.split('/').reverse().join('/'));
-              }}
-            />
-
-            <button onClick={handleRangeChange}>Aplicar rango</button>
-          </div>
-        )}
-
-        <button className="reset-filters" onClick={resetFilters}>Resetear filtros</button>
       </div>
+
+      {showFilters && (
+        <div className="filter-container">
+          <select 
+            value={monthFilter} 
+            onChange={(e) => setMonthFilter(e.target.value)} 
+            className="month-select"
+          >
+            <option value="">Selecciona un mes</option>
+            {Array.from({ length: 12 }, (_, i) => (
+              <option key={i} value={i + 1}>
+                {new Date(0, i).toLocaleString('es-ES', { month: 'long' })}
+              </option>
+            ))}
+          </select>
+          <BtnGeneral
+            text="Filtrar por Mes"
+            color="#FFFFFF"
+            bgColor="#1E90FF"
+            handleClick={handleMonthFilter}
+            className="filter-button month"
+          />
+          <BtnGeneral
+            text="Mostrar Citas Próximas"
+            color="#FFFFFF"
+            bgColor="#1E90FF"
+            handleClick={fetchImminentAppointments}
+            className="filter-button imminent"
+          />
+          <BtnGeneral
+            text="Resetear Filtros"
+            color="#FFFFFF"
+            bgColor="#dc3545"
+            handleClick={resetFilters}
+            className="filter-button reset"
+          />
+        </div>
+      )}
 
       {loading && <p>Cargando...</p>}
       {error && <p>Error: {error}</p>}
+
+      <div className="appointments-count">
+        {monthFilter ? (
+          <p>Tienes un total de {filteredAppointments.length} citas para el mes de {new Date(0, monthFilter - 1).toLocaleString('es-ES', { month: 'long' })}.</p>
+        ) : isImminentFilter ? (
+          <p>Tienes un total de {filteredAppointments.length} citas para los próximos días.</p>
+        ) : (
+          <p>Tienes un total de {filteredAppointments.length} citas.</p>
+        )}
+      </div>
 
       <div className="appointments-scroll-container">
         <div className="appointments-container">
           {filteredAppointments.length > 0 ? (
             filteredAppointments.map((appointment) => {
-              const { patientId, date, time, motive } = appointment;
+              const patient = appointment.patientId || appointment.patient;
               return (
                 <div key={appointment._id} className="appointment-card">
-                  <h2>Cita de {patientId.name} {patientId.lastname}</h2>
-                  <p>Fecha: {formatDateWithLeadingZero(new Date(date))}</p>
-                  <p>Hora: {time}</p>
-                  <p>Motivo: {motive}</p>
+                  <h2>Cita de {patient.name} {patient.lastname}</h2>
+                  <p>Fecha: {formatDateWithLeadingZero(new Date(appointment.date))}</p>
+                  <p>Estado: {appointment.status}</p>
                 </div>
               );
             })

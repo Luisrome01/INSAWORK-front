@@ -140,6 +140,7 @@ const Login = ({ setUser }) => {
           <p className="ForgotPasswordLink" onClick={handleOpenResetPasswordModal}>
             ¿Olvidaste tu contraseña?
           </p>
+        <p>luisrome3005@gmail.com</p>
         </div>
       </div>
       <img src={page} alt="imagen" className="LogImage" />
