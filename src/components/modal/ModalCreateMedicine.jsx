@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./css/ModalCreateMedicine.css";
 import MessageBar, { showErrorMessage, showSuccessMessage } from "../messageBar/MessageBar";
+import { FaTrashAlt } from 'react-icons/fa'; // Importar el icono de papelera
 
 const ModalCreateMedicine = ({ doctorId, onClose }) => {
     const [medicines, setMedicines] = useState([]);
@@ -74,8 +75,10 @@ const ModalCreateMedicine = ({ doctorId, onClose }) => {
 
             if (response.ok) {
                 displayMessage(showSuccessMessage("Medicina creada exitosamente.", "center"));
-                setNewMedicine({ name: "", type: "", use: "" }); // Limpiar el formulario
-                setShowForm(false); // Ocultar el formulario
+                setNewMedicine({ name: "", type: "", use: "" });
+                setShowForm(false);
+                setMedicines([...medicines, result]);
+                setFilteredMedicines([...filteredMedicines, result]);
             } else {
                 displayMessage(showErrorMessage(result.msg || "Error al crear la medicina.", "center"));
             }
@@ -84,18 +87,79 @@ const ModalCreateMedicine = ({ doctorId, onClose }) => {
         }
     };
 
+    const handleDelete = async (id) => {
+        try {
+            const response = await fetch(`http://localhost:3000/medicines/${id}`, {
+                method: "DELETE",
+            });
+
+            if (response.ok) {
+                setMedicines(medicines.filter((medicine) => medicine._id !== id));
+                setFilteredMedicines(filteredMedicines.filter((medicine) => medicine._id !== id));
+                displayMessage(showSuccessMessage("Medicina eliminada exitosamente.", "center"));
+            } else {
+                const result = await response.json();
+                displayMessage(showErrorMessage(result.msg || "Error al eliminar la medicina.", "center"));
+            }
+        } catch (error) {
+            displayMessage(showErrorMessage("Error de conexión. Inténtelo de nuevo más tarde.", "center"));
+        }
+    };
+
     return (
         <div className="createMedicineModalContainer">
-            <div className="createMedicineModalBackgroundBlur"></div>
-            <div className="createMedicineModalContent">
-                <div className="createMedicineModalHeader">
-                    <h2 className="createMedicineModalTitle">Gestionar Medicinas</h2>
-                    <button className="createMedicineCloseButton" onClick={onClose}>
-                        X
+    <div className="createMedicineModalBackgroundBlur"></div>
+    <div className="createMedicineModalContent">
+        <div className="createMedicineModalHeader">
+            <h2 className="createMedicineModalTitle">Gestionar Medicinas</h2>
+            <button className="createMedicineCloseButton" onClick={onClose}>
+                X
+            </button>
+        </div>
+        <div className="createMedicineModalBody">
+            {messageBar}
+            {showForm ? (
+                <>
+                    <h3>Añadir Nueva Medicina</h3>
+                    <label className="medicineLabel">
+                        <input
+                            type="text"
+                            name="name"
+                            value={newMedicine.name}
+                            onChange={handleInputChange}
+                            className="medicineInputField"
+                            placeholder="Nombre de la medicina"
+                        />
+                    </label>
+                    <label className="medicineLabel">
+                        <input
+                            type="text"
+                            name="type"
+                            value={newMedicine.type}
+                            onChange={handleInputChange}
+                            className="medicineInputField"
+                            placeholder="Tipo de la medicina"
+                        />
+                    </label>
+                    <label className="medicineLabel">
+                        <input
+                            type="text"
+                            name="use"
+                            value={newMedicine.use}
+                            onChange={handleInputChange}
+                            className="medicineInputField"
+                            placeholder="Uso de la medicina"
+                        />
+                    </label>
+                    <button className="createMedicineSubmitButton" onClick={handleSubmitMedicine}>
+                        Crear Medicina
                     </button>
-                </div>
-                <div className="createMedicineModalBody">
-                    {messageBar}
+                    <button className="createMedicineToggleFormButton" onClick={handleFormToggle}>
+                        Ocultar Formulario
+                    </button>
+                </>
+            ) : (
+                <>
                     <input
                         type="text"
                         placeholder="Buscar por nombre de medicina"
@@ -103,59 +167,30 @@ const ModalCreateMedicine = ({ doctorId, onClose }) => {
                         onChange={(e) => setFilter(e.target.value)}
                         className="createMedicineFilterInput"
                     />
-                    <ul className="medicineList" style={{ maxHeight: "200px", overflowY: "scroll" }}>
+                    <ul className="medicineList">
                         {filteredMedicines.map(medicine => (
-                            <li key={medicine._id}>
+                            <li key={medicine._id} className="medicineListItem">
                                 <strong>{medicine.name}</strong> - {medicine.use} ({medicine.type})
+                                <button
+                                    className="deleteMedicineButton"
+                                    onClick={() => handleDelete(medicine._id)}
+                                    aria-label={`Eliminar ${medicine.name}`}
+                                >
+                                    <FaTrashAlt /> {/* Cambiado a usar el icono importado */}
+                                </button>
                             </li>
                         ))}
                     </ul>
                     <button className="createMedicineToggleFormButton" onClick={handleFormToggle}>
-                        {showForm ? "Ocultar Formulario" : "Añadir Nueva Medicina"}
+                        Añadir Nueva Medicina
                     </button>
-                    {showForm && (
-                        <div className="createMedicineForm">
-                            <label>
-                                Nombre:
-                                <input
-                                    type="text"
-                                    name="name"
-                                    value={newMedicine.name}
-                                    onChange={handleInputChange}
-                                    className="createMedicineInputField"
-                                    placeholder="Nombre de la medicina"
-                                />
-                            </label>
-                            <label>
-                                Tipo:
-                                <input
-                                    type="text"
-                                    name="type"
-                                    value={newMedicine.type}
-                                    onChange={handleInputChange}
-                                    className="createMedicineInputField"
-                                    placeholder="Tipo de la medicina"
-                                />
-                            </label>
-                            <label>
-                                Uso:
-                                <input
-                                    type="text"
-                                    name="use"
-                                    value={newMedicine.use}
-                                    onChange={handleInputChange}
-                                    className="createMedicineInputField"
-                                    placeholder="Uso de la medicina"
-                                />
-                            </label>
-                            <button className="createMedicineSubmitButton" onClick={handleSubmitMedicine}>
-                                Crear Medicina
-                            </button>
-                        </div>
-                    )}
-                </div>
-            </div>
+                </>
+            )}
         </div>
+    </div>
+</div>
+
+
     );
 };
 
