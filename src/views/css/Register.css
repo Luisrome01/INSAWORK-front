@@ -1,66 +1,40 @@
-.LogContainerGeneral {
+.RegContainerGeneral {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f2f2f2;
+  background-color: #005bff;
 }
 
-.LogContainer {
-  background-color: white;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  width: 90%;
-  max-width: 450px;
-  padding: 40px; 
-  margin: 20px;
+.RegContainer {
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+  padding: 40px;
+  width: 400px;
   box-sizing: border-box;
+  margin: 20px;
 }
 
-.LogSubContainer {
+.RegSubContainer {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 20px;
 }
 
-.LogContainerTitle {
-  margin-bottom: 20px;
-}
-
-.LogTitle, .LogSubTitle {
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
-  margin: 10px 0;
-}
-
-.LogContainerSubTitle {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.LogEnum {
+.RegEnum {
   font-size: 16px;
   color: #666;
-  margin-bottom: 15px;
-}
-
-.LogImage {
-  width: 80px;
-  margin: 20px 0;
-  height: auto;
 }
 
 .InputContainer {
   position: relative;
   width: 80%;
-  margin-bottom: 20px;
 }
 
 .PasswordContainer {
   position: relative;
   width: 80%;
-  margin-bottom: 20px;
 }
 
 .PasswordToggle {
@@ -78,33 +52,12 @@
 .InputGeneral {
   width: 100%;
   padding: 10px;
-  border: none; /* Sin borde */
-  border-radius: 5px;
+  border: none;
+  border-radius: 15px;
   box-sizing: border-box;
   font-size: 16px;
 }
 
-.LastInput {
-  margin-bottom: 20px;
-}
-
-.RegisterButton {
-  margin-top: 30px;
-}
-
-.LogRegisterLink {
-  font-size: 16px;
-  color: #666;
-  text-decoration: none;
-  margin-top: 20px;
-  transition: color 0.3s ease;
-}
-
-.LogRegisterLink:hover {
-  color: #333;
-}
-
-/* Estilos para el messageBar */
 .messageBar {
   color: red;
   font-size: 16px;
@@ -113,46 +66,34 @@
 }
 
 @media (min-width: 768px) {
-  .LogContainer {
+  .RegContainer {
     width: 50%;
     max-width: 600px;
-    padding: 50px;
-  }
-  
-  .LogImage {
-    width: 80%;
-    max-width: 500px;
   }
 }
 
 @media (max-width: 768px) {
-  .LogContainer {
-    padding: 20px;
-  }
-
-  .LogTitle, .LogSubTitle {
+  .RegTitle,
+  .RegSubTitle {
     font-size: 22px;
   }
 }
 
-.ErrorText {
+.RegErrorText {
   color: red;
   font-size: 14px;
-  margin-top: 5px;
-  margin-bottom: 10px;
+  margin: 0;
 }
 
 .ImageUploadContainer {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
 }
 
 .ImageUploadLabel {
-  width: 120px;
-  height: 120px;
-  background-color: #fff;
-  border: 2px solid #ddd;
+  width: 100px;
+  height: 100px;
+  background-color: #d1edff;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -163,12 +104,14 @@
   flex-direction: column;
   color: #999;
   font-size: 14px;
+  margin-top: 20px;
   text-align: center;
 }
 
 .CameraIcon {
-  font-size: 24px;
+  font-size: 28px;
   margin-bottom: 5px;
+  color: #1ea5ff;
 }
 
 .ImageUploadLabel img {
@@ -184,10 +127,64 @@
   object-fit: cover;
 }
 
-.LogContainerGeneral {
+.RegImage {
+  width: 80px;
+  margin-bottom: 15px;
+  left: 57px;
+  top: 54px;
+}
+
+.RegBelowTitle {
+  font-size: 20px;
+  color: #777;
+  margin: 0;
+}
+
+.RegTitle,
+.RegSubTitle {
+  font-size: 30px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.RegRegisterLink {
+  font-size: 16px;
+  color: #000000;
+  text-align: center;
+  text-decoration: none;
+  margin-top: 10px;
+  transition: color 0.3s ease;
+  font-family: "SF Pro Display Medium", sans-serif;
+}
+
+.RegRegisterSpan {
+  color: #005bff;
+}
+
+.RegisterButton {
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: #f2f2f2;
+  width: 100%;
+  height: 50px;
+  background-color: #005bff;
+  color: white;
+  border-radius: 15px;
+  margin-top: 20px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 16px;
+  font-family: "SF Pro Display Medium", sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+.RegisterButton:hover {
+  background-color: #0047b2;
+}
+
+.RegisterContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
