@@ -8,8 +8,7 @@
     right: 0;
     bottom: 0;
     z-index: 1000;
-    background-color: rgba(0, 0, 0, 0.5);
-    
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo más oscuro para mejorar la legibilidad */
 }
 
 .userInfoModalBackgroundBlur {
@@ -18,16 +17,17 @@
     left: 0;
     right: 0;
     bottom: 0;
-    /* Elimina backdrop-filter */
+    cursor: pointer; /* Cambiar el cursor al pasar sobre el fondo */
 }
 
 .userInfoModalContent {
     background: white;
-    border-radius: 8px; /* Bordes redondeados */
-    padding: 30px;
+    border-radius: 8px;
+    padding: 20px;
     width: 90%;
-    max-width: 500px; /* Mismo ancho que el modal de cambio de contraseña */
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    position: relative; /* Necesario para el botón de cerrar */
 }
 
 .userInfoModalHeader {
@@ -35,9 +35,6 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-    background-color: #f0f0f0; /* Color gris para la barra de título */
-    padding: 10px; /* Padding para la barra de título */
-    border-radius: 4px; /* Bordes redondeados */
 }
 
 .userInfoModalTitle {
@@ -47,20 +44,24 @@
 }
 
 .userInfoCloseButton {
-    background: #FF0000; /* Color de fondo para el botón de cierre */
+    background: #FF0000;
     color: white;
     border: none;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 18px;
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
     cursor: pointer;
+    transition: background 0.3s; /* Efecto suave al pasar el ratón */
+}
+
+.userInfoCloseButton:hover {
+    background: #e60000; /* Color de fondo más oscuro al pasar el ratón */
 }
 
 .userInfoModalBody {
     display: flex;
     flex-direction: column;
-    gap: 20px;
 }
 
 .userInfoField {
@@ -70,35 +71,44 @@
 .userInfoField label {
     display: block;
     margin-bottom: 5px;
+    font-weight: 600; /* Negrita para los labels */
 }
 
 .userInfoInputField {
     width: 100%;
-    padding: 6px; /* Reducción del padding */
-    font-size: 14px; /* Tamaño de fuente más pequeño */
-    border: 1px solid #ddd;
+    padding: 8px; /* Padding más grande para una mejor experiencia */
+    font-size: 16px; /* Tamaño de fuente más grande */
+    border: 1px solid #ccc;
     border-radius: 4px;
-    background-color: white;
+    background-color: white; /* Asegurando que el fondo sea blanco */
 }
 
 .userInfoFileInput {
-    padding: 6px; /* Añadir padding similar al de los input de texto */
-    font-size: 14px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    display: none; /* Ocultar el input de archivo */
 }
 
 .userInfoSubmitButton {
     padding: 12px;
-    background-color: rgba(174, 187, 253, 0.75);
+    background-color: rgba(174, 187, 253, 0.9);
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
-    width: 100%;
+    transition: background 0.3s;
 }
 
 .userInfoSubmitButton:hover {
-    background-color: rgba(150, 170, 240, 0.75);
+    background-color: rgba(150, 170, 240, 0.9);
+}
+
+.userInfoFirmaImage {
+    width: 300px; /* Ancho horizontal */
+    height: 150px; /* Alto más pequeño */
+    border-radius: 8px; /* Bordes redondeados */
+    object-fit: cover; /* Para que la imagen se ajuste al contenedor sin distorsionarse */
+    cursor: pointer; /* Cambia el cursor al pasar sobre la imagen */
+    display: block;
+    margin: 0 auto;
+    border: 2px solid #ccc; /* Añadir un borde gris claro */
 }

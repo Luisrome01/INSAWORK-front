@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './css/ModalUserInfo.css';
 
-const ModalUserInfo = ({ closeModal, userId }) => {
+const ModalUserInfo = ({ userId }) => {
     const [userInfo, setUserInfo] = useState({
         telefono: '',
         especialidad: '',
@@ -12,6 +12,7 @@ const ModalUserInfo = ({ closeModal, userId }) => {
         firma: null,
     });
     const [file, setFile] = useState(null);
+    const [isOpen, setIsOpen] = useState(true);
 
     useEffect(() => {
         const fetchUserInfo = async () => {
@@ -37,124 +38,99 @@ const ModalUserInfo = ({ closeModal, userId }) => {
     };
 
     const handleFileChange = (e) => {
-        setFile(e.target.files[0]);
+        const file = e.target.files[0];
+        if (file) {
+            setFile(file);
+            const reader = new FileReader();
+            reader.onload = () => {
+                setUserInfo((prevState) => ({
+                    ...prevState,
+                    firma: reader.result,
+                }));
+            };
+            reader.readAsDataURL(file);
+        }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData();
         formData.append('user', userId);
-        formData.append('telefono', userInfo.telefono);
-        formData.append('especialidad', userInfo.especialidad);
-        formData.append('direccion', userInfo.direccion);
-        formData.append('cedula', userInfo.cedula);
-        formData.append('inscripcionCM', userInfo.inscripcionCM);
-        formData.append('registro', userInfo.registro);
+        Object.entries(userInfo).forEach(([key, value]) => {
+            formData.append(key, value);
+        });
         if (file) {
             formData.append('firma', file);
         }
 
         try {
-            const response = await fetch('http://localhost:3000/user/info', {
-                method: 'POST',
+            const response = await fetch(`http://localhost:3000/user/info/${userId}/edit`, {
+                method: 'PUT',
                 body: formData,
             });
             const data = await response.json();
             if (response.ok) {
-                console.log('User info created:', data);
-                closeModal(false); // Cerrar modal al completar
+                console.log('User info updated:', data);
+                // Actualiza localStorage con los nuevos datos
+                localStorage.setItem('userInfo', JSON.stringify(data));
+                setIsOpen(false);
             } else {
-                console.error("Error creating user info:", data.msg);
+                console.error("Error updating user info:", data.msg);
             }
         } catch (error) {
-            console.error("Error creating user info:", error);
+            console.error("Error updating user info:", error);
         }
     };
 
+    const handleCloseModal = () => {
+        setIsOpen(false);
+    };
+
+    const handleFirmaClick = (e) => {
+        e.preventDefault(); // Previene el comportamiento predeterminado
+        document.getElementById('firmaInput').click();
+    };
+
+    if (!isOpen) return null;
+
     return (
         <div className="userInfoModalContainer">
-            <div className="userInfoModalBackgroundBlur"></div>
+            <div className="userInfoModalBackgroundBlur" onClick={handleCloseModal}></div>
             <div className="userInfoModalContent">
                 <div className="userInfoModalHeader">
                     <h2 className="userInfoModalTitle">Información del Usuario</h2>
-                    <button className="userInfoCloseButton" onClick={() => closeModal(false)}>X</button>
+                    <button className="userInfoCloseButton" onClick={handleCloseModal}>X</button>
                 </div>
                 <form onSubmit={handleSubmit} className="userInfoModalBody">
+                    {['telefono', 'especialidad', 'direccion', 'cedula', 'inscripcionCM', 'registro'].map(field => (
+                        <div className="userInfoField" key={field}>
+                            <label htmlFor={`${field}Input`}>{field.charAt(0).toUpperCase() + field.slice(1)}:</label>
+                            <input
+                                type="text"
+                                name={field}
+                                id={`${field}Input`}
+                                value={userInfo[field]}
+                                onChange={handleChange}
+                                className="userInfoInputField"
+                            />
+                        </div>
+                    ))}
                     <div className="userInfoField">
-                        <label htmlFor="telefonoInput">Teléfono:</label>
-                        <input
-                            type="text"
-                            name="telefono"
-                            id="telefonoInput"
-                            value={userInfo.telefono}
-                            onChange={handleChange}
-                            className="userInfoInputField"
-                        />
-                    </div>
-                    <div className="userInfoField">
-                        <label htmlFor="especialidadInput">Especialidad:</label>
-                        <input
-                            type="text"
-                            name="especialidad"
-                            id="especialidadInput"
-                            value={userInfo.especialidad}
-                            onChange={handleChange}
-                            className="userInfoInputField"
-                        />
-                    </div>
-                    <div className="userInfoField">
-                        <label htmlFor="direccionInput">Dirección:</label>
-                        <input
-                            type="text"
-                            name="direccion"
-                            id="direccionInput"
-                            value={userInfo.direccion}
-                            onChange={handleChange}
-                            className="userInfoInputField"
-                        />
-                    </div>
-                    <div className="userInfoField">
-                        <label htmlFor="cedulaInput">Cédula:</label>
-                        <input
-                            type="text"
-                            name="cedula"
-                            id="cedulaInput"
-                            value={userInfo.cedula}
-                            onChange={handleChange}
-                            className="userInfoInputField"
-                        />
-                    </div>
-                    <div className="userInfoField">
-                        <label htmlFor="inscripcionCMInput">Inscripción CM:</label>
-                        <input
-                            type="text"
-                            name="inscripcionCM"
-                            id="inscripcionCMInput"
-                            value={userInfo.inscripcionCM}
-                            onChange={handleChange}
-                            className="userInfoInputField"
-                        />
-                    </div>
-                    <div className="userInfoField">
-                        <label htmlFor="registroInput">Registro:</label>
-                        <input
-                            type="text"
-                            name="registro"
-                            id="registroInput"
-                            value={userInfo.registro}
-                            onChange={handleChange}
-                            className="userInfoInputField"
-                        />
-                    </div>
-                    <div className="userInfoField">
-                        <label htmlFor="firmaInput">Firma:</label>
                         <input
                             type="file"
                             accept="image/*"
                             id="firmaInput"
                             onChange={handleFileChange}
                             className="userInfoFileInput"
+                            style={{ display: 'none' }} // Ocultamos el input de archivo
                         />
+                        <label htmlFor="firmaInput" onClick={handleFirmaClick}>
+                            <img
+                                src={userInfo.firma || 'placeholder-image.png'}
+                                alt="Firma"
+                                className="userInfoFirmaImage"
+                            />
+                        </label>
                     </div>
                     <button type="submit" className="userInfoSubmitButton">Guardar Información</button>
                 </form>
