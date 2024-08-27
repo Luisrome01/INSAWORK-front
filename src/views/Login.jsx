@@ -16,7 +16,7 @@ const Login = ({ setUser }) => {
   const handleLogin = async () => {
     setError("");
     console.log("Handling login...");
-    
+
     if (!email || !password) {
       setError("Por favor ingresa correo electrónico y contraseña.");
       console.log("Missing email or password.");
@@ -39,14 +39,11 @@ const Login = ({ setUser }) => {
         console.log("Login successful:", data);
 
         // Fetch additional user details
-        const userResponse = await fetch(
-          `http://localhost:3000/user/${data.userID}`,
-          {
-            headers: {
-              Authorization: `Bearer ${data.token}`,
-            },
-          }
-        );
+        const userResponse = await fetch(`http://localhost:3000/user/${data.userID}`, {
+          headers: {
+            "Authorization": `Bearer ${data.token}`,
+          },
+        });
 
         const userData = await userResponse.json();
 
@@ -62,6 +59,21 @@ const Login = ({ setUser }) => {
               lastname: userData.lastname || "",
             })
           );
+
+          // Fetch userInfo and store it in localStorage
+          const userInfoResponse = await fetch(`http://localhost:3000/user/info/${data.userID}`, {
+            headers: {
+              "Authorization": `Bearer ${data.token}`,
+            },
+          });
+
+          const userInfoData = await userInfoResponse.json();
+
+          if (userInfoResponse.ok) {
+            localStorage.setItem("userInfo", JSON.stringify(userInfoData));
+          } else {
+            console.error("Error fetching userInfo:", userInfoData);
+          }
 
           setUser({ token: data.token, userID: data.userID });
           navigate("/main");
