@@ -1,30 +1,46 @@
 span {
-	color: black;
-	margin-left: 6%;
-	font-weight: bold;
+  color: black;
+  font-weight: bold;
 }
+
+.input-container {
+  position: relative;
+}
+
 .containerName {
-	width: 90%;
+  width: 90%;
 }
 
 input {
-	color: black;
-	font-weight: bold;
-	border: none;
-	outline: none;
-	padding-left: 10px;
+  color: black;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  padding-left: 10px;
 }
+
 .InputGeneral {
-	width: 300px;
-	height: 50px;
-	transition: 0.25s;
-	background: rgba(174, 187, 253, 0.25);
-	border-radius: 10px;
-	border: none;
+  width: 300px;
+  height: 50px;
+  transition: 0.25s;
+  background: rgba(0, 153, 255, 0.18);
+  border-radius: 10px;
+  padding-right: 40px;
+  border: none;
 }
 
 .InputGeneral:focus {
-	/* animate color transition */
-	transition: 0.25s;
-	background: rgba(174, 187, 253, 0.75);
+  transition: 0.25s;
+  background: rgba(0, 153, 255, 0.3);
+}
+
+.icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
 }
