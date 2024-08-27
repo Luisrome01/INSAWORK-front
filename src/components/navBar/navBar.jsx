@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaCalendarAlt, FaFileInvoice, FaCreditCard, FaCashRegister, FaSignOutAlt } from "react-icons/fa";
-import logo from "../../assets/BillMasterLogo.svg";
+import { FaCalendarAlt, FaFileInvoice, FaHome, FaUser, FaSignOutAlt } from "react-icons/fa";
+import page from "../../assets/logomedico.svg"; // Ruta actualizada
 import "./navBar.css";
 
 const NavBar = ({ componenteActivo, setComponenteActivo }) => {
@@ -9,7 +9,6 @@ const NavBar = ({ componenteActivo, setComponenteActivo }) => {
   const activeLogoColor = "#000000";
   const navigate = useNavigate();
 
-  // Define los estilos para hover y seleccionado
   const styleHover = {
     backgroundColor: "lightGray",
   };
@@ -43,7 +42,6 @@ const NavBar = ({ componenteActivo, setComponenteActivo }) => {
   const handleLogout = () => {
     console.log("Logout button clicked");
 
-    // Verifica y elimina authToken del localStorage
     const token = localStorage.getItem("authToken");
     console.log("Current authToken:", token);
 
@@ -54,11 +52,9 @@ const NavBar = ({ componenteActivo, setComponenteActivo }) => {
       console.log("No authToken found");
     }
 
-    // Limpia cualquier otro dato relevante del localStorage
     localStorage.clear();
     console.log("All localStorage cleared");
 
-    // Navega a la ruta "/"
     navigate("/");
     console.log("Navigating to home page");
   };
@@ -71,8 +67,8 @@ const NavBar = ({ componenteActivo, setComponenteActivo }) => {
   return (
     <nav className="NavNavbar">
       <div className="NavLogo">
-        <img src={logo} alt="Bill Master Logo" />
-        <h1 className="NavBarTitle">Bill Master</h1>
+        <img src={page} alt="INSAWORK Logo" /> {/* Cambié `logo` a `page` */}
+        <h1 className="NavBarTitle">INSAWORK</h1>
       </div>
       <div className="NavContent">
         <h2 style={{ color: "#A4A4A5" }}>MENÚ PRINCIPAL</h2>
@@ -96,7 +92,7 @@ const NavBar = ({ componenteActivo, setComponenteActivo }) => {
           onMouseEnter={() => handleMouseEnter("Principal")}
           onMouseLeave={() => handleMouseLeave("Principal")}
         >
-          <FaFileInvoice
+          <FaHome
             className="nav-link-img"
             color={componenteActivo === "Principal" ? activeLogoColor : baseLogoColor}
           />
@@ -109,7 +105,7 @@ const NavBar = ({ componenteActivo, setComponenteActivo }) => {
           onMouseEnter={() => handleMouseEnter("Reportes")}
           onMouseLeave={() => handleMouseLeave("Reportes")}
         >
-          <FaCreditCard
+          <FaFileInvoice
             className="nav-link-img"
             color={componenteActivo === "Reportes" ? activeLogoColor : baseLogoColor}
           />
@@ -122,31 +118,22 @@ const NavBar = ({ componenteActivo, setComponenteActivo }) => {
           onMouseEnter={() => handleMouseEnter("Historias")}
           onMouseLeave={() => handleMouseLeave("Historias")}
         >
-          <FaCashRegister
+          <FaUser
             className="nav-link-img"
             color={componenteActivo === "Historias" ? activeLogoColor : baseLogoColor}
           />
-          <h3 style={{ color: componenteActivo === "Historias" ? activeLogoColor : baseLogoColor }}>Historias</h3>
+          <h3 style={{ color: componenteActivo === "Historias" ? activeLogoColor : baseLogoColor }}>Pacientes</h3>
         </div>
       </div>
-      <div className="NavLogout">
-        <button
-          onClick={handleLogout}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            backgroundColor: "transparent",
-            border: "none",
-            cursor: "pointer",
-            color: "#FF0000",
-            padding: "10px",
-            fontSize: "16px",
-          }}
-        >
-          <FaSignOutAlt style={{ marginRight: "8px" }} />
-          Cerrar Sesión
-        </button>
-      </div>
+        <div className="LogoutContainer">
+  <button
+    onClick={handleLogout}
+    className="LogoutButton"
+  >
+    <FaSignOutAlt style={{ marginRight: "8px", color: "black" }} />
+    Cerrar Sesión
+  </button>
+          </div>
     </nav>
   );
 };
