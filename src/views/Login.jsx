@@ -1,19 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import BtnGeneral from "../components/buttons/BtnGeneral";
 import InputGeneral from "../components/inputs/InputGeneral";
-import image from "../assets/tabler_login.svg";
-import page from "../assets/logomedico.svg";
+import page from "../assets/logomedico.png";
 import "./css/Login.css";
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import ModalResetPassword from "../components/modal/ModalResetPassword";
 
 const Login = ({ setUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [isResetPasswordModalOpen, setIsResetPasswordModalOpen] = useState(false);
+  const [isResetPasswordModalOpen, setIsResetPasswordModalOpen] =
+    useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -42,24 +39,29 @@ const Login = ({ setUser }) => {
         console.log("Login successful:", data);
 
         // Fetch additional user details
-        const userResponse = await fetch(`http://localhost:3000/user/${data.userID}`, {
-          headers: {
-            "Authorization": `Bearer ${data.token}`,
-          },
-        });
- 
+        const userResponse = await fetch(
+          `http://localhost:3000/user/${data.userID}`,
+          {
+            headers: {
+              Authorization: `Bearer ${data.token}`,
+            },
+          }
+        );
+
         const userData = await userResponse.json();
 
         if (userResponse.ok) {
-          // Store the complete user information in localStorage
-          localStorage.setItem("user", JSON.stringify({
-            _id: data.userID,
-            email: email,
-            username: userData.username || "", // Use an empty string if username is not returned
-            password: password,
-            name: userData.name || "", // Use an empty string if name is not returned
-            lastname: userData.lastname || "" // Use an empty string if lastname is not returned
-          }));
+          localStorage.setItem(
+            "user",
+            JSON.stringify({
+              _id: data.userID,
+              email: email,
+              username: userData.username || "",
+              password: password,
+              name: userData.name || "",
+              lastname: userData.lastname || "",
+            })
+          );
 
           setUser({ token: data.token, userID: data.userID });
           navigate("/main");
@@ -76,11 +78,6 @@ const Login = ({ setUser }) => {
     }
   };
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-    console.log("Password visibility toggled:", !showPassword);
-  };
-
   const handleOpenResetPasswordModal = () => {
     setIsResetPasswordModalOpen(true);
   };
@@ -94,56 +91,47 @@ const Login = ({ setUser }) => {
       <div className="LogContainer">
         <div className="LogSubContainer">
           <div className="LogContainerTitle">
-            <h3 className="LogTitle">INSAWORK</h3>
+            <img src={page} alt="imagen" className="LogImage" />
+            <h1 className="LogSubTitle">Bienvenido de nuevo</h1>
+            <p className="LogBelowTitle">
+              Accede a datos clave para tu salud ocupacional
+            </p>
           </div>
-
-          <div className="LogContainerSubTitle">
-            <h1 className="LogSubTitle">Iniciar Sesión</h1>
-          </div>
-
           <InputGeneral
             name={"Correo Electrónico"}
             type="text"
             placeholder=" ej. nombre@gmail.com"
-            width="80%"
+            width="100%"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-
-          <div className="InputWrapper">
-            <InputGeneral
-              name={"Contraseña"}
-              type={showPassword ? "text" : "password"}
-              placeholder=" Contraseña"
-              width="80%"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              onEnter={handleLogin}
-              className="PasswordInput"
-            />
-            <button 
-              type="button" 
-              className="PasswordToggle" 
-              onClick={togglePasswordVisibility}
-            >
-              {showPassword ? <FaEyeSlash /> : <FaEye />}
-            </button>
-          </div>
-
+          <InputGeneral
+            name={"Contraseña"}
+            type="text"
+            isPassword={true}
+            placeholder=" Contraseña"
+            width="100%"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            onEnter={handleLogin}
+            className="PasswordInput"
+          />
           {error && <p className="ErrorText">{error}</p>}
-          <BtnGeneral text="Ingresar" handleClick={handleLogin} img={image} />
-
-          <a href="/register" className="LogRegisterLink">
-            ¿Aún no tienes una cuenta? Regístrate aquí
-          </a>
-
-          <p className="ForgotPasswordLink" onClick={handleOpenResetPasswordModal}>
+          <p
+            className="ForgotPasswordLink"
+            onClick={handleOpenResetPasswordModal}
+          >
             ¿Olvidaste tu contraseña?
           </p>
-        <p>luisrome3005@gmail.com</p>
+          <div className="LogButton" onClick={handleLogin}>
+            Ingresar
+          </div>
+          <a href="/register" className="LogRegisterLink">
+            ¿Aún no tienes una cuenta?{" "}
+            <span className="LogRegisterSpan">Regístrate aquí</span>
+          </a>
         </div>
       </div>
-      <img src={page} alt="imagen" className="LogImage" />
 
       {isResetPasswordModalOpen && (
         <ModalResetPassword onClose={handleCloseResetPasswordModal} />

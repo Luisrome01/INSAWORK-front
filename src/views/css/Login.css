@@ -3,83 +3,107 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #1E2025; /* Fondo gris oscuro */
+  background-color: #005bff;
 }
 
 .LogContainer {
-  background-color: #f5f5f5; /* Fondo blanco */
-  border-radius: 10px; /* Bordes más redondeados */ 
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2); /* Sombra más suave */
-  padding: 30px; /* Menos padding */
-  width: 400px; /* Ancho más pequeño */
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+  padding: 40px;
+  width: 400px;
+  box-sizing: border-box;
+  margin: 20px;
 }
 
 .LogSubContainer {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 20px;
 }
 
-.LogContainerTitle {
-  margin-bottom: 30px; /* Menos margen inferior */
-}
-
-.LogTitle {
-  font-size: 24px; /* Tamaño de letra más pequeño */
-  font-weight: bold;
-  color: #333;
-}
-
-.LogContainerSubTitle {
-  margin-bottom: 40px; /* Menos margen inferior */
-}
-
-.LogSubTitle {
-  font-size: 20px; /* Tamaño de letra más pequeño */
-  font-weight: bold;
-  color: #333;
-}
-
-.InputWrapper {
-  position: relative;
-  width: 80%;
-  margin-bottom: 20px;
-}
-
-.PasswordInput {
-  padding-right: 40px; /* Espacio para el botón de toggle */
-}
-
-.PasswordToggle {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-  background: transparent;
+.InputGeneral {
+  width: 100%;
+  padding: 10px;
   border: none;
-  cursor: pointer;
-  font-size: 18px; /* Tamaño del icono */
-  color: #333; /* Color del icono */
+  border-radius: 15px;
+  box-sizing: border-box;
+  font-size: 16px;
 }
 
-.PasswordToggle:focus {
-  outline: none;
+@media (min-width: 768px) {
+  .LogContainer {
+    width: 50%;
+    max-width: 600px;
+  }
 }
 
 @media (max-width: 768px) {
-  .LogContainerGeneral {
-    padding: 20px;
-  }
-
-  .LogContainer {
-    width: 100%;
-    padding: 30px; /* Menos padding */
+  .LogTitle,
+  .LogSubTitle {
+    font-size: 22px;
   }
 }
 
 .LogImage {
-  width: 80px; 
-  margin-bottom: 20px; 
+  width: 80px;
+  margin-bottom: 15px;
+  left: 57px;
+  top: 54px;
+}
+
+.LogBelowTitle {
+  font-size: 20px;
+  color: #777;
+  margin: 0;
+}
+
+.LogTitle,
+.LogSubTitle {
+  font-size: 30px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.LogRegisterLink {
+  font-size: 16px;
+  color: #000000;
+  text-align: center;
+  text-decoration: none;
+  margin-top: 10px;
+  transition: color 0.3s ease;
+  font-family: "SF Pro Display Medium", sans-serif;
+}
+
+.LogRegisterSpan {
+  color: #005bff;
+}
+
+.LogButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  background-color: #005bff;
+  color: white;
+  border-radius: 15px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 16px;
+  font-family: "SF Pro Display Medium", sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+.LogButton:hover {
+  background-color: #0047b2;
+}
+
+.LogisterContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .ErrorText {
@@ -91,26 +115,11 @@
 
 .ForgotPasswordLink {
   font-size: 16px;
-  color: #666; /* Color del enlace */
+  color: #777777;
   cursor: pointer;
-  margin-top: 15px;
-  text-align: center;
-  text-decoration: none; /* Sin subrayado */
-  transition: color 0.3s ease; /* Transición suave */
-}
-
-.ForgotPasswordLink:hover {
-  color: #333; /* Color en hover */
-}
-
-.LogRegisterLink {
-  font-size: 16px;
-  color: #666;
+  margin: 0;
+  text-align: right;
   text-decoration: none;
-  margin-top: 20px;
+  user-select: none;
   transition: color 0.3s ease;
-}
-
-.LogRegisterLink:hover {
-  color: #333;
 }
