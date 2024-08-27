@@ -19,7 +19,7 @@ const Login = ({ setUser }) => {
   const handleLogin = async () => {
     setError("");
     console.log("Handling login...");
-    
+
     if (!email || !password) {
       setError("Por favor ingresa correo electrónico y contraseña.");
       console.log("Missing email or password.");
@@ -47,7 +47,7 @@ const Login = ({ setUser }) => {
             "Authorization": `Bearer ${data.token}`,
           },
         });
- 
+
         const userData = await userResponse.json();
 
         if (userResponse.ok) {
@@ -60,6 +60,21 @@ const Login = ({ setUser }) => {
             name: userData.name || "", // Use an empty string if name is not returned
             lastname: userData.lastname || "" // Use an empty string if lastname is not returned
           }));
+
+          // Fetch userInfo and store it in localStorage
+          const userInfoResponse = await fetch(`http://localhost:3000/user/info/${data.userID}`, {
+            headers: {
+              "Authorization": `Bearer ${data.token}`,
+            },
+          });
+
+          const userInfoData = await userInfoResponse.json();
+
+          if (userInfoResponse.ok) {
+            localStorage.setItem("userInfo", JSON.stringify(userInfoData));
+          } else {
+            console.error("Error fetching userInfo:", userInfoData);
+          }
 
           setUser({ token: data.token, userID: data.userID });
           navigate("/main");
@@ -140,7 +155,7 @@ const Login = ({ setUser }) => {
           <p className="ForgotPasswordLink" onClick={handleOpenResetPasswordModal}>
             ¿Olvidaste tu contraseña?
           </p>
-        <p>luisrome3005@gmail.com</p>
+          <p>luisrome3005@gmail.com</p>
         </div>
       </div>
       <img src={page} alt="imagen" className="LogImage" />
