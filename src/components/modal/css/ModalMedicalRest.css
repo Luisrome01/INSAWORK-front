@@ -57,12 +57,13 @@
     flex-direction: column;
     overflow: hidden;
     padding: 16px;
-    position: relative; /* Positioning context for createButton */
+    position: relative;
 }
 
 .modalSearchContainer {
     display: flex;
     align-items: center;
+    justify-content: space-between; /* Alinea los elementos al principio y al final del contenedor */
     margin-bottom: 16px;
 }
 
@@ -72,52 +73,49 @@
 }
 
 .createButton {
-    background: #FF0000;/* Color de fondo */
-    color: white; /* Color del texto */
-    border: 2px solid #7B9ACC; /* Borde para visibilidad */
-    padding: 8px 16px; /* Ajusta el tamaño */
-    border-radius: 8px; /* Forma del botón */
+    background: #FF0000;
+    color: white;
+    border: 2px solid #7B9ACC;
+    padding: 8px 16px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 16px; /* Tamaño del texto */
-    margin-left: auto; /* Alineación a la derecha */
-    position: absolute;
-    top: 16px; /* Espacio desde el borde superior del contenedor */
-    right: 16px; /* Espacio desde el borde derecho del contenedor */
-    transition: background 0.3s, border-color 0.3s, transform 0.2s; /* Transición suave */
+    font-size: 16px;
+    transition: background 0.3s, border-color 0.3s, transform 0.2s;
 }
 
 .createButton:hover {
-    background: #9AB5E1; /* Color de fondo al pasar el ratón */
-    border-color: #8A9ACD; /* Color del borde al pasar el ratón */
+    background: #9AB5E1;
+    border-color: #8A9ACD;
 }
 
 .createButton:active {
-    background: #8A9ACD; /* Color de fondo al hacer clic */
-    border-color: #6C8BC1; /* Color del borde al hacer clic */
-    transform: scale(0.95); /* Efecto de presión */
+    background: #8A9ACD;
+    border-color: #6C8BC1;
+    transform: scale(0.95);
 }
 
+
 .modalBodyContainer {
-    overflow-y: auto; /* Habilita el desplazamiento vertical */
-    max-height: 60vh; /* Ajusta la altura según sea necesario */
+    overflow-y: auto;
+    max-height: 60vh;
 }
 
 .modalBodyContainer::-webkit-scrollbar {
-    width: 8px; /* Ajusta el ancho del scrollbar */
+    width: 8px;
 }
 
 .modalBodyContainer::-webkit-scrollbar-track {
-    background: #f1f1f1; /* Color de la pista del scrollbar */
+    background: #f1f1f1;
     border-radius: 10px;
 }
 
 .modalBodyContainer::-webkit-scrollbar-thumb {
-    background: #888; /* Color del thumb del scrollbar */
+    background: #888;
     border-radius: 10px;
 }
 
 .modalBodyContainer::-webkit-scrollbar-thumb:hover {
-    background: #555; /* Color del thumb al pasar el ratón por encima */
+    background: #555;
 }
 
 .medicalRestList {
@@ -131,10 +129,25 @@
     border-radius: 4px;
     margin-bottom: 8px;
     cursor: pointer;
+    position: relative; /* Para el posicionamiento del ícono de la papelera */
 }
 
 .itemSeparator {
     margin: 8px 0;
     border: 0;
     border-top: 1px solid #ddd;
+}
+
+.deleteIcon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    color: red;
+    font-size: 20px;
+    transition: transform 0.2s;
+}
+
+.deleteIcon:hover {
+    transform: scale(1.1);
 }

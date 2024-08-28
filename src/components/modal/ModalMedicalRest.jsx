@@ -1,17 +1,22 @@
-// ModalMedicalRest.jsx
 import React, { useState, useEffect } from "react";
 import InputBusqueda from "../inputs/InputBusqueda";
 import "./css/ModalMedicalRest.css";
 import ModalCreateMedicalRest from "./ModalCreateMedicalRest";
+import ModalConfirmDelete from "./ModalConfirmDelete"; // Importar el nuevo modal
+import { FaTrashAlt } from "react-icons/fa";
 
 const ModalMedicalRest = ({ closeModal }) => {
     const [data, setData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [selectedMedicalRestId, setSelectedMedicalRestId] = useState(null);
 
     useEffect(() => {
-        fetch("http://localhost:3000/getall-medical-rest")
+        const doctorId = JSON.parse(localStorage.getItem('user'))._id;
+
+        fetch(`http://localhost:3000/getall-medical-rest/${doctorId}`)
             .then(response => response.json())
             .then(data => {
                 setData(data);
@@ -56,67 +61,101 @@ const ModalMedicalRest = ({ closeModal }) => {
             .catch(error => console.error("Error fetching medical rest details:", error));
     };
 
-    return (<div className="modalMedicalRestContainer">
-        <div className="modalMedicalRestBackgroundBlur"></div>
-        <div className="modalMedicalRestContent">
-            <div className="modalHeader">
-            <p className="searchTitle">Cerrar Reposos Medicos:</p>
-                <button
-                    className="closeButton"
-                    onClick={() => closeModal(false)}
-                >
-                    X
-                </button>
-            </div>
-            <div className="modalBody">
-                <div className="modalBodyContainer">
-                    <div className="modalSearchContainer">
-                        <p className="searchTitle">Buscar Reposo Medico:</p>
-                        <InputBusqueda
-                            width="250px"
-                            height="40px"
-                            color="#D9D9D9"
-                            placeholder="Busca por nombre o cedula..."
-                            value={searchTerm}
-                            onChange={handleSearchChange}
-                        />
-                    </div>
+    const handleDeleteClick = (id) => {
+        setSelectedMedicalRestId(id);
+        setIsDeleteModalOpen(true);
+    };
+
+    const confirmDelete = () => {
+        fetch(`http://localhost:3000/delete-medical-rest/${selectedMedicalRestId}`, {
+            method: 'DELETE',
+        })
+            .then(response => {
+                if (response.ok) {
+                    setData(data.filter(medicalRest => medicalRest._id !== selectedMedicalRestId));
+                    setFilteredData(filteredData.filter(medicalRest => medicalRest._id !== selectedMedicalRestId));
+                    setIsDeleteModalOpen(false);
+                } else {
+                    alert("Error al eliminar el reposo médico.");
+                }
+            })
+            .catch(error => console.error("Error deleting medical rest:", error));
+    };
+
+    return (
+        <div className="modalMedicalRestContainer">
+            <div className="modalMedicalRestBackgroundBlur"></div>
+            <div className="modalMedicalRestContent">
+                <div className="modalHeader">
+                    <p className="searchTitle">Cerrar Reposos Médicos:</p>
                     <button
-                        className="createButton"
-                        onClick={() => setIsCreateModalOpen(true)}
+                        className="closeButton"
+                        onClick={() => closeModal(false)}
                     >
-                        +
+                        X
                     </button>
-                    <div className="medicalRestList">
-                        {filteredData.length > 0 ? (
-                            filteredData.map((medicalRest) => (
-                                <div
-                                    key={medicalRest._id}
-                                    className="medicalRestItem"
-                                    onClick={() => handleMedicalRestClick(medicalRest._id)}
-                                >
-                                    <p><strong>ID:</strong> {medicalRest._id}</p>
-                                    <p><strong>Nombre Paciente:</strong> {medicalRest.nombrePaciente}</p>
-                                    <p><strong>Cédula Paciente:</strong> {medicalRest.cedulaPaciente}</p>
-                                    <p><strong>Fecha:</strong> {new Date(medicalRest.fecha).toLocaleDateString()}</p>
-                                    <hr className="itemSeparator" />
-                                </div>
-                            ))
-                        ) : (
-                            <p>No se encontraron datos.</p>
-                        )}
+                </div>
+                <div className="modalBody">
+                    <div className="modalBodyContainer">
+                        <div className="modalSearchContainer">
+                            <p className="searchTitle">Buscar Reposo Médico:</p>
+                            <InputBusqueda
+                                width="250px"
+                                height="40px"
+                                color="#D9D9D9"
+                                placeholder="Busca por nombre o cédula..."
+                                value={searchTerm}
+                                onChange={handleSearchChange}
+                            />
+                            <button
+                                className="createButton"
+                                onClick={() => setIsCreateModalOpen(true)}
+                            >
+                                +
+                            </button>
+                        </div>
+                        
+                        <div className="medicalRestList">
+                            {filteredData.length > 0 ? (
+                                filteredData.map((medicalRest) => (
+                                    <div
+                                        key={medicalRest._id}
+                                        className="medicalRestItem"
+                                    >
+                                        <div className="medicalRestInfo" onClick={() => handleMedicalRestClick(medicalRest._id)}>
+                                            <p><strong>ID:</strong> {medicalRest._id}</p>
+                                            <p><strong>Nombre Paciente:</strong> {medicalRest.nombrePaciente}</p>
+                                            <p><strong>Cédula Paciente:</strong> {medicalRest.cedulaPaciente}</p>
+                                            <p><strong>Fecha:</strong> {new Date(medicalRest.fecha).toLocaleDateString()}</p>
+                                        </div>
+                                        <FaTrashAlt
+                                            className="deleteIcon"
+                                            onClick={() => handleDeleteClick(medicalRest._id)}
+                                        />
+                                        <hr className="itemSeparator" />
+                                    </div>
+                                ))
+                            ) : (
+                                <p>No se encontraron datos.</p>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
+
+            {isCreateModalOpen && (
+                <ModalCreateMedicalRest
+                    closeModal={setIsCreateModalOpen}
+                />
+            )}
+
+            {isDeleteModalOpen && (
+                <ModalConfirmDelete
+                    onConfirm={confirmDelete}
+                    onCancel={() => setIsDeleteModalOpen(false)}
+                />
+            )}
         </div>
-    
-        {isCreateModalOpen && (
-            <ModalCreateMedicalRest
-                closeModal={setIsCreateModalOpen}
-            />
-        )}
-    </div>
-    
     );
 };
 

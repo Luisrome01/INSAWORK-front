@@ -11,10 +11,18 @@ const ModalCreateMedicalRest = ({ closeModal }) => {
     const [fechaInicio, setFechaInicio] = useState("");
     const [fechaFinal, setFechaFinal] = useState("");
     const [comentarios, setComentarios] = useState("");
-    const [message, setMessage] = useState(null);  // Estado para el mensaje
+    const [message, setMessage] = useState(null);
 
     const handleCreate = async () => {
+        const doctorId = JSON.parse(localStorage.getItem('user'))._id;
+
+        if (!doctorId) {
+            setMessage(showErrorMessage("Doctor ID not found", "center"));
+            return;
+        }
+
         const newMedicalRest = {
+            doctorId,
             cedulaPaciente,
             sintomas,
             fecha,
@@ -38,7 +46,7 @@ const ModalCreateMedicalRest = ({ closeModal }) => {
                 const url = window.URL.createObjectURL(blob);
                 window.open(url, "_blank");
                 setMessage(showSuccessMessage("Reposo Médico creado exitosamente", "center"));
-                setTimeout(() => closeModal(false), 3000);  // Cierra el modal después de mostrar el mensaje
+                setTimeout(() => closeModal(false), 3000);
             } else {
                 const errorData = await response.json();
                 if (response.status === 404 && errorData.msg === 'Patient not found') {
@@ -59,12 +67,7 @@ const ModalCreateMedicalRest = ({ closeModal }) => {
             <div className="modalCreateMedicalRestContent">
                 <div className="modalHeader">
                     <h2>Crear Reposo Médico</h2>
-                    <button
-                        className="closeButton"
-                        onClick={() => closeModal(false)}
-                    >
-                        X
-                    </button>
+                    <button className="closeButton" onClick={() => closeModal(false)}>X</button>
                 </div>
                 <div className="modalBody">
                     <div className="inputContainer">
@@ -124,15 +127,12 @@ const ModalCreateMedicalRest = ({ closeModal }) => {
                         />
                     </div>
                     <div className="inputContainer">
-                        <button
-                            className="createButton"
-                            onClick={handleCreate}
-                        >
+                        <button className="createButton" onClick={handleCreate}>
                             Crear Reposo Médico
                         </button>
                     </div>
                 </div>
-                {message && <div className="messageContainer">{message}</div>} {/* Mostrar el MessageBar */}
+                {message && <div className="messageContainer">{message}</div>}
             </div>
         </div>
     );
