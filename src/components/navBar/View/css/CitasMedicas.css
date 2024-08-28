@@ -19,7 +19,7 @@
     background-color: rgba(174, 187, 253, 0.9); /* Color solicitado */
     color: #000;
     border: none;
-    border-radius: 5px;
+    border-radius: 5px; 
     padding: 10px 15px;
     font-size: 1rem;
     cursor: pointer;
@@ -106,10 +106,12 @@
     text-align: center;
     min-width: 220px; /* Tamaño mínimo de las tarjetas */
     transition: transform 0.3s; /* Efecto al pasar el mouse */
+    cursor: pointer; /* Cambia a la mano al hacer hover */
 }
 
 .appointment-card:hover {
     transform: scale(1.02); /* Efecto de ampliación */
+    background-color: rgba(174, 187, 253, 0.8); /* Cambiar color al hacer hover */
 }
 
 /* Estilo del botón para abrir el modal */
@@ -134,4 +136,3 @@
     font-size: 1.2rem;
     color: #333; /* Color del texto */
 }
-	

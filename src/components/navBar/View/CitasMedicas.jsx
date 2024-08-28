@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './css/citasMedicas.css';
 import ModalCreateAppointment from '../../modal/ModalCreateAppointment';
+import ModalEditAppointment from '../../modal/ModalEditAppointment';
 import BtnGeneral from '../../buttons/BtnGeneral';
 
 const CitasMedicas = () => {
@@ -8,7 +9,9 @@ const CitasMedicas = () => {
   const [filteredAppointments, setFilteredAppointments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [showModal, setShowModal] = useState(false);
+  const [showModalCreate, setShowModalCreate] = useState(false);
+  const [showModalEdit, setShowModalEdit] = useState(false);
+  const [selectedAppointment, setSelectedAppointment] = useState(null);
   const [isImminentFilter, setIsImminentFilter] = useState(false);
   const [monthFilter, setMonthFilter] = useState('');
   const [showFilters, setShowFilters] = useState(false);
@@ -99,26 +102,48 @@ const CitasMedicas = () => {
   };
 
   const handleModalToggle = () => {
-    setShowModal(!showModal);
+    setShowModalCreate(!showModalCreate);
   };
 
   const toggleFilters = () => {
     setShowFilters(!showFilters);
   };
 
+  const handleEditClick = (appointment) => {
+    setSelectedAppointment(appointment);
+    setShowModalEdit(true);
+  };
+
+  const handleModalEditClose = () => {
+    setShowModalEdit(false);
+    setSelectedAppointment(null);
+  };
+
+  const handleAppointmentUpdate = (updatedAppointment) => {
+    setAppointments((prevAppointments) =>
+      prevAppointments.map((appointment) =>
+        appointment._id === updatedAppointment._id ? updatedAppointment : appointment
+      )
+    );
+    setFilteredAppointments((prevAppointments) =>
+      prevAppointments.map((appointment) =>
+        appointment._id === updatedAppointment._id ? updatedAppointment : appointment
+      )
+    );
+  };
+
   return (
     <div className="appointments-main-container">
       <h1>Citas Médicas</h1>
-      
 
       <BtnGeneral
-            text=" Crear Cita"
-            color="#FFFFFF"
-            bgColor="#1E90FF"
-            handleClick={handleModalToggle}
-            className="open-modal-button"
-          />
-      
+        text=" Crear Cita"
+        color="#FFFFFF"
+        bgColor="#1E90FF"
+        handleClick={handleModalToggle}
+        className="open-modal-button"
+      />
+
       <div className="filter-toggle-container">
         <BtnGeneral
           text={showFilters ? 'Cerrar Filtros' : 'Desplegar Filtros'}
@@ -131,9 +156,9 @@ const CitasMedicas = () => {
 
       {showFilters && (
         <div className="filter-container">
-          <select 
-            value={monthFilter} 
-            onChange={(e) => setMonthFilter(e.target.value)} 
+          <select
+            value={monthFilter}
+            onChange={(e) => setMonthFilter(e.target.value)}
             className="month-select"
           >
             <option value="">Selecciona un mes</option>
@@ -172,7 +197,10 @@ const CitasMedicas = () => {
 
       <div className="appointments-count">
         {monthFilter ? (
-          <p>Tienes un total de {filteredAppointments.length} citas para el mes de {new Date(0, monthFilter - 1).toLocaleString('es-ES', { month: 'long' })}.</p>
+          <p>
+            Tienes un total de {filteredAppointments.length} citas para el mes de{' '}
+            {new Date(0, monthFilter - 1).toLocaleString('es-ES', { month: 'long' })}.
+          </p>
         ) : isImminentFilter ? (
           <p>Tienes un total de {filteredAppointments.length} citas para los próximos días.</p>
         ) : (
@@ -186,8 +214,14 @@ const CitasMedicas = () => {
             filteredAppointments.map((appointment) => {
               const patient = appointment.patientId || appointment.patient;
               return (
-                <div key={appointment._id} className="appointment-card">
-                  <h2>Cita de {patient.name} {patient.lastname}</h2>
+                <div
+                  key={appointment._id}
+                  className="appointment-card"
+                  onClick={() => handleEditClick(appointment)}
+                >
+                  <h2>
+                    Cita de {patient.name} {patient.lastname}
+                  </h2>
                   <p>Fecha: {formatDateWithLeadingZero(new Date(appointment.date))}</p>
                   <p>Estado: {appointment.status}</p>
                 </div>
@@ -199,7 +233,19 @@ const CitasMedicas = () => {
         </div>
       </div>
 
-      {showModal && <ModalCreateAppointment doctorId={JSON.parse(localStorage.getItem('user'))._id} />}
+      {showModalCreate && (
+        <ModalCreateAppointment
+          doctorId={JSON.parse(localStorage.getItem('user'))._id}
+          onClose={handleModalToggle}
+        />
+      )}
+      {showModalEdit && (
+        <ModalEditAppointment
+          appointmentId={selectedAppointment._id}
+          onClose={handleModalEditClose}
+          onUpdate={handleAppointmentUpdate}
+        />
+      )}
     </div>
   );
 };
