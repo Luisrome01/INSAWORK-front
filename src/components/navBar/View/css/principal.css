@@ -54,26 +54,29 @@
     margin-top: 0; /* Eliminamos el margen superior para que los contenedores estén pegados a las tarjetas */
 }
 
-.imminentAppointmentsContainer, .notesContainer {
+.imminentAppointmentsContainer,
+.notesContainer {
     background: rgba(217, 217, 217, 0.58);
     border: 1px solid white;
     box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
     backdrop-filter: blur(6px);
     border-radius: 17px;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Mantener la dirección vertical */
     padding: 20px;
     margin-top: 15px; /* Para espaciar del contenedor de las tarjetas */
     overflow-y: auto; /* Agregar scroll vertical */
     max-height: 100%; /* Limitar la altura para que el scroll funcione */
     flex: 1; /* Esto asegura que ambos contenedores ocupen el mismo espacio disponible */
+    cursor: pointer;
+    word-wrap: break-word; /* Permitir que el texto largo se ajuste */
+    text-align: center; /* Centrar el texto dentro del contenedor */
 }
 
 .imminentAppointmentsContainer,
 .notesContainer {
     height: 100%; /* Ambos contenedores ocupan el 100% de su contenedor padre */
 }
-
 
 /* Estilo para el scrollbar transparente */
 .imminentAppointmentsContainer::-webkit-scrollbar,
@@ -94,12 +97,14 @@
 
 .notesContainer {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    align-items: flex-start; /* Alinear al inicio para permitir el crecimiento hacia abajo */
+    justify-content: flex-start; /* Alinear al inicio para permitir el crecimiento hacia abajo */
     font-weight: bolder;
     color: black;
     font-size: 18px;
+    max-width: 100%; /* Asegura que no se expanda más allá de su contenedor */
+    overflow-wrap: break-word; /* Asegura que palabras largas se dividan */
+    word-wrap: break-word; /* Compatibilidad adicional */
 }
 
 /* Cada tarjeta de cita */
@@ -115,4 +120,16 @@
 .imminentAppointmentsContainer {
     scrollbar-width: thin; /* Firefox */
     scrollbar-color: transparent transparent; /* Firefox */
+}
+
+.note {
+    background: rgba(240, 240, 240, 0.7);
+    border-radius: 8px;
+    padding: 10px;
+    margin: 5px 0; /* Espaciado entre notas */
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    max-width: 100%; /* Asegura que no se expanda más allá de su contenedor */
+    overflow-wrap: break-word; /* Asegura que palabras largas se dividan */
+    word-wrap: break-word; /* Compatibilidad adicional */
+    overflow: hidden; /* Ocultar cualquier desbordamiento */
 }

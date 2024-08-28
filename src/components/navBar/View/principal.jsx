@@ -2,16 +2,18 @@ import React, { useEffect, useState } from "react";
 import "./css/principal.css";
 import ModalCreateMedicine from '../../modal/ModalCreateMedicine';
 import ModalCreateAppointment from '../../modal/ModalCreateAppointment';
-import BtnGeneral from '../../buttons/BtnGeneral';
+import ModalNotas from '../../modal/ModalNotas'; 
 
 const Principal = () => {
     const [showModalMedicine, setShowModalMedicine] = useState(false);
     const [showModalAppointment, setShowModalAppointment] = useState(false);
+    const [showModalNotas, setShowModalNotas] = useState(false); // Estado para el modal de notas
     const [imminentAppointments, setImminentAppointments] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [monthFilter, setMonthFilter] = useState('');
     const [showFilters, setShowFilters] = useState(false);
+    const [notes, setNotes] = useState([]); // Estado para las notas
 
     const doctorData = JSON.parse(localStorage.getItem('user')); 
     const doctorId = doctorData ? doctorData._id : null;
@@ -30,6 +32,14 @@ const Principal = () => {
 
     const handleCloseModalAppointment = () => {
         setShowModalAppointment(false);
+    };
+
+    const handleOpenModalNotas = () => {
+        setShowModalNotas(true);
+    };
+
+    const handleCloseModalNotas = () => {
+        setShowModalNotas(false);
     };
 
     const fetchImminentAppointments = async () => {
@@ -53,8 +63,24 @@ const Principal = () => {
         }
     };
 
+    const fetchNotes = async () => {
+        if (!doctorId) return;
+        
+        try {
+            const response = await fetch(`http://localhost:3000/user/note/${doctorId}`); // Cambia la URL según tu API
+            if (!response.ok) {
+                throw new Error('Failed to fetch notes');
+            }
+            const data = await response.json();
+            setNotes(data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     useEffect(() => {
         fetchImminentAppointments();
+        fetchNotes(); // Obtén las notas al cargar el componente
     }, [doctorId]);
 
     const formatDateWithLeadingZero = (date) => {
@@ -62,27 +88,6 @@ const Principal = () => {
         const m = String(date.getMonth() + 1).padStart(2, '0');
         const y = date.getFullYear();
         return `${d}/${m}/${y}`;
-    };
-
-    const toggleFilters = () => {
-        setShowFilters(!showFilters);
-    };
-
-    const handleMonthFilter = () => {
-        if (!monthFilter) return;
-
-        const month = parseInt(monthFilter);
-        if (isNaN(month) || month < 1 || month > 12) {
-            alert('Por favor, selecciona un mes válido.');
-            return;
-        }
-
-        const filtered = imminentAppointments.filter((appointment) => {
-            const appointmentDate = new Date(appointment.date);
-            return appointmentDate.getMonth() === month - 1;
-        });
-
-        setImminentAppointments(filtered);
     };
 
     return (
@@ -99,7 +104,6 @@ const Principal = () => {
                     {loading && <p>Cargando citas inminentes...</p>}
                     {error && <p>Error: {error}</p>}
                     
-                    {/* Contador de citas inminentes */}
                     <p>
                         Tienes un total de {imminentAppointments.length} citas para los próximos días.
                     </p>
@@ -121,8 +125,18 @@ const Principal = () => {
                         <p>No hay citas inminentes.</p>
                     )}
                 </div>
-                <div className="notesContainer">
-                    <p>Aquí van a ir las notas</p>
+                <div className="notesContainer" onClick={handleOpenModalNotas}>
+                    <h2>Notas Médicas</h2>
+                    <p>Tienes un total de {notes.length} notas.</p>
+                    {notes.length > 0 ? (
+                        notes.slice(0, 3).map(note => (
+                            <div key={note._id} className="appointment-card">
+                                <p>{note.content}</p> {/* Asegúrate de que `content` sea el campo correcto */}
+                            </div>
+                        ))
+                    ) : (
+                        <p>No hay notas disponibles.</p>
+                    )}
                 </div>
             </div>
             {showModalMedicine && (
@@ -144,7 +158,13 @@ const Principal = () => {
                     }} 
                 />
             )}
-        </div>
+           {showModalNotas && (
+                <ModalNotas 
+                    doctorId={doctorId} 
+                    onClose={handleCloseModalNotas} 
+                />
+            )}
+        </div> 
     );
 };
 

@@ -1,0 +1,58 @@
+.modalNotasContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modalNotasBackgroundBlur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.modalNotasContent {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+    width: 400px;
+}
+
+.noteInputContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.notesList {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.noteCard {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.noteContent {
+    flex-grow: 1;
+}
+
+.noteActions {
+    display: flex;
+    gap: 10px;
+}
