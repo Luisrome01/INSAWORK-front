@@ -95,8 +95,8 @@ const Principal = () => {
             <div className="cardsContainer">
                 <div className="card" onClick={handleOpenModalMedicine}>Añadir Medicina</div>
                 <div className="card" onClick={handleOpenModalAppointment}>Crear Cita</div>
-                <div className="card">Tarjeta 3</div>
-                <div className="card">Tarjeta 4</div>
+                <div className="card">Añadir Paciente</div>
+                <div className="card">Gestion de Informes</div>
             </div>
             <div className="bottomContainers">
                 <div className="imminentAppointmentsContainer">

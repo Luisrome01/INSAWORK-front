@@ -87,7 +87,7 @@ const ModalMedicalRest = ({ closeModal }) => {
             <div className="modalMedicalRestBackgroundBlur"></div>
             <div className="modalMedicalRestContent">
                 <div className="modalHeader">
-                    <p className="searchTitle">Cerrar Reposos Médicos:</p>
+                    <p className="searchTitle"> Reposos Médicos:</p>
                     <button
                         className="closeButton"
                         onClick={() => closeModal(false)}
@@ -123,7 +123,7 @@ const ModalMedicalRest = ({ closeModal }) => {
                                         className="medicalRestItem"
                                     >
                                         <div className="medicalRestInfo" onClick={() => handleMedicalRestClick(medicalRest._id)}>
-                                            <p><strong>ID:</strong> {medicalRest._id}</p>
+                            
                                             <p><strong>Nombre Paciente:</strong> {medicalRest.nombrePaciente}</p>
                                             <p><strong>Cédula Paciente:</strong> {medicalRest.cedulaPaciente}</p>
                                             <p><strong>Fecha:</strong> {new Date(medicalRest.fecha).toLocaleDateString()}</p>
