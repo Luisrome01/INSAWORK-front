@@ -1,63 +1,132 @@
-.CierreContainer {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	height: 85vh;
-	background-color: #ffff;
-	position: relative;
-	justify-content: center;
-}
-
-.CierreHeaderContainer {
-	flex-basis: 10%;
-	margin-left: 5%;
-	align-items: center;
-	display: flex;
-}
-
-.CierreInput {
-	display: flex;
-	flex-direction: column;
-	/* align-items: flex-start; */
-    gap: 20px;
-   
-}
-
-.CierreCierredPago {
-	align-items: center;
-	flex-basis: 33%;
-	display: flex;
-	flex-direction: row;
-}
-
-.CierreCierre {
-	margin-left: 10%;
-	display: flex;
-    gap: 30px;
+.historias-container {
+    padding: 20px;
+    display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
-.CierreBanco {
-	flex-basis: 42%;
-
-}
-.CierreMonto-BotonAgregar {
-	display: flex;
-	flex-direction: column;
-    gap: 30px;
-}
-.CierreMonto {
-	margin-left: 10%;
-	flex-basis: 60%;
-}
-.CierreBotonAgregar {
-    margin-left: 10%;
-	flex-basis: 60%;
+.historias-header {
+    font-size: 2em;
+    margin-bottom: 10px;
 }
 
-.FacturaCheckoutContainer {
-	display: flex;
-	flex-direction: row;
-	position: relative;
-	left: 5%;
+.historias-content {
+    width: 100%;
+    max-width: 1000px; /* Aumenta el ancho máximo del contenedor de cartas */
+}
+
+.search-container {
+    margin-bottom: 20px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: white; /* Fondo blanco para el input */
+}
+
+.create-patient-button {
+    background-color: #AEBBFD; /* Color especificado */
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.create-patient-button:hover {
+    background-color: #9a9dff; /* Color más oscuro al pasar el ratón */
+}
+
+/* Contenedor centrado y cuadrado para las cartas */
+.patients-scroll-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinea las cartas desde el inicio para evitar el espacio en blanco arriba */
+    height: 550px; /* Aumenta la altura según sea necesario */
+    width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+    max-width: 1000px; /* Aumenta el ancho máximo del contenedor para mostrar más cartas a los lados */
+    overflow-y: auto; /* Habilita el scroll vertical */
+    overflow-x: hidden; /* Oculta el scroll horizontal */
+    padding: 20px; /* Aumenta el padding para mayor separación */
+    border: 1px solid #ccc; /* Opcional: agrega un borde para visualización */
+    border-radius: 10px; /* Opcional: redondea las esquinas del contenedor */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Opcional: agrega una sombra sutil */
+    box-sizing: border-box;
+}
+
+/* Contenedor para las cartas en una cuadrícula */
+.patients-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+    gap: 20px; /* Aumenta el espacio entre las cartas */
+    overflow: hidden; /* Asegura que el contenido no se desborde */
+    width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+    height: auto; /* Ajusta la altura del contenedor según el contenido */
+    padding: 0 20px; /* Aumenta el padding a los lados */
+    box-sizing: border-box;
+}
+
+/* Ajusta el diseño de cada carta */
+.patient-card {
+    box-sizing: border-box;
+    width: 240px; /* Ancho de cada carta aumentado */
+    height: 240px; /* Altura de cada carta aumentada */
+    background: rgba(217, 217, 217, 0.58);
+    border: 1px solid white;
+    box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(6px);
+    border-radius: 17px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.5s, border 0.5s; /* Anima solo la transformación y el borde */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    font-weight: bolder;
+    color: black;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow: hidden; /* Asegura que el texto no se salga de la carta */
+    z-index: 1; /* Asegura que la carta esté por encima de otras */
+}
+
+/* Asegura que la animación de hover no colisione con otras cartas */
+.patient-card:hover {
+    border: 1px solid black;
+    transform: scale(1.1); /* Aumenta la escala para que se aprecie mejor el efecto */
+    z-index: 2; /* Asegura que la carta en hover esté encima de otras */
+}
+
+.patient-card:active {
+    transform: scale(0.95) rotateZ(1.7deg);
+}
+
+/* Ocultar la barra de desplazamiento en Webkit-based browsers */
+.patients-scroll-container::-webkit-scrollbar {
+    width: 8px; /* Ajusta el ancho del scrollbar en navegadores Webkit */
+}
+
+/* Estilo para el track del scrollbar */
+.patients-scroll-container::-webkit-scrollbar-track {
+    background: transparent; /* Fondo del track del scrollbar */
+}
+
+/* Estilo para el pulgar del scrollbar */
+.patients-scroll-container::-webkit-scrollbar-thumb {
+    background: #ccc; /* Color del pulgar del scrollbar */
+    border-radius: 10px; /* Redondea las esquinas del pulgar */
+}
+
+/* Ocultar la barra de desplazamiento en otros navegadores */
+.patients-scroll-container {
+    -ms-overflow-style: none; /* IE 10+ */
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #ccc transparent; /* Color del pulgar y fondo para Firefox */
 }

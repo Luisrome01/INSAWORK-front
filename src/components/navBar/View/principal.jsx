@@ -3,17 +3,19 @@ import "./css/principal.css";
 import ModalCreateMedicine from '../../modal/ModalCreateMedicine';
 import ModalCreateAppointment from '../../modal/ModalCreateAppointment';
 import ModalNotas from '../../modal/ModalNotas'; 
+import ModalCreateCompany from '../../modal/ModalCreateCompany'; // Importa el nuevo modal
 
 const Principal = () => {
     const [showModalMedicine, setShowModalMedicine] = useState(false);
     const [showModalAppointment, setShowModalAppointment] = useState(false);
-    const [showModalNotas, setShowModalNotas] = useState(false); // Estado para el modal de notas
+    const [showModalNotas, setShowModalNotas] = useState(false);
+    const [showModalCompany, setShowModalCompany] = useState(false); // Nuevo estado para el modal de empresa
     const [imminentAppointments, setImminentAppointments] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [monthFilter, setMonthFilter] = useState('');
     const [showFilters, setShowFilters] = useState(false);
-    const [notes, setNotes] = useState([]); // Estado para las notas
+    const [notes, setNotes] = useState([]);
 
     const doctorData = JSON.parse(localStorage.getItem('user')); 
     const doctorId = doctorData ? doctorData._id : null;
@@ -42,6 +44,14 @@ const Principal = () => {
         setShowModalNotas(false);
     };
 
+    const handleOpenModalCompany = () => {
+        setShowModalCompany(true);
+    };
+
+    const handleCloseModalCompany = () => {
+        setShowModalCompany(false);
+    };
+
     const fetchImminentAppointments = async () => {
         if (!doctorId) {
             setError('Doctor ID not found in local storage.');
@@ -67,7 +77,7 @@ const Principal = () => {
         if (!doctorId) return;
         
         try {
-            const response = await fetch(`http://localhost:3000/user/note/${doctorId}`); // Cambia la URL según tu API
+            const response = await fetch(`http://localhost:3000/user/note/${doctorId}`);
             if (!response.ok) {
                 throw new Error('Failed to fetch notes');
             }
@@ -80,7 +90,7 @@ const Principal = () => {
 
     useEffect(() => {
         fetchImminentAppointments();
-        fetchNotes(); // Obtén las notas al cargar el componente
+        fetchNotes();
     }, [doctorId]);
 
     const formatDateWithLeadingZero = (date) => {
@@ -95,8 +105,8 @@ const Principal = () => {
             <div className="cardsContainer">
                 <div className="card" onClick={handleOpenModalMedicine}>Añadir Medicina</div>
                 <div className="card" onClick={handleOpenModalAppointment}>Crear Cita</div>
-                <div className="card">Añadir Paciente</div>
-                <div className="card">Gestion de Informes</div>
+                <div className="card" onClick={handleOpenModalCompany}>Añadir Empresa</div> {/* Añadido el evento de click para el nuevo modal */}
+                <div className="card">Crear Factura</div>
             </div>
             <div className="bottomContainers">
                 <div className="imminentAppointmentsContainer">
@@ -131,7 +141,7 @@ const Principal = () => {
                     {notes.length > 0 ? (
                         notes.slice(0, 3).map(note => (
                             <div key={note._id} className="appointment-card">
-                                <p>{note.content}</p> {/* Asegúrate de que `content` sea el campo correcto */}
+                                <p>{note.content}</p>
                             </div>
                         ))
                     ) : (
@@ -158,10 +168,19 @@ const Principal = () => {
                     }} 
                 />
             )}
-           {showModalNotas && (
+            {showModalNotas && (
                 <ModalNotas 
                     doctorId={doctorId} 
                     onClose={handleCloseModalNotas} 
+                />
+            )}
+            {showModalCompany && (
+                <ModalCreateCompany
+                    doctorId={doctorId}
+                    onClose={() => {
+                        handleCloseModalCompany();
+                        setTimeout(() => setShowModalCompany(false), 100);
+                    }}
                 />
             )}
         </div> 
