@@ -13,7 +13,7 @@ const ModalCreateMedicine = ({ doctorId, onClose }) => {
         name: "",
         type: "",
         use: ""
-    });
+    }); 
 
     const displayMessage = (messageComponent) => {
         setMessageBar(messageComponent);

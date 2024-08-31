@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { FaTrashAlt } from "react-icons/fa";
 import "./css/ModalNotas.css";
-import InputGeneral from "../inputs/InputGeneral"; 
-import ModalConfirmDelete from "./ModalConfirmDelete"; 
+import InputGeneral from "../inputs/InputGeneral";
+import ModalConfirmDelete from "./ModalConfirmDelete";
 
-const ModalNotas = ({ doctorId, onClose }) => { // Cambia closeModal por onClose
+const ModalNotas = ({ doctorId, onClose }) => {
     const [notes, setNotes] = useState([]);
-    const [newNoteContent, setNewNoteContent] = useState("Nueva Nota");
+    const [newNoteContent, setNewNoteContent] = useState("");
     const [editingNoteId, setEditingNoteId] = useState(null);
+    const [editingNoteContent, setEditingNoteContent] = useState("");
     const [confirmDeleteId, setConfirmDeleteId] = useState(null);
 
     useEffect(() => {
@@ -35,7 +37,7 @@ const ModalNotas = ({ doctorId, onClose }) => { // Cambia closeModal por onClose
             });
             if (response.ok) {
                 fetchNotes();
-                setNewNoteContent("Nueva Nota");
+                setNewNoteContent("");
             }
         } catch (error) {
             console.error("Error creating note:", error);
@@ -43,7 +45,7 @@ const ModalNotas = ({ doctorId, onClose }) => { // Cambia closeModal por onClose
     };
 
     const handleEditNote = async (noteId) => {
-        const updatedNote = { content: newNoteContent };
+        const updatedNote = { content: editingNoteContent };
         try {
             const response = await fetch(`http://localhost:3000/user/note/${noteId}`, {
                 method: "PUT",
@@ -55,6 +57,7 @@ const ModalNotas = ({ doctorId, onClose }) => { // Cambia closeModal por onClose
             if (response.ok) {
                 fetchNotes();
                 setEditingNoteId(null);
+                setEditingNoteContent("");
             }
         } catch (error) {
             console.error("Error updating note:", error);
@@ -74,50 +77,58 @@ const ModalNotas = ({ doctorId, onClose }) => { // Cambia closeModal por onClose
     };
 
     return (
-        <div className="modalNotasContainer">
-            <div className="modalNotasBackgroundBlur"></div>
-            <div className="modalNotasContent">
-                <h2>Notas</h2>
-                <div className="noteInputContainer">
+        <div className="modal-notes-overlay">
+    <div className="modal-notes-container">
+        <div className="modal-notes-header">
+            <h2 className="modal-notes-title">Notas</h2>
+            <button className="modal-notes-close-button" onClick={onClose}>X</button>
+        </div>
+        <div className="modal-notes-body">
+            <div className="note-input-container">
+                <div className="input-wrapper" style={{ flexGrow: 1 }}>
                     <InputGeneral
                         value={newNoteContent}
                         onChange={(e) => setNewNoteContent(e.target.value)}
-                        placeholder="Nueva Nota"
+                        placeholder="Escribe una nota..."
+                        className="modal-notes-input-field new-note-input-field"
                     />
-                    <button onClick={handleCreateNote}>Crear Nota</button>
                 </div>
-                <div className="notesList">
-                    {notes.map((note) => (
-                        <div key={note._id} className="noteCard">
-                            {editingNoteId === note._id ? (
-                                <div>
-                                    <InputGeneral
-                                        value={newNoteContent}
-                                        onChange={(e) => setNewNoteContent(e.target.value)}
-                                    />
-                                    <button onClick={() => handleEditNote(note._id)}>Guardar</button>
+                <button className="modal-notes-create-button" onClick={handleCreateNote}>Crear Nota</button>
+            </div>
+            <div className="notes-list">
+                {notes.map((note) => (
+                    <div key={note._id} className="note-card">
+                        {editingNoteId === note._id ? (
+                            <div className="note-edit-container">
+                                <InputGeneral
+                                    value={editingNoteContent}
+                                    onChange={(e) => setEditingNoteContent(e.target.value)}
+                                    className="modal-notes-input-field edit-note-input-field"
+                                />
+                                <button className="modal-notes-save-button" onClick={() => handleEditNote(note._id)}>Guardar</button>
+                            </div>
+                        ) : (
+                            <div className="note-content">
+                                <p>{note.content}</p>
+                                <div className="note-actions">
+                                    <button className="modal-notes-edit-button" onClick={() => { setEditingNoteId(note._id); setEditingNoteContent(note.content); }}>Editar</button>
+                                    <button className="modal-notes-delete-button" onClick={() => setConfirmDeleteId(note._id)}><FaTrashAlt /></button>
                                 </div>
-                            ) : (
-                                <div className="noteContent">
-                                    <p>{note.content}</p>
-                                    <div className="noteActions">
-                                        <button onClick={() => { setEditingNoteId(note._id); setNewNoteContent(note.content); }}>Editar</button>
-                                        <button onClick={() => setConfirmDeleteId(note._id)}>🗑️</button>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-                    ))}
-                </div>
-                {confirmDeleteId && (
-                    <ModalConfirmDelete
-                        onConfirm={() => handleDeleteNote(confirmDeleteId)}
-                        onCancel={() => setConfirmDeleteId(null)}
-                    />
-                )}
-                <button onClick={onClose}>Cerrar</button> {/* Usa onClose aquí */}
+                            </div>
+                        )}
+                    </div>
+                ))}
             </div>
         </div>
+        {confirmDeleteId && (
+            <ModalConfirmDelete
+                onConfirm={() => handleDeleteNote(confirmDeleteId)}
+                onCancel={() => setConfirmDeleteId(null)}
+            />
+        )}
+    </div>
+</div>
+
     );
 };
 
