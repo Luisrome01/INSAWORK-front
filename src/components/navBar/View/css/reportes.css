@@ -1,14 +1,47 @@
-.MetodosPagoContainer {
+/* CSS para el contenedor de reportes */
+.reportes-container {
     padding: 20px;
     /* Agrega tus estilos aquí */
 }
 
-h2 {
+.reportes-container h2 {
     color: #333;
     /* Agrega más estilos según sea necesario */
 }
-.buttonContainer {
+
+.button-container {
     display: flex;
-    gap: 20px; /* Espacio entre los botones */
-    margin-bottom: 20px; /* Margen inferior para separar los botones del contenido */
-} 
+    gap: 20px; /* Espacio entre las cartas */
+    margin-bottom: 20px; /* Margen inferior para separar las cartas del contenido */
+}
+
+/* Estilo de las cartas */
+.card-reportes {
+    box-sizing: border-box;
+    width: 190px;
+    height: 254px;
+    background: #FFFFFF; /* Fondo blanco */
+    border: 1px solid #DCDCDC; /* Borde gris claro */
+    box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(6px);
+    border-radius: 17px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.5s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    font-weight: bolder;
+    color: #000000; /* Texto negro */
+}
+
+.card-reportes:hover {
+    background-color: rgba(150, 170, 240, 0.75); /* Color de fondo en hover */
+    border: 1px solid #000000; /* Borde negro en hover */
+    transform: scale(1.05);
+}
+
+.card-reportes:active {
+    transform: scale(0.95) rotateZ(1.7deg);
+}
