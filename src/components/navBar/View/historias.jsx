@@ -1,24 +1,25 @@
 import React, { useState, useEffect } from "react";
 import "./css/historias.css";
 import ModalCreatePatient from "../../modal/ModalCreatePatient"; // Ajusta la ruta según la ubicación de ModalCreatePatient
+import ModalPaciente from "../../modal/ModalPaciente"; // Importa el nuevo modal
 
 const Historias = () => {
     const [isModalCreatePatientOpen, setIsModalCreatePatientOpen] = useState(false);
+    const [isModalPacienteOpen, setIsModalPacienteOpen] = useState(false);
     const [patients, setPatients] = useState([]);
     const [filteredPatients, setFilteredPatients] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
+    const [selectedPatient, setSelectedPatient] = useState(null);
 
     useEffect(() => {
-        // Obtener el doctorId del localStorage
         const doctorId = JSON.parse(localStorage.getItem("user"))._id;
 
-        // Función para obtener pacientes
         const fetchPatients = async () => {
             try {
                 const response = await fetch(`http://localhost:3000/patients/${doctorId}`);
                 const data = await response.json();
                 setPatients(data);
-                setFilteredPatients(data); // Inicialmente, los pacientes filtrados son todos los pacientes
+                setFilteredPatients(data);
             } catch (error) {
                 console.error("Error fetching patients:", error);
             }
@@ -28,7 +29,6 @@ const Historias = () => {
     }, []);
 
     useEffect(() => {
-        // Filtrar pacientes según el término de búsqueda
         setFilteredPatients(
             patients.filter(patient =>
                 patient.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -37,12 +37,20 @@ const Historias = () => {
         );
     }, [searchTerm, patients]);
 
+    const handlePatientClick = async (patientId) => {
+        try {
+            const response = await fetch(`http://localhost:3000/patient/${patientId}`);
+            const data = await response.json();
+            setSelectedPatient(data);
+            setIsModalPacienteOpen(true);
+        } catch (error) {
+            console.error("Error fetching patient details:", error);
+        }
+    };
+
     return (
         <div className="historias-container">
-           
-        
             <div className="historias-content">
-                {/* Campo de búsqueda */}
                 <div className="search-container">
                     <input
                         type="text"
@@ -53,7 +61,6 @@ const Historias = () => {
                     />
                 </div>
 
-                {/* Botón para abrir el modal */}
                 <button
                     className="create-patient-button"
                     onClick={() => setIsModalCreatePatientOpen(true)}
@@ -61,16 +68,25 @@ const Historias = () => {
                     Crear Paciente
                 </button>
 
-                {/* Mostrar el modal si el estado indica que debe estar abierto */}
                 {isModalCreatePatientOpen && (
                     <ModalCreatePatient closeModal={setIsModalCreatePatientOpen} />
                 )}
 
-                {/* Contenedor de cartas de pacientes */}
+                {isModalPacienteOpen && selectedPatient && (
+                    <ModalPaciente
+                        patient={selectedPatient}
+                        closeModal={setIsModalPacienteOpen}
+                    />
+                )}
+
                 <div className="patients-scroll-container">
                     <div className="patients-grid">
                         {filteredPatients.map(patient => (
-                            <div className="patient-card" key={patient._id}>
+                            <div
+                                className="patient-card"
+                                key={patient._id}
+                                onClick={() => handlePatientClick(patient._id)}
+                            >
                                 <p className="patient-card-info">{patient.name}</p>
                                 <p className="patient-card-info">{patient.lastname}</p>
                                 <p className="patient-card-info">{patient.cedula}</p>

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./css/reportes.css";
 import ModalMedicalRest from "../../modal/ModalMedicalRest"; // Asegúrate de ajustar la ruta
-import ModalDefault from "../../modal/ModalDefault"; // Ajustar la ruta según la ubicación de ModalDefault
 import ModalReports from "../../modal/ModalReports"; // Ajusta la ruta según la ubicación de ModalReports
 import ModalAptitude from "../../modal/ModalAptitude"; // Importa el nuevo modal
 import BtnGeneral from "../../buttons/BtnGeneral"; // Ajustar la ruta según la ubicación de BtnGeneral
@@ -27,12 +26,6 @@ const Reportes = ({ totalCosto, listaCitas, cliente, setClienteExterno, setLista
                     handleClick={() => setIsModalMedicalRestOpen(true)}
                 />
 
-                <BtnGeneral
-                    text="Abrir Modal Default"
-                    color="#FFFFFF"
-                    bgColor="#32CD32"
-                    handleClick={() => setIsModalDefaultOpen(true)}
-                />
 
                 <BtnGeneral
                     text="Abrir Modal Reportes"
