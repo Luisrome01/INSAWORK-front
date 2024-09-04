@@ -30,7 +30,6 @@ const Reportes = ({ listaCitas, setListaCitasExterna }) => {
                 >
                     Abrir Modal Reportes
                 </div>
-
                 <div 
                     className="card-reportes"
                     onClick={() => setIsModalAptitudeOpen(true)}

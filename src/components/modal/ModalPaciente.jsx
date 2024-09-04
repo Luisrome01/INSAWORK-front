@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { FaPencilAlt } from 'react-icons/fa'; // Importa el ícono de lápiz para editar
 import "./css/modalPaciente.css";
+import ModalHistoria from './ModalHistoria'; // Importa el modal Historia
 
 const ModalPaciente = ({ patient, closeModal, onUpdateSuccess }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [editedPatient, setEditedPatient] = useState({ ...patient });
     const [photoFile, setPhotoFile] = useState(null);
     const [companies, setCompanies] = useState([]);
-
+    const [isHistoriaModalOpen, setIsHistoriaModalOpen] = useState(false);
+    
     useEffect(() => {
         // Fetch companies from the backend
         const fetchCompanies = async () => {
@@ -27,10 +29,26 @@ const ModalPaciente = ({ patient, closeModal, onUpdateSuccess }) => {
         fetchCompanies();
     }, []);
 
+    const handleOpenHistoriaModal = () => {
+        setIsHistoriaModalOpen(true);
+    };
+    
+    const handleCloseHistoriaModal = () => {
+        setIsHistoriaModalOpen(false);
+    };
+
     useEffect(() => {
+        if (patient && patient._id) {
+            localStorage.setItem("selectedPatientId", patient._id); // Guarda el ID en localStorage
+        }
         setEditedPatient({ ...patient });
         setPhotoFile(null); // Limpiar el archivo seleccionado
     }, [patient]);
+    
+    const handleCloseModal = () => {
+        localStorage.removeItem("selectedPatientId"); // Borra el campo específico de localStorage
+        closeModal(false);
+    };
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -114,7 +132,7 @@ const ModalPaciente = ({ patient, closeModal, onUpdateSuccess }) => {
                         )}
                         <button 
                             className="paciente-modal-close-button" 
-                            onClick={() => closeModal(false)}
+                            onClick={handleCloseModal} // Usa la nueva función
                         >
                             &times;
                         </button>
@@ -234,26 +252,25 @@ const ModalPaciente = ({ patient, closeModal, onUpdateSuccess }) => {
                             editedPatient.address
                         )}
                     </p>
-                   <p>
-    <strong>Compañía:</strong> 
-    {isEditing ? (
-        <select
-            name="company"
-            value={editedPatient.company}
-            onChange={handleInputChange}
-        >
-            <option value="">Selecciona una compañía</option>
-            {companies.map(company => (
-                <option key={company._id} value={company._id}>
-                    {company.name}
-                </option>
-            ))}
-        </select>
-    ) : (
-        companies.find(company => company._id === editedPatient.company)?.name || 'No asignada'
-    )}
-</p>
-
+                    <p>
+                        <strong>Compañía:</strong> 
+                        {isEditing ? (
+                            <select
+                                name="company"
+                                value={editedPatient.company}
+                                onChange={handleInputChange}
+                            >
+                                <option value="">Selecciona una compañía</option>
+                                {companies.map(company => (
+                                    <option key={company._id} value={company._id}>
+                                        {company.name}
+                                    </option>
+                                ))} 
+                            </select>
+                        ) : (
+                            companies.find(company => company._id === editedPatient.company)?.name || 'No asignada'
+                        )}
+                    </p>
                     <p>
                         <strong>Posición:</strong> 
                         {isEditing ? (
@@ -288,20 +305,37 @@ const ModalPaciente = ({ patient, closeModal, onUpdateSuccess }) => {
                             editedPatient.grupoSanguineo
                         )}
                     </p>
-                </div>
-                {isEditing && (
                     <div className="paciente-modal-actions">
-                        <button className="paciente-modal-save-button" onClick={handleSave}>
-                            Guardar
+                        {/* Botón para abrir el ModalHistoria */}
+                        <button 
+                            className="paciente-modal-open-history-button" 
+                            onClick={handleOpenHistoriaModal}
+                        >
+                            Ver Historia Clínica
                         </button>
-                        <button className="paciente-modal-cancel-button" onClick={() => setIsEditing(false)}>
-                            Cancelar
-                        </button>
+                        {isEditing && (
+                            <button className="paciente-modal-save-button" onClick={handleSave}>
+                                Guardar
+                            </button>
+                        )}
+                        {isEditing && (
+                            <button className="paciente-modal-cancel-button" onClick={() => setIsEditing(false)}>
+                                Cancelar
+                            </button>
+                        )}
                     </div>
+                </div>
+                {isHistoriaModalOpen && (
+                    <ModalHistoria
+                        closeModal={handleCloseHistoriaModal}
+                        onUpdateSuccess={() => { /* Aquí puedes manejar la actualización exitosa del modal historia */ }}
+                    />
                 )}
             </div>
         </div>
     );
+    
+    
 };
 
 export default ModalPaciente;
