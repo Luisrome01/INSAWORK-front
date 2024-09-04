@@ -56,7 +56,7 @@ const Register = () => {
     }
     console.log("Form data:", formData);
     try {
-      const response = await fetch("https://insawork.onrender.com/signup", {
+      const response = await fetch("http://localhost:3000/signup", {
         method: "POST",
         body: formData,
       });

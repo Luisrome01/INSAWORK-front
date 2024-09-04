@@ -135,7 +135,7 @@ const ModalUserInfo = ({ userId }) => {
                     <button type="submit" className="userInfoSubmitButton">Guardar Información</button>
                 </form>
             </div>
-        </div>
+        </div> 
     );
 };
 

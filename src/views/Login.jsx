@@ -21,10 +21,10 @@ const Login = ({ setUser }) => {
       setError("Por favor ingresa correo electrónico y contraseña.");
       console.log("Missing email or password.");
       return;
-    }
-
+    } 
+ 
     try {
-      const response = await fetch("https://insawork.onrender.com/signin", {
+      const response = await fetch("http://localhost:3000/signin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -39,7 +39,7 @@ const Login = ({ setUser }) => {
         console.log("Login successful:", data);
 
         // Fetch additional user details
-        const userResponse = await fetch(`https://insawork.onrender.com/user/${data.userID}`, {
+        const userResponse = await fetch(`http://localhost:3000/user/${data.userID}`, {
           headers: {
             "Authorization": `Bearer ${data.token}`,
           },
@@ -61,7 +61,7 @@ const Login = ({ setUser }) => {
           );
 
           // Fetch userInfo and store it in localStorage
-          const userInfoResponse = await fetch(`https://insawork.onrender.com/user/info/${data.userID}`, {
+          const userInfoResponse = await fetch(`http://localhost:3000/user/info/${data.userID}`, {
             headers: {
               "Authorization": `Bearer ${data.token}`,
             },
