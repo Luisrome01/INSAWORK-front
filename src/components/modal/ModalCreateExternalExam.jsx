@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaTimes } from 'react-icons/fa';
 import './css/modalCreateExternalExam.css';
 
-const ModalCreateExternalExam = ({ showModal, handleClose }) => {
+const ModalCreateExternalExam = ({ showModal, handleClose, onExamCreated }) => {
     const [type, setType] = useState('');
     const [description, setDescription] = useState('');
     const [date, setDate] = useState('');
@@ -10,7 +10,6 @@ const ModalCreateExternalExam = ({ showModal, handleClose }) => {
     const [examTypes, setExamTypes] = useState([]);
 
     useEffect(() => {
-        // Aquí podrías cargar los tipos de exámenes de manera dinámica si se requiere
         const types = ['Radiografia', 'Pruebas de sangre', 'Ultrasonido', 'Tomografía', 'Resonancia magnética'];
         setExamTypes(types);
     }, []);
@@ -43,7 +42,8 @@ const ModalCreateExternalExam = ({ showModal, handleClose }) => {
             if (response.ok) {
                 const data = await response.json();
                 console.log('Examen creado:', data);
-                handleClose(); // Cerrar el modal después de la creación exitosa
+                onExamCreated(data); // Notifica al componente padre que se creó un nuevo examen
+                handleClose(); // Cierra el modal después de la creación exitosa
             } else {
                 console.error('Error al crear el examen');
                 alert('Error al crear el examen externo.');
