@@ -317,7 +317,7 @@ const ModalPaciente = ({ patient, closeModal, onUpdateSuccess }) => {
                             <button className="paciente-modal-save-button" onClick={handleSave}>
                                 Guardar
                             </button>
-                        )}
+                        )} 
                         {isEditing && (
                             <button className="paciente-modal-cancel-button" onClick={() => setIsEditing(false)}>
                                 Cancelar

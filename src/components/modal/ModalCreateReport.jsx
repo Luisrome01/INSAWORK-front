@@ -113,7 +113,7 @@ const ModalCreateReport = ({ closeModal }) => {
                         <InputGeneral
                             type="text"
                             value={diagnostico}
-                            onChange={(e) => setDiagnostico(e.target.value)}
+                             onChange={(e) => setDiagnostico(e.target.value)}
                         />
                     </div>
                     <div className="inputContainer">

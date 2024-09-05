@@ -12,7 +12,7 @@
     z-index: 1000; /* Asegúrate de que el overlay esté por encima del contenido de la página */
 }
 
-/* Modal */
+/* Modal */ 
 .paciente-modal {
     background: #fff;
     border-radius: 8px;

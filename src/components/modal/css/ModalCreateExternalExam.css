@@ -1,0 +1,74 @@
+.modal-create-external-exam-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-create-external-exam {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+}
+
+.modal-create-external-exam-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-create-external-exam-close-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #000;
+}
+
+.modal-create-external-exam-close-button:hover {
+    color: #aebbfd;
+}
+
+.modal-create-external-exam-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-create-external-exam-input,
+.modal-create-external-exam-select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.modal-create-external-exam-submit-btn {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    background-color: #aebbfd;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.modal-create-external-exam-submit-btn:hover {
+    background-color: #9c9ccf;
+}

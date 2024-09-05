@@ -125,7 +125,12 @@
     border-radius: 5px;
     background-color: #f9f9f9;
     cursor: pointer;
-}
+    transition: background-color 0.3s; /* Añade una transición suave */
+  }
+  
+  .treatment-item:hover {
+    background-color: rgba(150, 170, 240, 0.75); /* Cambia el color de fondo al hacer hover */
+  }
 
 .treatment-item.selected {
     border-color: #007bff;
@@ -178,3 +183,49 @@
 .delete-treatment-btn svg {
     font-size: 1.2em; /* Tamaño del ícono */
 }
+
+.external-exams-list-container {
+    margin: 20px 0;
+  }
+  
+  .external-exams-label {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  
+  .external-exams-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .external-exam-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 5px 0;
+    padding: 10px;
+    cursor:pointer;
+  }
+  .external-exam-item:hover {
+    background-color: rgba(150, 170, 240, 0.75); /* Cambia el color de fondo al hacer hover */
+  }
+  .external-exams-actions {
+    margin-top: 20px;
+    text-align: right; /* Para alinear el botón a la derecha */
+  }
+  
+  .save-button {
+    background-color: #4CAF50; /* Verde */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1em;
+  }
+  
+  .save-button:hover {
+    background-color: #45a049; /* Un verde más oscuro al pasar el mouse */
+  }
+  

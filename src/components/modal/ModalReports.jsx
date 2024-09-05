@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import InputBusqueda from "../inputs/InputBusqueda";
 import "./css/ModalReports.css";
 import ModalCreateReport from "./ModalCreateReport";
-import ModalConfirmDelete from "./ModalConfirmDelete";
+import ModalConfirmDelete from "./ModalConfirmDelete"; 
 import { FaTrashAlt } from "react-icons/fa";
 
 const ModalReports = ({ closeModal }) => {

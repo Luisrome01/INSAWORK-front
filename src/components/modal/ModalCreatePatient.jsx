@@ -69,6 +69,47 @@ const ModalCreatePatient = ({ closeModal }) => {
             if (response.ok) {
                 const result = await response.json();
                 setMessage(showSuccessMessage("Patient created successfully", "center"));
+
+                // Crear la historia clínica para el paciente recién creado
+                const medicalRecord = {
+                    patientId: result._id,
+                    doctorId: doctorId,
+                    observaciones: "",
+                    ant_medicos: "",
+                    ant_familiares: "",
+                    ant_laborales: "",
+                    alergias: "",
+                    vacunas: "",
+                    enf_cronicas: "",
+                    habits: {
+                        alcohol: "sin informacion",
+                        estupefacientes: "sin informacion",
+                        actividad_fisica: "sin informacion",
+                        tabaco: "sin informacion",
+                        cafe: "sin informacion",
+                        sueño: "sin informacion",
+                        alimentacion: "sin informacion",
+                        sexuales: "sin informacion"
+                    },
+                    treatment: null,
+                    externalExams: []
+                };
+
+                const medicalRecordResponse = await fetch("http://localhost:3000/medicalRecord", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(medicalRecord),
+                });
+
+                if (medicalRecordResponse.ok) {
+                    console.log("Medical record created successfully");
+                } else {
+                    const medicalRecordError = await medicalRecordResponse.json();
+                    setMessage(showWarningMessage(`Error creating medical record: ${medicalRecordError.msg}`, "center"));
+                }
+
                 setTimeout(() => closeModal(false), 3000);
             } else {
                 const errorData = await response.json();
