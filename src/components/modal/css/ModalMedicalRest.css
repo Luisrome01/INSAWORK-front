@@ -138,7 +138,7 @@
     border-top: 1px solid #ddd;
 }
 
-.deleteIcon {
+.deleteButton {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -146,8 +146,11 @@
     color: red;
     font-size: 20px;
     transition: transform 0.2s;
+    border: none;
+    background: none; 
+    padding: 0; 
 }
 
-.deleteIcon:hover {
+.deleteButton:hover {
     transform: scale(1.1);
 }

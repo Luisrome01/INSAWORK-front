@@ -238,29 +238,25 @@ useEffect(() => {
 
 
     const handleSave = async () => {
-        try {
-            // Log de los datos que se están intentando enviar
-            console.log('Data being sent to server:', newRecord);
-    
-            const response = await fetch(`http://localhost:3000/medicalRecord/${medicalRecord._id}`, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(newRecord),
-            });
-    
-            if (response.ok) {
-                const data = await response.json();
-                setMedicalRecord(data);
-                closeModal(true);
-                console.log('Saving Record:', newRecord);
-            } else {
-                const errorData = await response.json();
-                console.error('Failed to save medical record:', errorData);
-            }
-        } catch (error) {
-            console.error('Error saving medical record:', error);
-        }
-    };
+      try {
+          const response = await fetch(`http://localhost:3000/medicalRecord/${medicalRecord._id}`, {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(newRecord),
+          });
+  
+          if (response.ok) {
+              const data = await response.json();
+              setMedicalRecord(data);
+              closeModal(true); // Esta llamada debería cerrar el modal
+          } else {
+              const errorData = await response.json();
+              console.error('Failed to save medical record:', errorData);
+          }
+      } catch (error) {
+          console.error('Error saving medical record:', error);
+      }
+  };
     
     
     // Función para manejar cambios en inputs de hábitos

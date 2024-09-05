@@ -20,7 +20,7 @@ const ModalCreateMedicalRest = ({ closeModal }) => {
             setMessage(showErrorMessage("Doctor ID not found", "center"));
             return;
         }
-
+ 
         const newMedicalRest = {
             doctorId,
             cedulaPaciente,

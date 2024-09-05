@@ -11,7 +11,6 @@ const ModalCreateAppointment = ({ doctorId }) => {
     const [motive, setMotive] = useState("");
     const [messageBar, setMessageBar] = useState("");
     const [filter, setFilter] = useState("");
-    const [selectedTimePeriod, setSelectedTimePeriod] = useState("AM");
     const [isOpen, setIsOpen] = useState(true); // Controlar la apertura del modal
 
     const displayMessage = (messageComponent) => {
@@ -55,17 +54,16 @@ const ModalCreateAppointment = ({ doctorId }) => {
             return;
         }
 
-        // Convertir la hora a formato de 24 horas según AM/PM
-        const [hour, minute] = time.split(":");
-        let formattedHour = parseInt(hour, 10);
-        
-        if (selectedTimePeriod === "PM" && formattedHour < 12) {
-            formattedHour += 12; // Convertir a formato 24 horas
-        } else if (selectedTimePeriod === "AM" && formattedHour === 12) {
-            formattedHour = 0; // Ajustar la medianoche a 0
+        // Verificar que el tiempo esté en formato HH:MM
+        const [hour, minute] = time.split(":").map(Number);
+
+        // Validar si la hora y los minutos son válidos
+        if (isNaN(hour) || isNaN(minute) || hour < 0 || hour > 23 || minute < 0 || minute > 59) {
+            displayMessage(showErrorMessage("Hora no válida. Debe estar en formato HH:MM.", "center"));
+            return;
         }
 
-        const formattedTime = `${String(formattedHour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
+        const formattedTime = `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
 
         try {
             const response = await fetch("http://localhost:3000/appointments", {
@@ -101,22 +99,33 @@ const ModalCreateAppointment = ({ doctorId }) => {
         setIsOpen(false); // Cambiar el estado para cerrar el modal
     };
 
-    const handleTimePeriodChange = (period) => {
-        setSelectedTimePeriod(period);
-    };
-
     const handleTimeChange = (e) => {
         const { value } = e.target;
-        const regex = /^[0-9]*$/; // Permitir solo números
-        if (regex.test(value)) {
-            let formattedValue = value;
+        setTime(formatTimeInput(value));
+    };
 
-            // Formatear el input para incluir ":" automáticamente
-            if (value.length === 2) {
-                formattedValue += ":"; // Agregar ":" después de los dos dígitos
-            }
-            setTime(formattedValue);
+    const formatTimeInput = (value) => {
+        // Asegurarse de que el valor sea un número y tenga la longitud adecuada
+        const regex = /^[0-9]*$/;
+        if (!regex.test(value)) return time;
+
+        // Limitamos la longitud del valor a 5 caracteres (HH:MM)
+        let formattedValue = value.slice(0, 5);
+
+        // Asegurarse de que el formato sea HH:MM
+        if (formattedValue.length > 2) {
+            formattedValue = formattedValue.slice(0, 2) + ":" + formattedValue.slice(2, 4);
         }
+
+        // Agregar ceros a la izquierda si es necesario
+        const parts = formattedValue.split(":");
+        if (parts.length === 2) {
+            const hours = parts[0].padStart(2, "0");
+            const minutes = parts[1].padEnd(2, "0");
+            formattedValue = `${hours}:${minutes}`;
+        }
+
+        return formattedValue;
     };
 
     if (!isOpen) return null; // No renderizar el modal si isOpen es false
@@ -165,30 +174,14 @@ const ModalCreateAppointment = ({ doctorId }) => {
                             </label>
                             <label>
                                 Hora:
-                                <div className="timeSelector">
-                                    <input 
-                                        type="text"
-                                        value={time}
-                                        onChange={handleTimeChange}
-                                        className="createAppointmentTimeInput"
-                                        placeholder="HH:MM"
-                                        maxLength="5" // Limitar a 5 caracteres (HH:MM)
-                                    />
-                                    <div className="timePeriodSelector">
-                                        <button 
-                                            className={`timePeriodButton ${selectedTimePeriod === "AM" ? "selected" : ""}`}
-                                            onClick={() => handleTimePeriodChange("AM")}
-                                        >
-                                            AM
-                                        </button>
-                                        <button 
-                                            className={`timePeriodButton ${selectedTimePeriod === "PM" ? "selected" : ""}`}
-                                            onClick={() => handleTimePeriodChange("PM")}
-                                        >
-                                            PM
-                                        </button>
-                                    </div>
-                                </div>
+                                <input 
+                                    type="text"
+                                    value={time}
+                                    onChange={handleTimeChange}
+                                    className="createAppointmentTimeInput"
+                                    placeholder="HH:MM"
+                                    maxLength="5" // Limitar a 5 caracteres (HH:MM)
+                                />
                             </label>
                             <label>
                                 Motivo:

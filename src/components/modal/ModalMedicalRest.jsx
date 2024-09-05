@@ -13,24 +13,34 @@ const ModalMedicalRest = ({ closeModal }) => {
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [selectedMedicalRestId, setSelectedMedicalRestId] = useState(null);
 
+    // Fetch reposos médicos
     useEffect(() => {
         const doctorId = JSON.parse(localStorage.getItem('user'))._id;
 
         fetch(`http://localhost:3000/getall-medical-rest/${doctorId}`)
             .then(response => response.json())
             .then(data => {
-                setData(data);
-                setFilteredData(data);
+                // Verifica que data sea un array antes de usar setData
+                if (Array.isArray(data)) {
+                    setData(data);
+                    setFilteredData(data);
+                } else {
+                    setData([]); // Asigna un array vacío si no es un array
+                    setFilteredData([]);
+                }
             })
             .catch(error => console.error("Error fetching medical rests:", error));
     }, []);
 
+    // Filtrar los reposos médicos
     useEffect(() => {
-        const results = data.filter(medicalRest =>
-            (medicalRest.nombrePaciente && medicalRest.nombrePaciente.toLowerCase().includes(searchTerm.toLowerCase())) ||
-            (medicalRest.cedulaPaciente && medicalRest.cedulaPaciente.toLowerCase().includes(searchTerm.toLowerCase()))
-        );
-        setFilteredData(results);
+        if (Array.isArray(data)) {
+            const results = data.filter(medicalRest =>
+                (medicalRest.nombrePaciente && medicalRest.nombrePaciente.toLowerCase().includes(searchTerm.toLowerCase())) ||
+                (medicalRest.cedulaPaciente && medicalRest.cedulaPaciente.toLowerCase().includes(searchTerm.toLowerCase()))
+            );
+            setFilteredData(results);
+        }
     }, [searchTerm, data]);
 
     const handleSearchChange = (event) => {
@@ -87,7 +97,7 @@ const ModalMedicalRest = ({ closeModal }) => {
             <div className="modalMedicalRestBackgroundBlur"></div>
             <div className="modalMedicalRestContent">
                 <div className="modalHeader">
-                    <p className="searchTitle"> Reposos Médicos:</p>
+                    <p className="searchTitle">Reposos Médicos:</p>
                     <button
                         className="closeButton"
                         onClick={() => closeModal(false)}
@@ -114,7 +124,7 @@ const ModalMedicalRest = ({ closeModal }) => {
                                 +
                             </button>
                         </div>
-                        
+
                         <div className="medicalRestList">
                             {filteredData.length > 0 ? (
                                 filteredData.map((medicalRest) => (
@@ -123,38 +133,26 @@ const ModalMedicalRest = ({ closeModal }) => {
                                         className="medicalRestItem"
                                     >
                                         <div className="medicalRestInfo" onClick={() => handleMedicalRestClick(medicalRest._id)}>
-                            
                                             <p><strong>Nombre Paciente:</strong> {medicalRest.nombrePaciente}</p>
                                             <p><strong>Cédula Paciente:</strong> {medicalRest.cedulaPaciente}</p>
-                                            <p><strong>Fecha:</strong> {new Date(medicalRest.fecha).toLocaleDateString()}</p>
                                         </div>
-                                        <FaTrashAlt
-                                            className="deleteIcon"
+                                        <button
+                                            className="deleteButton"
                                             onClick={() => handleDeleteClick(medicalRest._id)}
-                                        />
-                                        <hr className="itemSeparator" />
+                                        >
+                                            <FaTrashAlt />
+                                        </button>
                                     </div>
                                 ))
                             ) : (
-                                <p>No se encontraron datos.</p>
+                                <p>No se encontraron reposos médicos.</p>
                             )}
                         </div>
                     </div>
                 </div>
             </div>
-
-            {isCreateModalOpen && (
-                <ModalCreateMedicalRest
-                    closeModal={setIsCreateModalOpen}
-                />
-            )}
-
-            {isDeleteModalOpen && (
-                <ModalConfirmDelete
-                    onConfirm={confirmDelete}
-                    onCancel={() => setIsDeleteModalOpen(false)}
-                />
-            )}
+            {isCreateModalOpen && <ModalCreateMedicalRest closeModal={() => setIsCreateModalOpen(false)} />}
+            {isDeleteModalOpen && <ModalConfirmDelete confirmDelete={confirmDelete} closeModal={() => setIsDeleteModalOpen(false)} />}
         </div>
     );
 };

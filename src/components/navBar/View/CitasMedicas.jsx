@@ -51,7 +51,6 @@ const CitasMedicas = () => {
 
     if (!doctorId) {
       setError('Doctor ID not found in local storage.');
-      setLoading(false);
       return;
     }
 
@@ -137,7 +136,7 @@ const CitasMedicas = () => {
       <h1>Citas Médicas</h1>
 
       <BtnGeneral
-        text=" Crear Cita"
+        text="Crear Cita"
         color="#FFFFFF"
         bgColor="#1E90FF"
         handleClick={handleModalToggle}

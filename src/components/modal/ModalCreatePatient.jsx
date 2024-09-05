@@ -102,15 +102,16 @@ const ModalCreatePatient = ({ closeModal }) => {
                     },
                     body: JSON.stringify(medicalRecord),
                 });
-
+    
                 if (medicalRecordResponse.ok) {
                     console.log("Medical record created successfully");
                 } else {
                     const medicalRecordError = await medicalRecordResponse.json();
                     setMessage(showWarningMessage(`Error creating medical record: ${medicalRecordError.msg}`, "center"));
                 }
-
-                setTimeout(() => closeModal(false), 3000);
+    
+                
+                window.location.href = window.location.href;
             } else {
                 const errorData = await response.json();
                 if (response.status === 400) {
@@ -123,6 +124,9 @@ const ModalCreatePatient = ({ closeModal }) => {
             console.error("Error in request:", error);
             setMessage(showErrorMessage("Error in request. Please try again.", "center"));
         }
+    
+        // Cerrar el modal después de recargar la página
+        setTimeout(() => closeModal(false), 1000);
     };
 
     const handlePhotoChange = (e) => {
