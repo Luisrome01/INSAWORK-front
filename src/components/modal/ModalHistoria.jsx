@@ -218,6 +218,7 @@ useEffect(() => {
                     const data = await response.json();
                     if (data.length > 0) {
                         setMedicalRecord(data[0]);
+                        setNewRecord(data[0]); // Actualiza newRecord con los datos obtenidos
                         localStorage.setItem("SelectedMedicalrecord", data[0]._id);
                     } else {
                         setIsEditing(true);
@@ -229,20 +230,17 @@ useEffect(() => {
                 console.error('Error fetching medical record:', error);
             }
         };
-
+    
         if (selectedPatientId) {
             fetchMedicalRecord();
         }
     }, [selectedPatientId]);
 
 
-    // Guardar cambios
     const handleSave = async () => {
         try {
-            if (!medicalRecord) {
-                console.error('No hay registro médico para actualizar');
-                return;
-            }
+            // Log de los datos que se están intentando enviar
+            console.log('Data being sent to server:', newRecord);
     
             const response = await fetch(`http://localhost:3000/medicalRecord/${medicalRecord._id}`, {
                 method: 'PUT',
@@ -251,15 +249,20 @@ useEffect(() => {
             });
     
             if (response.ok) {
+                const data = await response.json();
+                setMedicalRecord(data);
                 closeModal(true);
+                console.log('Saving Record:', newRecord);
             } else {
-                console.error('Failed to save medical record');
+                const errorData = await response.json();
+                console.error('Failed to save medical record:', errorData);
             }
         } catch (error) {
             console.error('Error saving medical record:', error);
         }
     };
-
+    
+    
     // Función para manejar cambios en inputs de hábitos
     const handleHabitChange = (e) => {
         const { name, value } = e.target;
@@ -274,24 +277,26 @@ useEffect(() => {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        if (isEditing) {
-            if (name in newRecord.habits) {
-                setNewRecord(prevRecord => ({
-                    ...prevRecord,
-                    habits: {
-                        ...prevRecord.habits,
-                        [name]: value
-                    }
-                }));
-            } else {
-                setNewRecord(prevRecord => ({
-                    ...prevRecord,
+        console.log(`Input changed: ${name} = ${value}`); // Verificar cambios
+
+        if (name in newRecord.habits) {
+            setNewRecord(prevRecord => ({
+                ...prevRecord,
+                habits: {
+                    ...prevRecord.habits,
                     [name]: value
-                }));
-            }
+                }
+            }));
+        } else {
+            setNewRecord(prevRecord => ({
+                ...prevRecord,
+                [name]: value
+            }));
         }
     };
-
+    const handleEditClick = () => {
+        setIsEditing(true);
+      };
 
     // Cancelar acción
 
@@ -303,10 +308,10 @@ useEffect(() => {
     return (
         <div className="historia-modal-overlay">
           <div className="historia-modal">
-          <div className="historia-modal-header">
-    <h2>Historia Médica</h2>
-    <button className="historia-modal-close-button" onClick={handleCancel}>&times;</button>
-</div>
+            <div className="historia-modal-header">
+              <h2>Historia Médica</h2>
+              <button className="historia-modal-close-button" onClick={handleCancel}>&times;</button>
+            </div>
             <div className="historia-modal-content">
               {medicalRecord || isEditing ? (
                 <div>
@@ -321,11 +326,61 @@ useEffect(() => {
                     />
                   </div>
                   <div className="historia-modal-input-group">
+                    <label>Antecedentes Médicos:</label>
+                    <input
+                      type="text"
+                      name="ant_medicos"
+                      value={isEditing ? newRecord.ant_medicos : (medicalRecord ? medicalRecord.ant_medicos : '')}
+                      onChange={handleInputChange}
+                      disabled={!isEditing}
+                    />
+                  </div>
+                  <div className="historia-modal-input-group">
+                    <label>Antecedentes Familiares:</label>
+                    <input
+                      type="text"
+                      name="ant_familiares"
+                      value={isEditing ? newRecord.ant_familiares : (medicalRecord ? medicalRecord.ant_familiares : '')}
+                      onChange={handleInputChange}
+                      disabled={!isEditing}
+                    />
+                  </div>
+                  <div className="historia-modal-input-group">
+                    <label>Antecedentes Laborales:</label>
+                    <input
+                      type="text"
+                      name="ant_laborales"
+                      value={isEditing ? newRecord.ant_laborales : (medicalRecord ? medicalRecord.ant_laborales : '')}
+                      onChange={handleInputChange}
+                      disabled={!isEditing}
+                    />
+                  </div>
+                  <div className="historia-modal-input-group">
+                    <label>Alergias:</label>
+                    <input
+                      type="text"
+                      name="alergias"
+                      value={isEditing ? newRecord.alergias : (medicalRecord ? medicalRecord.alergias : '')}
+                      onChange={handleInputChange}
+                      disabled={!isEditing}
+                    />
+                  </div>
+                  <div className="historia-modal-input-group">
                     <label>Vacunas:</label>
                     <input
                       type="text"
                       name="vacunas"
                       value={isEditing ? newRecord.vacunas : (medicalRecord ? medicalRecord.vacunas : '')}
+                      onChange={handleInputChange}
+                      disabled={!isEditing}
+                    />
+                  </div>
+                  <div className="historia-modal-input-group">
+                    <label>Enfermedades Crónicas:</label>
+                    <input
+                      type="text"
+                      name="enf_cronicas"
+                      value={isEditing ? newRecord.enf_cronicas : (medicalRecord ? medicalRecord.enf_cronicas : '')}
                       onChange={handleInputChange}
                       disabled={!isEditing}
                     />
@@ -397,6 +452,14 @@ useEffect(() => {
                       disabled={!isEditing}
                     />
                   </div>
+                  <div className="historia-modal-actions">
+                    {isEditing ? (
+                      <button onClick={handleSave}>Guardar</button>
+                    ) : (
+                      <button onClick={handleEditClick}>Editar</button>
+                    )}
+                  </div>
+    
 
 
 
@@ -537,9 +600,6 @@ useEffect(() => {
 
     
                  
-<div className="external-exams-actions">
-    <button className="save-button" onClick={handleSave}>Guardar</button>
-</div>
 
                  
                 </div>

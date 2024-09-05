@@ -99,9 +99,9 @@
 }
 
 .expand-toggle {
-    background-color: white;
-    color: #007bff;
-    border: 1px solid #007bff;
+    background-color: rgba(150, 170, 240, 0.75);
+    color: rgb(255, 255, 255);;
+    border: 1px solid rgba(150, 170, 240, 0.75);;
     padding: 10px;
     cursor: pointer;
     margin-bottom: 10px;
@@ -251,4 +251,18 @@
   
   .create-external-exam-btn:active {
     transform: scale(0.95);    /* Reduce el tamaño al hacer clic */
+  }
+
+
+  .historia-modal-actions button {
+    background-color: #AEBBFD; /* Color especificado */
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .historia-modal-actions button:hover {
+    background-color: #9AB0F2; /* Color más oscuro para el hover (opcional) */
   }
