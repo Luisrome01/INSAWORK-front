@@ -15,7 +15,16 @@ const ModalHistoria = ({ closeModal }) => {
         alergias: '',
         vacunas: '',
         enf_cronicas: '',
-        habits: '',
+        habits: {
+            alcohol: '',
+            estupefacientes: '',
+            actividad_fisica: '',
+            tabaco: '',
+            cafe: '',
+            sueño: '',
+            alimentacion: '',
+            sexuales: '',
+        },
         treatment: '',
         externalExams: []
     });
@@ -131,7 +140,75 @@ const ModalHistoria = ({ closeModal }) => {
         setIsModalOpen(false); // Cambia el estado para cerrar el modal
     };
 
-    // Fetching de Datos
+    
+    useEffect(() => {
+    const fetchExternalExams = async () => {
+        try {
+            const medicalRecordId = localStorage.getItem('SelectedMedicalrecord');
+            if (!medicalRecordId) {
+                console.error('Medical record ID not found in localStorage');
+                return;
+            }
+            const response = await fetch(`http://localhost:3000/externalExams/${medicalRecordId}`);
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Exámenes externos obtenidos:', data);
+                setExternalExams(data);
+            } else {
+                console.error('Failed to fetch external exams');
+            }
+        } catch (error) {
+            console.error('Error fetching external exams:', error);
+        }
+    };
+
+    if (showExternalExams) {
+        fetchExternalExams();
+    }
+}, [showExternalExams]);
+
+useEffect(() => {
+    const fetchTreatments = async () => {
+        const medicalRecordId = localStorage.getItem("SelectedMedicalrecord");
+
+        if (!medicalRecordId) {
+            console.error('No medicalRecordId found in localStorage');
+            return;
+        }
+
+        try {
+            const response = await fetch(`http://localhost:3000/treatments/${medicalRecordId}`);
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Fetched treatments:', data);
+                setTreatments(data);
+            } else {
+                console.error('Failed to fetch treatments');
+            }
+        } catch (error) {
+            console.error('Error fetching treatments:', error);
+        }
+    };
+
+    if (showTreatments) {
+        fetchTreatments();
+    }
+}, [showTreatments]);
+
+
+    // Manejo de cambios en inputs
+
+    const handleTreatmentChange = (e) => {
+        setNewRecord({ ...newRecord, treatment: e.target.value });
+    };
+
+    const handleExternalExamsChange = (e) => {
+        const options = e.target.options;
+        const selectedValues = Array.from(options).filter(option => option.selected).map(option => option.value);
+        setNewRecord({ ...newRecord, externalExams: selectedValues });
+    };
+
+    // Fetching de Datos sobre medical records
 
     useEffect(() => {
         const fetchMedicalRecord = async () => {
@@ -158,99 +235,21 @@ const ModalHistoria = ({ closeModal }) => {
         }
     }, [selectedPatientId]);
 
-    useEffect(() => {
-        const fetchTreatments = async () => {
-            const medicalRecordId = localStorage.getItem("SelectedMedicalrecord");
-
-            if (!medicalRecordId) {
-                console.error('No medicalRecordId found in localStorage');
-                return;
-            }
-
-            try {
-                const response = await fetch(`http://localhost:3000/treatments/${medicalRecordId}`);
-                if (response.ok) {
-                    const data = await response.json();
-                    console.log('Fetched treatments:', data);
-                    setTreatments(data);
-                } else {
-                    console.error('Failed to fetch treatments');
-                }
-            } catch (error) {
-                console.error('Error fetching treatments:', error);
-            }
-        };
-
-        if (showTreatments) {
-            fetchTreatments();
-        }
-    }, [showTreatments]);
-
-    useEffect(() => {
-        const fetchExternalExams = async () => {
-            try {
-                const medicalRecordId = localStorage.getItem('SelectedMedicalrecord');
-                if (!medicalRecordId) {
-                    console.error('Medical record ID not found in localStorage');
-                    return;
-                }
-                const response = await fetch(`http://localhost:3000/externalExams/${medicalRecordId}`);
-                if (response.ok) {
-                    const data = await response.json();
-                    console.log('Exámenes externos obtenidos:', data);
-                    setExternalExams(data);
-                } else {
-                    console.error('Failed to fetch external exams');
-                }
-            } catch (error) {
-                console.error('Error fetching external exams:', error);
-            }
-        };
-
-        if (showExternalExams) {
-            fetchExternalExams();
-        }
-    }, [showExternalExams]);
-
-    // Manejo de cambios en inputs
-
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        if (isEditing) {
-            setNewRecord({ ...newRecord, [name]: value });
-        }
-    };
-
-    const handleTreatmentChange = (e) => {
-        setNewRecord({ ...newRecord, treatment: e.target.value });
-    };
-
-    const handleExternalExamsChange = (e) => {
-        const options = e.target.options;
-        const selectedValues = Array.from(options).filter(option => option.selected).map(option => option.value);
-        setNewRecord({ ...newRecord, externalExams: selectedValues });
-    };
 
     // Guardar cambios
-
     const handleSave = async () => {
         try {
-            const response = medicalRecord
-                ? await fetch(`http://localhost:3000/medicalRecord/${medicalRecord._id}`, {
-                    method: 'PUT',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        ...newRecord,
-                        ...(newRecord.treatment && { treatment: newRecord.treatment }),
-                        ...(newRecord.externalExams.length > 0 && { externalExams: newRecord.externalExams })
-                    })
-                })
-                : await fetch('http://localhost:3000/medicalRecord', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ ...newRecord, patientId: selectedPatientId, doctorId })
-                });
-
+            if (!medicalRecord) {
+                console.error('No hay registro médico para actualizar');
+                return;
+            }
+    
+            const response = await fetch(`http://localhost:3000/medicalRecord/${medicalRecord._id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newRecord),
+            });
+    
             if (response.ok) {
                 closeModal(true);
             } else {
@@ -261,22 +260,53 @@ const ModalHistoria = ({ closeModal }) => {
         }
     };
 
+    // Función para manejar cambios en inputs de hábitos
+    const handleHabitChange = (e) => {
+        const { name, value } = e.target;
+        setNewRecord(prevRecord => ({
+            ...prevRecord,
+            habits: {
+                ...prevRecord.habits,
+                [name]: value
+            }
+        }));
+    };
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        if (isEditing) {
+            if (name in newRecord.habits) {
+                setNewRecord(prevRecord => ({
+                    ...prevRecord,
+                    habits: {
+                        ...prevRecord.habits,
+                        [name]: value
+                    }
+                }));
+            } else {
+                setNewRecord(prevRecord => ({
+                    ...prevRecord,
+                    [name]: value
+                }));
+            }
+        }
+    };
+
+
     // Cancelar acción
 
     const handleCancel = () => {
         localStorage.removeItem("SelectedMedicalrecord");
-        setShowModal(false);
-        closeModal(false);
+        closeModal(false);  // Esta función ya cierra el modal
     };
-
   
     return (
         <div className="historia-modal-overlay">
           <div className="historia-modal">
-            <div className="historia-modal-header">
-              <h2>Historia Médica</h2>
-              <button className="historia-modal-close-button" onClick={handleCancel}>&times;</button>
-            </div>
+          <div className="historia-modal-header">
+    <h2>Historia Médica</h2>
+    <button className="historia-modal-close-button" onClick={handleCancel}>&times;</button>
+</div>
             <div className="historia-modal-content">
               {medicalRecord || isEditing ? (
                 <div>
@@ -304,12 +334,76 @@ const ModalHistoria = ({ closeModal }) => {
                     <label>Hábitos:</label>
                     <input
                       type="text"
-                      name="habits"
-                      value={isEditing ? newRecord.habits : (medicalRecord ? medicalRecord.habits : '')}
-                      onChange={handleInputChange}
+                      name="alcohol"
+                      placeholder="Alcohol"
+                      value={isEditing ? newRecord.habits.alcohol : (medicalRecord ? medicalRecord.habits.alcohol : '')}
+                      onChange={handleHabitChange}
+                      disabled={!isEditing}
+                    />
+                    <input
+                      type="text"
+                      name="estupefacientes"
+                      placeholder="Estupefacientes"
+                      value={isEditing ? newRecord.habits.estupefacientes : (medicalRecord ? medicalRecord.habits.estupefacientes : '')}
+                      onChange={handleHabitChange}
+                      disabled={!isEditing}
+                    />
+                    <input
+                      type="text"
+                      name="actividad_fisica"
+                      placeholder="Actividad Física"
+                      value={isEditing ? newRecord.habits.actividad_fisica : (medicalRecord ? medicalRecord.habits.actividad_fisica : '')}
+                      onChange={handleHabitChange}
+                      disabled={!isEditing}
+                    />
+                    <input
+                      type="text"
+                      name="tabaco"
+                      placeholder="Tabaco"
+                      value={isEditing ? newRecord.habits.tabaco : (medicalRecord ? medicalRecord.habits.tabaco : '')}
+                      onChange={handleHabitChange}
+                      disabled={!isEditing}
+                    />
+                    <input
+                      type="text"
+                      name="cafe"
+                      placeholder="Café"
+                      value={isEditing ? newRecord.habits.cafe : (medicalRecord ? medicalRecord.habits.cafe : '')}
+                      onChange={handleHabitChange}
+                      disabled={!isEditing}
+                    />
+                    <input
+                      type="text"
+                      name="sueño"
+                      placeholder="Sueño"
+                      value={isEditing ? newRecord.habits.sueño : (medicalRecord ? medicalRecord.habits.sueño : '')}
+                      onChange={handleHabitChange}
+                      disabled={!isEditing}
+                    />
+                    <input
+                      type="text"
+                      name="alimentacion"
+                      placeholder="Alimentación"
+                      value={isEditing ? newRecord.habits.alimentacion : (medicalRecord ? medicalRecord.habits.alimentacion : '')}
+                      onChange={handleHabitChange}
+                      disabled={!isEditing}
+                    />
+                    <input
+                      type="text"
+                      name="sexuales"
+                      placeholder="Sexuales"
+                      value={isEditing ? newRecord.habits.sexuales : (medicalRecord ? medicalRecord.habits.sexuales : '')}
+                      onChange={handleHabitChange}
                       disabled={!isEditing}
                     />
                   </div>
+
+
+
+
+
+
+                  
                   <div className="treatment-section">
                     <label>Tratamientos:</label>
                     <button
@@ -443,9 +537,10 @@ const ModalHistoria = ({ closeModal }) => {
 
     
                  
-                    <div className="external-exams-actions">
-                      <button className="save-button" onClick={handleSave}>Guardar</button>
-                    </div>
+<div className="external-exams-actions">
+    <button className="save-button" onClick={handleSave}>Guardar</button>
+</div>
+
                  
                 </div>
               ) : (
