@@ -1,0 +1,147 @@
+.modalCreateInvoiceContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .modalCreateInvoiceBackgroundBlur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modalCreateInvoiceContent {
+    position: relative;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    width: 90%;
+    max-width: 600px;
+    z-index: 10;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-height: 90vh; /* Limit height to 90% of viewport height */
+    overflow-y: auto; /* Allow vertical scrolling */
+  }
+  
+  .modalCreateInvoiceHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .closeButton {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .modalCreateInvoiceBody {
+    margin-top: 20px;
+  }
+  
+  .formGroup {
+    margin-bottom: 15px;
+  }
+  
+  .formGroup label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold; /* Added bold font for labels */
+  }
+  
+  input[type="text"],
+  input[type="date"],
+  input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box; /* Added to include padding and border in element's total width and height */
+  }
+  
+  .patientDropdown {
+    position: relative; /* Ensure dropdown appears relative to the input */
+  }
+  
+  .patientList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    max-height: 200px;
+    overflow-y: auto;
+    background: white;
+    position: absolute; /* Ensures the list appears correctly over other content */
+    width: 100%; /* Ensure it matches the input width */
+    z-index: 1001; /* Ensures it's above other content */
+  }
+  
+  .patientList li {
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .patientList li:hover {
+    background: #f0f0f0;
+  }
+  
+  .selectedPatient {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #f9f9f9;
+    position: relative; /* Ensures the button can be positioned absolutely within */
+  }
+  
+  .backButton {
+    position: absolute;
+    top: 10px; /* Position it lower from the top */
+    left: 10px; /* Position it more to the right */
+    background: #ffffff; /* Blue color for the back button */
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 8px; /* Adjust padding to make the button more circular */
+    border-radius: 50%; /* Ensure it remains circular */
+    cursor: pointer;
+    font-size: 1rem; /* Adjust font size to fit within the button */
+    line-height: 1; /* Ensure button height matches font size */
+    transition: background 0.3s ease, transform 0.3s ease;
+    z-index: 1002; /* Ensure it’s above the selectedPatient box */
+    display: flex; /* Center the icon */
+    align-items: center; /* Center the icon vertically */
+    justify-content: center; /* Center the icon horizontally */
+  }
+  
+  .backButton:hover {
+    background: rgba(150, 170, 240, 0.75);
+    transform: scale(1.1); /* Slightly larger on hover */
+  }
+  
+  .submitButton {
+    background: #ffffff; 
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+  }
+  
+  .submitButton:hover {
+    background: rgba(150, 170, 240, 0.75);
+  }
+  

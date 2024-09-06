@@ -61,7 +61,7 @@
     font-weight: bold;
 }
 
-.formGroup input,
+.formGroup input, 
 .formGroup select {
     width: 100%;
     padding: 8px;

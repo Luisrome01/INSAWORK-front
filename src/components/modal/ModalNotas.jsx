@@ -130,7 +130,7 @@ const ModalNotas = ({ doctorId, onClose }) => {
                         onConfirm={() => handleDeleteNote(confirmDeleteId)}
                         onCancel={() => setConfirmDeleteId(null)}
                     />
-                )}
+                )} 
             </div>
         </div>
     );

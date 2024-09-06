@@ -3,13 +3,15 @@ import "./css/principal.css";
 import ModalCreateMedicine from '../../modal/ModalCreateMedicine';
 import ModalCreateAppointment from '../../modal/ModalCreateAppointment';
 import ModalNotas from '../../modal/ModalNotas'; 
-import ModalCreateCompany from '../../modal/ModalCreateCompany'; // Importa el nuevo modal
+import ModalCreateCompany from '../../modal/ModalCreateCompany'; 
+import ModalInvoice from '../../modal/ModalInvoice'; // Importar el nuevo modal
 
 const Principal = () => {
     const [showModalMedicine, setShowModalMedicine] = useState(false);
     const [showModalAppointment, setShowModalAppointment] = useState(false);
     const [showModalNotas, setShowModalNotas] = useState(false);
-    const [showModalCompany, setShowModalCompany] = useState(false); // Nuevo estado para el modal de empresa
+    const [showModalCompany, setShowModalCompany] = useState(false);
+    const [showModalInvoice, setShowModalInvoice] = useState(false); // Nuevo estado para el modal de factura
     const [imminentAppointments, setImminentAppointments] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -50,6 +52,14 @@ const Principal = () => {
 
     const handleCloseModalCompany = () => {
         setShowModalCompany(false);
+    };
+
+    const handleOpenModalInvoice = () => { // Función para abrir el modal de factura
+        setShowModalInvoice(true);
+    };
+
+    const handleCloseModalInvoice = () => { // Función para cerrar el modal de factura
+        setShowModalInvoice(false);
     };
 
     const fetchImminentAppointments = async () => {
@@ -100,13 +110,13 @@ const Principal = () => {
         return `${d}/${m}/${y}`;
     };
 
-    return (
+    return ( 
         <div className="principalContainer">
             <div className="cardsContainer">
                 <div className="card" onClick={handleOpenModalMedicine}>Añadir Medicina</div>
                 <div className="card" onClick={handleOpenModalAppointment}>Crear Cita</div>
-                <div className="card" onClick={handleOpenModalCompany}>Añadir Empresa</div> {/* Añadido el evento de click para el nuevo modal */}
-                <div className="card">Crear Factura</div>
+                <div className="card" onClick={handleOpenModalCompany}>Añadir Empresa</div>
+                <div className="card" onClick={handleOpenModalInvoice}>Crear Factura</div> {/* Añadido el evento onClick */}
             </div>
             <div className="bottomContainers">
                 <div className="imminentAppointmentsContainer">
@@ -183,6 +193,16 @@ const Principal = () => {
                     }}
                 />
             )}
+            {showModalInvoice && ( // Renderizado del nuevo modal
+  <ModalInvoice 
+    doctorId={doctorId} 
+    closeModal={() => {
+      handleCloseModalInvoice();
+      setTimeout(() => setShowModalInvoice(false), 100);
+    }} 
+  />
+)}
+
         </div> 
     );
 };

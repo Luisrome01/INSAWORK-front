@@ -147,7 +147,7 @@ const ModalAptitude = ({ closeModal }) => {
                                         />
                                         <hr className="itemSeparator" />
                                     </div>
-                                )) 
+                                ))
                             ) : (
                                 <p>No se encontraron datos.</p>
                             )}

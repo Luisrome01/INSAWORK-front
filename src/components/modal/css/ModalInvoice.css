@@ -1,0 +1,160 @@
+/* Evitar el scroll en el fondo y ocultar la barra de scroll */
+body.modal-open {
+    overflow: hidden;
+  }
+  
+  /* Estilos para el contenedor del modal */
+  .modalInvoiceContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    overflow: hidden; /* Evita el scroll en el fondo */
+  }
+  
+  /* Fondo del modal con desenfoque */
+  .modalInvoiceBackgroundBlur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1; /* Asegura que el fondo no interfiera con el modal */
+  }
+  
+  /* Contenido del modal */
+  .modalInvoiceContent {
+    position: relative;
+    width: 80%;
+    max-width: 800px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 1; /* Asegura que el contenido del modal esté encima del fondo */
+  }
+  
+  /* Estilos del encabezado del modal */
+  .modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .searchTitle {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .closeButton {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
+  /* Estilos del cuerpo del modal */
+  .modalBody {
+    padding: 20px;
+  }
+  
+  .modalBodyContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .modalSearchContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .searchTitle {
+    margin-right: 10px;
+  }
+  
+  .searchInput {
+    flex: 1;
+    height: 40px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #ffffff;
+    color: #000000;
+  }
+  
+  /* Estilos del botón de crear factura */
+  .createInvoiceButton {
+    background-color: rgba(100, 120, 200, 1); /* Color del botón */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    margin-left: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .createInvoiceButton:hover {
+    background-color: rgba(80, 100, 150, 1); /* Color de fondo al hacer hover */
+  }
+  
+  /* Estilos de la lista de facturas */
+  .invoiceList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .invoiceItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    position: relative;
+  }
+  
+  .invoiceContent {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    cursor: pointer;
+    background-color: #f9f9f9;
+  }
+  
+  .invoiceContent:hover {
+    background-color: rgba(150, 170, 240, 0.75);
+  }
+  
+  .invoiceInfo {
+    margin-bottom: 10px;
+  }
+  
+  .deleteIcon {
+    cursor: pointer;
+    color: red;
+    font-size: 20px;
+    position: absolute;
+    right: 10px;
+  }
+  
+  .itemSeparator {
+    margin-top: 10px;
+    border: none;
+    border-top: 1px solid #ccc;
+  }
+  
+  /* Ocultar scrollbar en Webkit browsers */
+.modalBodyContainer::-webkit-scrollbar {
+    display: none; /* Oculta el scrollbar en Webkit browsers */
+  }
