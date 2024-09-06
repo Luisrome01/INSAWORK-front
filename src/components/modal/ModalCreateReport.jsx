@@ -31,7 +31,7 @@ const ModalCreateReport = ({ closeModal }) => {
         };
 
         try {
-            const response = await fetch("http://localhost:3000/reports", {
+            const response = await fetch("https://insawork.onrender.com/reports", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

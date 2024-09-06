@@ -17,7 +17,7 @@ const ModalUserInfo = ({ userId }) => {
     useEffect(() => {
         const fetchUserInfo = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/user/info/${userId}`);
+                const response = await fetch(`https://insawork.onrender.com/user/info/${userId}`);
                 const data = await response.json();
                 if (response.ok) {
                     setUserInfo(data);
@@ -64,7 +64,7 @@ const ModalUserInfo = ({ userId }) => {
         }
 
         try {
-            const response = await fetch(`http://localhost:3000/user/info/${userId}/edit`, {
+            const response = await fetch(`https://insawork.onrender.com/user/info/${userId}/edit`, {
                 method: 'PUT',
                 body: formData,
             });

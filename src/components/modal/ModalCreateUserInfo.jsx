@@ -50,7 +50,7 @@ const ModalCreateUserInfo = ({ showModal, onClose, handleLogout }) => {
     });
 
     try {
-      const response = await fetch('http://localhost:3000/user/info', {
+      const response = await fetch('https://insawork.onrender.com/user/info', {
         method: 'POST',
         body: data,
       });

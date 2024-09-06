@@ -17,7 +17,7 @@ const ModalAptitude = ({ closeModal }) => {
     useEffect(() => {
         const doctorId = JSON.parse(localStorage.getItem('user'))._id;
 
-        fetch(`http://localhost:3000/aptitudeproofs/${doctorId}`)
+        fetch(`https://insawork.onrender.com/aptitudeproofs/${doctorId}`)
             .then(response => response.json())
             .then(data => {
                 // Convert dates to a more readable format
@@ -48,7 +48,7 @@ const ModalAptitude = ({ closeModal }) => {
 
     // Fetch and display the aptitude proof
     const handleAptitudeClick = (id) => {
-        fetch(`http://localhost:3000/aptitudeproof/${id}`, {
+        fetch(`https://insawork.onrender.com/aptitudeproof/${id}`, {
             method: 'GET',
         })
             .then(response => {
@@ -80,7 +80,7 @@ const ModalAptitude = ({ closeModal }) => {
 
     // Confirm and delete the aptitude proof
     const confirmDelete = () => {
-        fetch(`http://localhost:3000/aptitudeproofs/${selectedAptitudeId}`, {
+        fetch(`https://insawork.onrender.com/aptitudeproofs/${selectedAptitudeId}`, {
             method: 'DELETE',
         })
             .then(response => {

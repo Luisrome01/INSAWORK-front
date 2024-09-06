@@ -17,7 +17,7 @@ const ModalNotas = ({ doctorId, onClose }) => {
 
     const fetchNotes = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/user/note/${doctorId}`);
+            const response = await fetch(`https://insawork.onrender.com/user/note/${doctorId}`);
             const data = await response.json();
             setNotes(data);
         } catch (error) {
@@ -28,7 +28,7 @@ const ModalNotas = ({ doctorId, onClose }) => {
     const handleCreateNote = async () => {
         const newNote = { doctorId, content: newNoteContent };
         try {
-            const response = await fetch("http://localhost:3000/user/note", {
+            const response = await fetch("https://insawork.onrender.com/user/note", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -47,7 +47,7 @@ const ModalNotas = ({ doctorId, onClose }) => {
     const handleEditNote = async (noteId) => {
         const updatedNote = { content: editingNoteContent };
         try {
-            const response = await fetch(`http://localhost:3000/user/note/${noteId}`, {
+            const response = await fetch(`https://insawork.onrender.com/user/note/${noteId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -66,7 +66,7 @@ const ModalNotas = ({ doctorId, onClose }) => {
 
     const handleDeleteNote = async (noteId) => {
         try {
-            await fetch(`http://localhost:3000/user/note/${noteId}`, {
+            await fetch(`https://insawork.onrender.com/user/note/${noteId}`, {
                 method: "DELETE",
             });
             fetchNotes();

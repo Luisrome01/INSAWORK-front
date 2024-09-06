@@ -33,7 +33,7 @@ const ModalCreateMedicalRest = ({ closeModal }) => {
         };
 
         try {
-            const response = await fetch("http://localhost:3000/create-medical-rest", {
+            const response = await fetch("https://insawork.onrender.com/create-medical-rest", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -25,7 +25,7 @@ const ModalEditAppointment = ({ appointmentId, onClose, onUpdate }) => {
   useEffect(() => {
     const fetchAppointment = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/appointment/${appointmentId}`);
+        const response = await fetch(`https://insawork.onrender.com/appointment/${appointmentId}`);
         if (!response.ok) {
           throw new Error('Failed to fetch appointment');
         }
@@ -59,7 +59,7 @@ const ModalEditAppointment = ({ appointmentId, onClose, onUpdate }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:3000/appointments/${appointmentId}`, {
+      const response = await fetch(`https://insawork.onrender.com/appointments/${appointmentId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

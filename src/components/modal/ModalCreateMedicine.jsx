@@ -28,7 +28,7 @@ const ModalCreateMedicine = ({ doctorId, onClose }) => {
     useEffect(() => {
         const fetchMedicines = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/medicines`);
+                const response = await fetch(`https://insawork.onrender.com/medicines`);
                 const data = await response.json();
                 setMedicines(data);
                 setFilteredMedicines(data);
@@ -66,7 +66,7 @@ const ModalCreateMedicine = ({ doctorId, onClose }) => {
         }
 
         try {
-            const response = await fetch("http://localhost:3000/medicines", {
+            const response = await fetch("https://insawork.onrender.com/medicines", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -97,7 +97,7 @@ const ModalCreateMedicine = ({ doctorId, onClose }) => {
 
     const confirmDeleteHandler = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/medicines/${medicineToDelete}`, {
+            const response = await fetch(`https://insawork.onrender.com/medicines/${medicineToDelete}`, {
                 method: "DELETE",
             });
 

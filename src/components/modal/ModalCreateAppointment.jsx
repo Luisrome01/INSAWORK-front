@@ -23,7 +23,7 @@ const ModalCreateAppointment = ({ doctorId }) => {
     useEffect(() => {
         const fetchPatients = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/patients/${doctorId}`);
+                const response = await fetch(`https://insawork.onrender.com/patients/${doctorId}`);
                 const data = await response.json();
                 setPatients(data);
                 setFilteredPatients(data);
@@ -66,7 +66,7 @@ const ModalCreateAppointment = ({ doctorId }) => {
         const formattedTime = `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
 
         try {
-            const response = await fetch("http://localhost:3000/appointments", {
+            const response = await fetch("https://insawork.onrender.com/appointments", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

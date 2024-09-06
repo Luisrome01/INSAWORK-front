@@ -70,7 +70,7 @@ const Principal = () => {
         }
 
         try {
-            const response = await fetch(`http://localhost:3000/appointments/${doctorId}/imminent`);
+            const response = await fetch(`https://insawork.onrender.com/appointments/${doctorId}/imminent`);
             if (!response.ok) {
                 throw new Error('Failed to fetch imminent appointments');
             }
@@ -87,7 +87,7 @@ const Principal = () => {
         if (!doctorId) return;
         
         try {
-            const response = await fetch(`http://localhost:3000/user/note/${doctorId}`);
+            const response = await fetch(`https://insawork.onrender.com/user/note/${doctorId}`);
             if (!response.ok) {
                 throw new Error('Failed to fetch notes');
             }

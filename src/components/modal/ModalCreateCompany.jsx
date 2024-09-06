@@ -18,7 +18,7 @@ const ModalCreateCompany = ({ onClose }) => {
     useEffect(() => {
         const fetchCompanies = async () => {
             try {
-                const response = await fetch('http://localhost:3000/company');
+                const response = await fetch('https://insawork.onrender.com/company');
                 const data = await response.json();
                 setCompanies(data);
             } catch (error) {
@@ -43,7 +43,7 @@ const ModalCreateCompany = ({ onClose }) => {
         setError(null);
 
         try {
-            const response = await fetch('http://localhost:3000/company', {
+            const response = await fetch('https://insawork.onrender.com/company', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -66,7 +66,7 @@ const ModalCreateCompany = ({ onClose }) => {
 
     const handleDeleteCompany = async (companyId) => {
         try {
-            const response = await fetch(`http://localhost:3000/company/${companyId}`, {
+            const response = await fetch(`https://insawork.onrender.com/company/${companyId}`, {
                 method: 'DELETE'
             });
 

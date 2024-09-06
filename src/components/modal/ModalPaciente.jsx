@@ -14,7 +14,7 @@ const ModalPaciente = ({ patient, closeModal, onUpdateSuccess }) => {
         // Fetch companies from the backend
         const fetchCompanies = async () => {
             try {
-                const response = await fetch('http://localhost:3000/company');
+                const response = await fetch('https://insawork.onrender.com/company');
                 if (response.ok) {
                     const data = await response.json();
                     setCompanies(data); // Assuming the data is an array of companies
@@ -94,7 +94,7 @@ const ModalPaciente = ({ patient, closeModal, onUpdateSuccess }) => {
         }
 
         try {
-            const response = await fetch(`http://localhost:3000/patients/${editedPatient._id}`, {
+            const response = await fetch(`https://insawork.onrender.com/patients/${editedPatient._id}`, {
                 method: 'PUT',
                 body: formData, // Enviar los datos como FormData
             });

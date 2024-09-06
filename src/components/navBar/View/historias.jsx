@@ -16,7 +16,7 @@ const Historias = () => {
 
         const fetchPatients = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/patients/${doctorId}`);
+                const response = await fetch(`https://insawork.onrender.com/patients/${doctorId}`);
                 const data = await response.json();
                 setPatients(data);
                 setFilteredPatients(data);
@@ -39,7 +39,7 @@ const Historias = () => {
 
     const handlePatientClick = async (patientId) => {
         try {
-            const response = await fetch(`http://localhost:3000/patient/${patientId}`);
+            const response = await fetch(`https://insawork.onrender.com/patient/${patientId}`);
             const data = await response.json();
             setSelectedPatient(data);
             setIsModalPacienteOpen(true);

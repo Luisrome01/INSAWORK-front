@@ -25,7 +25,7 @@ const ModalInvoice = ({ closeModal }) => {
   useEffect(() => {
     const doctorId = JSON.parse(localStorage.getItem("user"))._id;
 
-    fetch(`http://localhost:3000/invoices/${doctorId}`)
+    fetch(`https://insawork.onrender.cominvoices/${doctorId}`)
       .then((response) => response.json())
       .then((data) => {
         const updatedInvoices = data.map((invoice) => ({
@@ -53,7 +53,7 @@ const ModalInvoice = ({ closeModal }) => {
   };
 
   const handleInvoiceClick = (id) => {
-    fetch(`http://localhost:3000/invoice/${id}`)
+    fetch(`https://insawork.onrender.com/invoice/${id}`)
       .then((response) => {
         if (response.ok) {
           return response.blob();
@@ -74,7 +74,7 @@ const ModalInvoice = ({ closeModal }) => {
   };
 
   const handleConfirmDelete = () => {
-    fetch(`http://localhost:3000/invoices/${invoiceToDelete}`, {
+    fetch(`https://insawork.onrender.com/invoices/${invoiceToDelete}`, {
       method: 'DELETE',
     })
       .then((response) => {

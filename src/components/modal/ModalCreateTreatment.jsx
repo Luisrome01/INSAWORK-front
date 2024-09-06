@@ -13,7 +13,7 @@ const ModalCreateTreatment = ({ showModal, handleClose }) => {
     useEffect(() => {
         const fetchMedicines = async () => {
             try {
-                const response = await fetch('http://localhost:3000/medicines');
+                const response = await fetch('https://insawork.onrender.com/medicines');
                 if (response.ok) {
                     const data = await response.json();
                     setMedicines(data);
@@ -47,7 +47,7 @@ const ModalCreateTreatment = ({ showModal, handleClose }) => {
         }
 
         try {
-            const response = await fetch('http://localhost:3000/treatments', {
+            const response = await fetch('https://insawork.onrender.com/treatments', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -61,7 +61,7 @@ const ModalHistoria = ({ closeModal }) => {
 
     const handleDeleteTreatment = async (treatmentId) => {
         try {
-            await fetch(`http://localhost:3000/treatments/${treatmentId}`, {
+            await fetch(`https://insawork.onrender.com/treatments/${treatmentId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -101,7 +101,7 @@ const ModalHistoria = ({ closeModal }) => {
 
     const handleDeleteExternalExam = async (examId) => {
         try {
-            const response = await fetch(`http://localhost:3000/externalExams/${examId}`, {
+            const response = await fetch(`https://insawork.onrender.com/externalExams/${examId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -149,7 +149,7 @@ const ModalHistoria = ({ closeModal }) => {
                 console.error('Medical record ID not found in localStorage');
                 return;
             }
-            const response = await fetch(`http://localhost:3000/externalExams/${medicalRecordId}`);
+            const response = await fetch(`https://insawork.onrender.com/externalExams/${medicalRecordId}`);
             if (response.ok) {
                 const data = await response.json();
                 console.log('Exámenes externos obtenidos:', data);
@@ -177,7 +177,7 @@ useEffect(() => {
         }
 
         try {
-            const response = await fetch(`http://localhost:3000/treatments/${medicalRecordId}`);
+            const response = await fetch(`https://insawork.onrender.com/treatments/${medicalRecordId}`);
             if (response.ok) {
                 const data = await response.json();
                 console.log('Fetched treatments:', data);
@@ -213,7 +213,7 @@ useEffect(() => {
     useEffect(() => {
         const fetchMedicalRecord = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/medicalRecord/${selectedPatientId}`);
+                const response = await fetch(`https://insawork.onrender.com/medicalRecord/${selectedPatientId}`);
                 if (response.ok) {
                     const data = await response.json();
                     if (data.length > 0) {
@@ -239,7 +239,7 @@ useEffect(() => {
 
     const handleSave = async () => {
       try {
-          const response = await fetch(`http://localhost:3000/medicalRecord/${medicalRecord._id}`, {
+          const response = await fetch(`https://insawork.onrender.com/medicalRecord/${medicalRecord._id}`, {
               method: 'PUT',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(newRecord),

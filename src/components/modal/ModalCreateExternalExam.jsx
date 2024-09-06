@@ -34,7 +34,7 @@ const ModalCreateExternalExam = ({ showModal, handleClose, onExamCreated }) => {
         }
 
         try {
-            const response = await fetch('http://localhost:3000/externalExams', {
+            const response = await fetch('https://insawork.onrender.com/externalExams', {
                 method: 'POST',
                 body: formData,
             });

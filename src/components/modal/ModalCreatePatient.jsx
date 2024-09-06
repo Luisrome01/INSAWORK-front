@@ -22,7 +22,7 @@ const ModalCreatePatient = ({ closeModal }) => {
     useEffect(() => {
         const fetchCompanies = async () => {
             try {
-                const response = await fetch("http://localhost:3000/company");
+                const response = await fetch("https://insawork.onrender.com/company");
                 const data = await response.json();
                 setCompanies(data);
             } catch (error) {
@@ -61,7 +61,7 @@ const ModalCreatePatient = ({ closeModal }) => {
         }
 
         try {
-            const response = await fetch("http://localhost:3000/patients", {
+            const response = await fetch("https://insawork.onrender.com/patients", {
                 method: "POST",
                 body: formData,
             });
@@ -95,7 +95,7 @@ const ModalCreatePatient = ({ closeModal }) => {
                     externalExams: []
                 };
 
-                const medicalRecordResponse = await fetch("http://localhost:3000/medicalRecord", {
+                const medicalRecordResponse = await fetch("https://insawork.onrender.com/medicalRecord", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

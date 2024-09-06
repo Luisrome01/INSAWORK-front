@@ -5,7 +5,7 @@ import { FaArrowLeft } from 'react-icons/fa';
 // Función para buscar pacientes
 const searchPatients = async (query, doctorId) => {
   try {
-    const response = await fetch(`http://localhost:3000/patients/${doctorId}?query=${query}`);
+    const response = await fetch(`https://insawork.onrender.com/patients/${doctorId}?query=${query}`);
     if (!response.ok) throw new Error('Error fetching patients');
     return response.json();
   } catch (error) {
@@ -17,7 +17,7 @@ const searchPatients = async (query, doctorId) => {
 // Función para enviar la factura al backend
 const createInvoice = async (invoiceData) => {
   try {
-    const response = await fetch('http://localhost:3000/invoices', {
+    const response = await fetch('https://insawork.onrender.com/invoices', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

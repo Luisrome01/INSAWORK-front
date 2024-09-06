@@ -7,7 +7,7 @@ const ModalExternalExam = ({ closeModal, examId }) => {
   useEffect(() => {
     const fetchExamData = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/externalExam/${examId}`); // Cambia la URL si es necesario
+        const response = await fetch(`https://insawork.onrender.com/externalExam/${examId}`); // Cambia la URL si es necesario
         if (!response.ok) {
           throw new Error('Error fetching exam data');
         }

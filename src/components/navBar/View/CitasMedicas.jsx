@@ -28,7 +28,7 @@ const CitasMedicas = () => {
       }
 
       try {
-        const response = await fetch(`http://localhost:3000/appointments/${doctorId}`);
+        const response = await fetch(`https://insawork.onrender.com/appointments/${doctorId}`);
         if (!response.ok) {
           throw new Error('Failed to fetch appointments');
         }
@@ -55,7 +55,7 @@ const CitasMedicas = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:3000/appointments/${doctorId}/imminent`);
+      const response = await fetch(`https://insawork.onrender.com/appointments/${doctorId}/imminent`);
       if (!response.ok) {
         throw new Error('Failed to fetch imminent appointments');
       }

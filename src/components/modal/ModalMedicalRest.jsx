@@ -17,7 +17,7 @@ const ModalMedicalRest = ({ closeModal }) => {
     useEffect(() => {
         const doctorId = JSON.parse(localStorage.getItem('user'))._id;
 
-        fetch(`http://localhost:3000/getall-medical-rest/${doctorId}`)
+        fetch(`https://insawork.onrender.com/getall-medical-rest/${doctorId}`)
             .then(response => response.json())
             .then(data => {
                 // Verifica que data sea un array antes de usar setData
@@ -48,7 +48,7 @@ const ModalMedicalRest = ({ closeModal }) => {
     };
 
     const handleMedicalRestClick = (id) => {
-        fetch(`http://localhost:3000/get-medical-rest/${id}`)
+        fetch(`https://insawork.onrender.com/get-medical-rest/${id}`)
             .then(response => {
                 const contentType = response.headers.get("content-type");
                 if (contentType && contentType.includes("application/pdf")) {
@@ -77,7 +77,7 @@ const ModalMedicalRest = ({ closeModal }) => {
     };
 
     const confirmDelete = () => {
-        fetch(`http://localhost:3000/delete-medical-rest/${selectedMedicalRestId}`, {
+        fetch(`https://insawork.onrender.com/delete-medical-rest/${selectedMedicalRestId}`, {
             method: 'DELETE',
         })
             .then(response => {

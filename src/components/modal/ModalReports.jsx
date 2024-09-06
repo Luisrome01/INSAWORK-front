@@ -17,7 +17,7 @@ const ModalReports = ({ closeModal }) => {
     useEffect(() => {
         const doctorId = JSON.parse(localStorage.getItem('user'))._id;
 
-        fetch(`http://localhost:3000/reports/${doctorId}`)
+        fetch(`https://insawork.onrender.com/reports/${doctorId}`)
             .then(response => response.json())
             .then(data => {
                 setData(data);
@@ -42,7 +42,7 @@ const ModalReports = ({ closeModal }) => {
 
     // Fetch and display the report
     const handleReportClick = (id) => {
-        fetch(`http://localhost:3000/report/${id}`)
+        fetch(`https://insawork.onrender.com/report/${id}`)
             .then(response => {
                 const contentType = response.headers.get("content-type");
                 if (contentType && contentType.includes("application/pdf")) {
@@ -73,7 +73,7 @@ const ModalReports = ({ closeModal }) => {
 
     // Confirm and delete the report
     const confirmDelete = () => {
-        fetch(`http://localhost:3000/reports/${selectedReportId}`, {
+        fetch(`https://insawork.onrender.com/reports/${selectedReportId}`, {
             method: 'DELETE',
         })
             .then(response => {
