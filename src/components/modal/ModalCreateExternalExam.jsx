@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaTimes } from 'react-icons/fa';
-import './css/modalCreateExternalExam.css';
+import "./css/ModalCreateExternalExam.css";
 
 const ModalCreateExternalExam = ({ showModal, handleClose, onExamCreated }) => {
     const [type, setType] = useState('');
