@@ -8,7 +8,7 @@ import "./css/MainView.css";
 import UserRound from "../assets/user-round.svg";
 // components
 import Principal from "../components/navBar/View/principal";
-import CitasMedicas from "../components/navBar/View/citasMedicas";
+import CitasMedicas from "../components/navBar/View/CitasMedicas";
 import Reportes from "../components/navBar/View/reportes";
 import Historias from "../components/navBar/View/historias";
 
