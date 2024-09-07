@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './css/citasMedicas.css';
+import './css/CitasMedicas.css';
 import ModalCreateAppointment from '../../modal/ModalCreateAppointment';
 import ModalEditAppointment from '../../modal/ModalEditAppointment';
 import BtnGeneral from '../../buttons/BtnGeneral';
