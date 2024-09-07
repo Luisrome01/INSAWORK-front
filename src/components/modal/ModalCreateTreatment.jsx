@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaTimes, FaTrash } from 'react-icons/fa';
-import './css/modalCreateTreatment.css';
+import './css/ModalCreateTreatment.css';
 
 const ModalCreateTreatment = ({ showModal, handleClose }) => {
     const [description, setDescription] = useState('');
