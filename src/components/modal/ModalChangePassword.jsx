@@ -25,7 +25,7 @@ const ModalChangePassword = ({ closeModal }) => {
         }
 
         try {
-            const response = await fetch("http://localhost:3000/change-password", {
+            const response = await fetch("https://insawork.onrender.com/change-password", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

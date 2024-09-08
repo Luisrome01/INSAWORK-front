@@ -1,6 +1,6 @@
-/* ModalMedicalRest.css */
+/* ModalReports.css */
 
-.modalMedicalRestContainer {
+.modalReportsContainer {
     position: fixed;
     top: 0;
     left: 0;
@@ -12,7 +12,7 @@
     z-index: 1000;
 }
 
-.modalMedicalRestBackgroundBlur {
+.modalReportsBackgroundBlur {
     position: absolute;
     top: 0;
     left: 0;
@@ -21,7 +21,7 @@
     background: rgba(0, 0, 0, 0.5);
 }
 
-.modalMedicalRestContent {
+.modalReportsContent {
     position: relative;
     width: 80%;
     max-width: 800px;
@@ -63,7 +63,7 @@
 .modalSearchContainer {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Alinea los elementos al principio y al final del contenedor */
+    justify-content: space-between;
     margin-bottom: 16px;
 }
 
@@ -94,7 +94,6 @@
     transform: scale(0.95);
 }
 
-
 .modalBodyContainer {
     overflow-y: auto;
     max-height: 60vh;
@@ -118,18 +117,18 @@
     background: #555;
 }
 
-.medicalRestList {
+.reportsList {
     display: flex;
     flex-direction: column;
 }
 
-.medicalRestItem {
+.reportItem {
     padding: 16px;
     border: 1px solid #ddd;
     border-radius: 4px;
     margin-bottom: 8px;
     cursor: pointer;
-    position: relative; /* Para el posicionamiento del ícono de la papelera */
+    position: relative;
 }
 
 .itemSeparator {
@@ -138,19 +137,16 @@
     border-top: 1px solid #ddd;
 }
 
-.deleteButton {
+.deleteIcon {
     position: absolute;
-    top: 10px;
+    top: 10px; 
     right: 10px;
     cursor: pointer;
     color: red;
     font-size: 20px;
     transition: transform 0.2s;
-    border: none;
-    background: none; 
-    padding: 0; 
 }
 
-.deleteButton:hover {
+.deleteIcon:hover {
     transform: scale(1.1);
 }

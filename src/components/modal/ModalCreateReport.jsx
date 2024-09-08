@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-import "./css/ModalCreateMedicalRest.css";
+import "./css/ModalCreateReport.css";
 import InputGeneral from "../inputs/InputGeneral";
 import { showErrorMessage, showSuccessMessage, showWarningMessage } from "../messageBar/MessageBar";
 
-const ModalCreateMedicalRest = ({ closeModal }) => {
+const ModalCreateReport = ({ closeModal }) => {
     const [cedulaPaciente, setCedulaPaciente] = useState("");
     const [sintomas, setSintomas] = useState("");
-    const [fecha, setFecha] = useState("");
+    const [fechaReporte, setFechaReporte] = useState("");
+    const [hallazgos, setHallazgos] = useState("");
+    const [examenes, setExamenes] = useState("");
     const [diagnostico, setDiagnostico] = useState("");
-    const [fechaInicio, setFechaInicio] = useState("");
-    const [fechaFinal, setFechaFinal] = useState("");
-    const [comentarios, setComentarios] = useState("");
     const [message, setMessage] = useState(null);
 
     const handleCreate = async () => {
@@ -20,32 +19,31 @@ const ModalCreateMedicalRest = ({ closeModal }) => {
             setMessage(showErrorMessage("Doctor ID not found", "center"));
             return;
         }
- 
-        const newMedicalRest = {
+
+        const newReport = {
             doctorId,
             cedulaPaciente,
+            fecha_reporte: fechaReporte,
             sintomas,
-            fecha,
-            diagnostico,
-            fecha_inicio: fechaInicio,
-            fecha_final: fechaFinal,
-            comentarios
+            hallazgos,
+            examenes,
+            diagnostico
         };
 
         try {
-            const response = await fetch("https://insawork.onrender.com/create-medical-rest", {
+            const response = await fetch("https://insawork.onrender.com/reports", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(newMedicalRest),
+                body: JSON.stringify(newReport),
             });
 
             if (response.ok) {
                 const blob = await response.blob();
                 const url = window.URL.createObjectURL(blob);
                 window.open(url, "_blank");
-                setMessage(showSuccessMessage("Reposo Médico creado exitosamente", "center"));
+                setMessage(showSuccessMessage("Reporte médico creado exitosamente", "center"));
                 setTimeout(() => closeModal(false), 3000);
             } else {
                 const errorData = await response.json();
@@ -62,11 +60,11 @@ const ModalCreateMedicalRest = ({ closeModal }) => {
     };
 
     return (
-        <div className="modalCreateMedicalRestContainer">
-            <div className="modalCreateMedicalRestBackgroundBlur"></div>
-            <div className="modalCreateMedicalRestContent">
+        <div className="modalCreateReportContainer">
+            <div className="modalCreateReportBackgroundBlur"></div>
+            <div className="modalCreateReportContent">
                 <div className="modalHeader">
-                    <h2>Crear Reposo Médico</h2>
+                    <h2>Crear Reporte Médico</h2>
                     <button className="closeButton" onClick={() => closeModal(false)}>X</button>
                 </div>
                 <div className="modalBody">
@@ -87,11 +85,27 @@ const ModalCreateMedicalRest = ({ closeModal }) => {
                         />
                     </div>
                     <div className="inputContainer">
-                        <label>Fecha:</label>
+                        <label>Fecha del Reporte:</label>
                         <InputGeneral
                             type="date"
-                            value={fecha}
-                            onChange={(e) => setFecha(e.target.value)}
+                            value={fechaReporte}
+                            onChange={(e) => setFechaReporte(e.target.value)}
+                        />
+                    </div>
+                    <div className="inputContainer">
+                        <label>Hallazgos:</label>
+                        <InputGeneral
+                            type="text"
+                            value={hallazgos}
+                            onChange={(e) => setHallazgos(e.target.value)}
+                        />
+                    </div>
+                    <div className="inputContainer">
+                        <label>Exámenes:</label>
+                        <InputGeneral
+                            type="text"
+                            value={examenes}
+                            onChange={(e) => setExamenes(e.target.value)}
                         />
                     </div>
                     <div className="inputContainer">
@@ -99,36 +113,12 @@ const ModalCreateMedicalRest = ({ closeModal }) => {
                         <InputGeneral
                             type="text"
                             value={diagnostico}
-                            onChange={(e) => setDiagnostico(e.target.value)}
-                        />
-                    </div>
-                    <div className="inputContainer">
-                        <label>Fecha Inicio:</label>
-                        <InputGeneral
-                            type="date"
-                            value={fechaInicio}
-                            onChange={(e) => setFechaInicio(e.target.value)}
-                        />
-                    </div>
-                    <div className="inputContainer">
-                        <label>Fecha Final:</label>
-                        <InputGeneral
-                            type="date"
-                            value={fechaFinal}
-                            onChange={(e) => setFechaFinal(e.target.value)}
-                        />
-                    </div>
-                    <div className="inputContainer">
-                        <label>Comentarios:</label>
-                        <InputGeneral
-                            type="text"
-                            value={comentarios}
-                            onChange={(e) => setComentarios(e.target.value)}
+                             onChange={(e) => setDiagnostico(e.target.value)}
                         />
                     </div>
                     <div className="inputContainer">
                         <button className="createButton" onClick={handleCreate}>
-                            Crear Reposo Médico
+                            Crear Reporte Médico
                         </button>
                     </div>
                 </div>
@@ -138,4 +128,4 @@ const ModalCreateMedicalRest = ({ closeModal }) => {
     );
 };
 
-export default ModalCreateMedicalRest;
+export default ModalCreateReport;

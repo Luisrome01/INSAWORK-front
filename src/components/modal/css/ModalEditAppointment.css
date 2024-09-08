@@ -1,0 +1,114 @@
+.modal-edit-appointment-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.modal-edit-appointment-background-blur {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(5px);
+}
+
+.modal-edit-appointment-content {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  width: 400px; /* Ajusta el ancho según sea necesario */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+}
+
+.modal-edit-appointment-header {
+  display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.modal-edit-appointment-title {
+  font-size: 24px;
+  margin: 0;
+  color: #000; /* Cambiado a negro */
+}
+
+.modal-edit-appointment-close-button {
+  background: #FF0000;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.modal-edit-appointment-body {
+  margin-top: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #000; /* Cambiado a negro */
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: #ffffff; /* Color de fondo blanco para inputs */
+  color: #000; /* Texto en negro para inputs */
+  transition: border-color 0.3s ease;
+}
+
+.form-input:focus {
+  border-color: #1E90FF; /* Color de borde al enfocar */
+  outline: none;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color: #1E90FF; /* Color de fondo para el botón */
+  color: #FFFFFF; /* Color del texto en el botón */
+  display: flex;
+  justify-content: center; /* Centrar texto en el botón */
+}
+
+.submit-button:hover {
+  background-color: #1C86EE; /* Color al pasar el ratón */
+}
+
+.error-message, .success-message {
+  margin: 10px 0;
+  color: #ff4d4d; /* Color del mensaje de error */
+}
+
+.success-message {
+  color: #4CAF50; /* Color del mensaje de éxito */
+}

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./css/ModalCreateMedicine.css";
 import MessageBar, { showErrorMessage, showSuccessMessage } from "../messageBar/MessageBar";
-import { FaTrashAlt } from 'react-icons/fa'; // Importar el icono de papelera
+import { FaTrashAlt } from 'react-icons/fa';
+import ModalConfirmDelete from "./ModalConfirmDelete";
 
 const ModalCreateMedicine = ({ doctorId, onClose }) => {
     const [medicines, setMedicines] = useState([]);
@@ -13,7 +14,9 @@ const ModalCreateMedicine = ({ doctorId, onClose }) => {
         name: "",
         type: "",
         use: ""
-    });
+    }); 
+    const [confirmDelete, setConfirmDelete] = useState(false);
+    const [medicineToDelete, setMedicineToDelete] = useState(null);
 
     const displayMessage = (messageComponent) => {
         setMessageBar(messageComponent);
@@ -25,7 +28,7 @@ const ModalCreateMedicine = ({ doctorId, onClose }) => {
     useEffect(() => {
         const fetchMedicines = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/medicines`);
+                const response = await fetch(`https://insawork.onrender.com/medicines`);
                 const data = await response.json();
                 setMedicines(data);
                 setFilteredMedicines(data);
@@ -63,7 +66,7 @@ const ModalCreateMedicine = ({ doctorId, onClose }) => {
         }
 
         try {
-            const response = await fetch("http://localhost:3000/medicines", {
+            const response = await fetch("https://insawork.onrender.com/medicines", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -87,15 +90,20 @@ const ModalCreateMedicine = ({ doctorId, onClose }) => {
         }
     };
 
-    const handleDelete = async (id) => {
+    const handleDelete = (id) => {
+        setMedicineToDelete(id);
+        setConfirmDelete(true);
+    };
+
+    const confirmDeleteHandler = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/medicines/${id}`, {
+            const response = await fetch(`https://insawork.onrender.com/medicines/${medicineToDelete}`, {
                 method: "DELETE",
             });
 
             if (response.ok) {
-                setMedicines(medicines.filter((medicine) => medicine._id !== id));
-                setFilteredMedicines(filteredMedicines.filter((medicine) => medicine._id !== id));
+                setMedicines(medicines.filter((medicine) => medicine._id !== medicineToDelete));
+                setFilteredMedicines(filteredMedicines.filter((medicine) => medicine._id !== medicineToDelete));
                 displayMessage(showSuccessMessage("Medicina eliminada exitosamente.", "center"));
             } else {
                 const result = await response.json();
@@ -103,94 +111,106 @@ const ModalCreateMedicine = ({ doctorId, onClose }) => {
             }
         } catch (error) {
             displayMessage(showErrorMessage("Error de conexión. Inténtelo de nuevo más tarde.", "center"));
+        } finally {
+            setConfirmDelete(false);
+            setMedicineToDelete(null);
         }
+    };
+
+    const cancelDeleteHandler = () => {
+        setConfirmDelete(false);
+        setMedicineToDelete(null);
     };
 
     return (
         <div className="createMedicineModalContainer">
-    <div className="createMedicineModalBackgroundBlur"></div>
-    <div className="createMedicineModalContent">
-        <div className="createMedicineModalHeader">
-            <h2 className="createMedicineModalTitle">Gestionar Medicinas</h2>
-            <button className="createMedicineCloseButton" onClick={onClose}>
-                X
-            </button>
-        </div>
-        <div className="createMedicineModalBody">
-            {messageBar}
-            {showForm ? (
-                <>
-                    <h3>Añadir Nueva Medicina</h3>
-                    <label className="medicineLabel">
-                        <input
-                            type="text"
-                            name="name"
-                            value={newMedicine.name}
-                            onChange={handleInputChange}
-                            className="medicineInputField"
-                            placeholder="Nombre de la medicina"
-                        />
-                    </label>
-                    <label className="medicineLabel">
-                        <input
-                            type="text"
-                            name="type"
-                            value={newMedicine.type}
-                            onChange={handleInputChange}
-                            className="medicineInputField"
-                            placeholder="Tipo de la medicina"
-                        />
-                    </label>
-                    <label className="medicineLabel">
-                        <input
-                            type="text"
-                            name="use"
-                            value={newMedicine.use}
-                            onChange={handleInputChange}
-                            className="medicineInputField"
-                            placeholder="Uso de la medicina"
-                        />
-                    </label>
-                    <button className="createMedicineSubmitButton" onClick={handleSubmitMedicine}>
-                        Crear Medicina
+            <div className="createMedicineModalBackgroundBlur"></div>
+            <div className="createMedicineModalContent">
+                <div className="createMedicineModalHeader">
+                    <h2 className="createMedicineModalTitle">Gestionar Medicinas</h2>
+                    <button className="createMedicineCloseButton" onClick={onClose}>
+                        X
                     </button>
-                    <button className="createMedicineToggleFormButton" onClick={handleFormToggle}>
-                        Ocultar Formulario
-                    </button>
-                </>
-            ) : (
-                <>
-                    <input
-                        type="text"
-                        placeholder="Buscar por nombre de medicina"
-                        value={filter}
-                        onChange={(e) => setFilter(e.target.value)}
-                        className="createMedicineFilterInput"
-                    />
-                    <ul className="medicineList">
-                        {filteredMedicines.map(medicine => (
-                            <li key={medicine._id} className="medicineListItem">
-                                <strong>{medicine.name}</strong> - {medicine.use} ({medicine.type})
-                                <button
-                                    className="deleteMedicineButton"
-                                    onClick={() => handleDelete(medicine._id)}
-                                    aria-label={`Eliminar ${medicine.name}`}
-                                >
-                                    <FaTrashAlt /> {/* Cambiado a usar el icono importado */}
-                                </button>
-                            </li>
-                        ))}
-                    </ul>
-                    <button className="createMedicineToggleFormButton" onClick={handleFormToggle}>
-                        Añadir Nueva Medicina
-                    </button>
-                </>
+                </div>
+                <div className="createMedicineModalBody">
+                    {messageBar}
+                    {showForm ? (
+                        <>
+                            <h3>Añadir Nueva Medicina</h3>
+                            <label className="medicineLabel">
+                                <input
+                                    type="text"
+                                    name="name"
+                                    value={newMedicine.name}
+                                    onChange={handleInputChange}
+                                    className="medicineInputField"
+                                    placeholder="Nombre de la medicina"
+                                />
+                            </label>
+                            <label className="medicineLabel">
+                                <input
+                                    type="text"
+                                    name="type"
+                                    value={newMedicine.type}
+                                    onChange={handleInputChange}
+                                    className="medicineInputField"
+                                    placeholder="Tipo de la medicina"
+                                />
+                            </label>
+                            <label className="medicineLabel">
+                                <input
+                                    type="text"
+                                    name="use"
+                                    value={newMedicine.use}
+                                    onChange={handleInputChange}
+                                    className="medicineInputField"
+                                    placeholder="Uso de la medicina"
+                                />
+                            </label>
+                            <button className="createMedicineSubmitButton" onClick={handleSubmitMedicine}>
+                                Crear Medicina
+                            </button>
+                            <button className="createMedicineToggleFormButton" onClick={handleFormToggle}>
+                                Ocultar Formulario
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <input
+                                type="text"
+                                placeholder="Buscar por nombre de medicina"
+                                value={filter}
+                                onChange={(e) => setFilter(e.target.value)}
+                                className="createMedicineFilterInput"
+                            />
+                            <ul className="medicineList">
+                                {filteredMedicines.map(medicine => (
+                                    <li key={medicine._id} className="medicineListItem">
+                                        <strong>{medicine.name}</strong> - {medicine.use} ({medicine.type})
+                                        <button
+                                            className="deleteMedicineButton"
+                                            onClick={() => handleDelete(medicine._id)}
+                                            aria-label={`Eliminar ${medicine.name}`}
+                                        >
+                                            <FaTrashAlt />
+                                        </button>
+                                    </li>
+                                ))}
+                            </ul>
+                            <button className="createMedicineToggleFormButton" onClick={handleFormToggle}>
+                                Añadir Nueva Medicina
+                            </button>
+                        </>
+                    )}
+                </div>
+            </div>
+            {confirmDelete && (
+                <ModalConfirmDelete
+                    onConfirm={confirmDeleteHandler}
+                    onCancel={cancelDeleteHandler}
+                />
             )}
         </div>
-    </div>
-</div>
-
-
     );
 };
 

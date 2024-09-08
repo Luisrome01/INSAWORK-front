@@ -27,7 +27,7 @@ const ModalResetPassword = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/forgot-password", {
+      const response = await fetch("https://insawork.onrender.com/forgot-password", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

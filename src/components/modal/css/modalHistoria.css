@@ -1,0 +1,268 @@
+.historia-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1050; /* Asegúrate de que este z-index sea mayor que el de otros modales */
+}
+
+.historia-modal {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%; /* Ajusta el ancho del modal según sea necesario */
+    max-width: 600px; /* Reduce el ancho máximo del modal */
+    max-height: 80vh; /* Limita la altura del modal */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* Permite el desplazamiento vertical */
+    z-index: 1060; /* Asegúrate de que este z-index sea mayor que el del overlay */
+}
+
+.historia-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f1f1f1; /* Fondo del header del modal */
+    border-bottom: 1px solid #ddd; /* Línea inferior del header */
+}
+
+.historia-modal-close-button {
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333; /* Color del icono de cerrar */
+    transition: color 0.3s ease; /* Transición para el cambio de color */
+}
+
+.historia-modal-close-button:hover {
+    color: #f00; /* Color del icono de cerrar cuando se pasa el ratón por encima */
+}
+
+
+.historia-modal-content {
+    margin-top: 20px;
+}
+
+.historia-modal-input-group {
+    margin-bottom: 15px;
+}
+
+.historia-modal-input-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.historia-modal-input-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff; /* White background for inputs */
+    box-sizing: border-box; /* Includes padding and border in element's total width and height */
+}
+
+.historia-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.historia-modal-save-button, .historia-modal-cancel-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    margin-left: 10px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.historia-modal-save-button {
+    background-color: #28a745; /* Green for save button */
+}
+
+.historia-modal-cancel-button {
+    background-color: #dc3545; /* Red for cancel button */
+}
+.historia-modal-input-group {
+    padding: 20px;
+}
+
+.treatment-section {
+    margin: 20px 0;
+}
+
+.expand-toggle {
+    background-color: rgba(150, 170, 240, 0.75);
+    color: rgb(255, 255, 255);;
+    border: 1px solid rgba(150, 170, 240, 0.75);;
+    padding: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.expand-toggle:hover {
+    background-color: rgba(150, 170, 240, 0.75);
+    color: white;
+}
+
+.treatments-list {
+    margin-top: 10px;
+}
+
+.treatment-item {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px; /* Espacio entre tratamientos */
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Añade una transición suave */
+  }
+  
+  .treatment-item:hover {
+    background-color: rgba(150, 170, 240, 0.75); /* Cambia el color de fondo al hacer hover */
+  }
+
+.treatment-item.selected {
+    border-color: #007bff;
+    background-color: #e7f0ff;
+}
+
+.medicines-section {
+    margin-top: 10px;
+}
+
+.medicines-list {
+    margin-top: 10px;
+}
+
+.medicine-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px; /* Espacio entre medicinas */
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.create-treatment-btn {
+    background-color: white;
+    color: #007bff;
+    border: 1px solid #007bff;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.create-treatment-btn:hover {
+    background-color: rgba(150, 170, 240, 0.75);
+    color: white;
+}
+
+.delete-treatment-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #ff0000; 
+    transition: color 0.3s ease;
+    width: 100%; /* Ocupa todo el ancho disponible */
+    text-align: right; 
+}
+
+.delete-treatment-btn:hover {
+    color: #ff1a1a; /* Color rojo más oscuro en hover */
+}
+
+.delete-treatment-btn svg {
+    font-size: 1.2em; /* Tamaño del ícono */
+}
+
+.external-exams-list-container {
+    margin: 20px 0;
+  }
+  
+  .external-exams-label {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  
+  .external-exams-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .external-exam-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 5px 0;
+    padding: 10px;
+    cursor:pointer;
+  }
+  .external-exam-item:hover {
+    background-color: rgba(150, 170, 240, 0.75); /* Cambia el color de fondo al hacer hover */
+  }
+  .external-exams-actions {
+    margin-top: 20px;
+    text-align: right; /* Para alinear el botón a la derecha */
+  }
+  
+  .save-button {
+    background-color: #4CAF50; /* Verde */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1em;
+  }
+  
+  .save-button:hover {
+    background-color: #45a049; /* Un verde más oscuro al pasar el mouse */
+  }
+  .create-external-exam-btn {
+    background-color: #4CAF50; /* Color de fondo verde */
+    color: white;              /* Color del texto */
+    border: none;              /* Sin borde */
+    padding: 10px 20px;        /* Espaciado interno */
+    text-align: center;        /* Alineación del texto al centro */
+    text-decoration: none;     /* Sin subrayado */
+    display: inline-block;     /* Permite establecer el ancho y alto */
+    font-size: 16px;           /* Tamaño de la fuente */
+    border-radius: 5px;       /* Bordes redondeados */
+    cursor: pointer;           /* Cambia el cursor a mano */
+    transition: background-color 0.3s, transform 0.2s; /* Transiciones suaves */
+  }
+  
+  .create-external-exam-btn:hover {
+    background-color: #45a049; /* Color de fondo al pasar el mouse */
+    transform: scale(1.05);    /* Agranda ligeramente el botón */
+  }
+  
+  .create-external-exam-btn:active {
+    transform: scale(0.95);    /* Reduce el tamaño al hacer clic */
+  }
+
+
+  .historia-modal-actions button {
+    background-color: #AEBBFD; /* Color especificado */
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .historia-modal-actions button:hover {
+    background-color: #9AB0F2; /* Color más oscuro para el hover (opcional) */
+  }

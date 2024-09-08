@@ -1,4 +1,4 @@
-.modalCreateMedicalRestContainer {
+.modalCreateAptitudeWrapper {
     position: fixed;
     top: 0;
     left: 0;
@@ -10,7 +10,7 @@
     z-index: 1000; /* Asegúrate de que el modal esté por encima de otros elementos */
 }
 
-.modalCreateMedicalRestBackgroundBlur {
+.modalCreateAptitudeBackdrop {
     position: absolute;
     top: 0;
     left: 0;
@@ -19,7 +19,7 @@
     background: rgba(0, 0, 0, 0.5);
 }
 
-.modalCreateMedicalRestContent {
+.modalCreateAptitudeBox {
     position: relative;
     background: white;
     border-radius: 8px;
@@ -37,7 +37,7 @@
     align-items: center;
 }
 
-.closeButton {
+.modalCloseButton {
     background: #e74c3c;
     color: white;
     border: none;
@@ -51,24 +51,27 @@
     margin-top: 20px;
 }
 
-.inputContainer {
+.formGroup {
     margin-bottom: 16px;
 }
 
-.inputContainer label {
+.formGroup label {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
 }
 
-.inputContainer input {
+.formGroup input, 
+.formGroup select {
     width: 100%;
     padding: 8px;
     border: 1px solid #ddd;
     border-radius: 4px;
+    color: #333; /* Cambia el color del texto a gris oscuro */
+    background: #fff; /* Asegúrate de que el fondo sea blanco */
 }
 
-.createButton {
+.modalSubmitButton {
     background: #AEBBFD;
     color: white;
     border: none;
@@ -79,4 +82,3 @@
     display: block;
     margin: 20px auto 0; /* Centra el botón y agrega espacio superior */
 }
- 

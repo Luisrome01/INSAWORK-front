@@ -26,7 +26,7 @@ const ModalUsuario = ({ closeModal }) => {
 
     const fetchProfileImage = async (userId) => {
         try {
-            const response = await fetch(`http://localhost:3000/user/${userId}/profile-image`);
+            const response = await fetch(`https://insawork.onrender.com/user/${userId}/profile-image`);
             const data = await response.json();
             if (response.ok) {
                 setProfileImg(data.profileImg);
@@ -59,7 +59,7 @@ const ModalUsuario = ({ closeModal }) => {
         formData.append("username", username); // Agregar el nuevo username
 
         try {
-            const response = await fetch(`http://localhost:3000/user/${userId}/edit`, {
+            const response = await fetch(`https://insawork.onrender.com/user/${userId}/edit`, {
                 method: "PUT",
                 body: formData,
             });

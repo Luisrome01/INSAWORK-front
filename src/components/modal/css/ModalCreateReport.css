@@ -1,4 +1,4 @@
-.modalCreateMedicalRestContainer {
+.modalCreateReportContainer {
     position: fixed;
     top: 0;
     left: 0;
@@ -10,16 +10,16 @@
     z-index: 1000; /* Asegúrate de que el modal esté por encima de otros elementos */
 }
 
-.modalCreateMedicalRestBackgroundBlur {
+.modalCreateReportBackgroundBlur {
     position: absolute;
     top: 0;
-    left: 0;
+    left: 0; 
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
 }
 
-.modalCreateMedicalRestContent {
+.modalCreateReportContent {
     position: relative;
     background: white;
     border-radius: 8px;
@@ -79,4 +79,3 @@
     display: block;
     margin: 20px auto 0; /* Centra el botón y agrega espacio superior */
 }
- 

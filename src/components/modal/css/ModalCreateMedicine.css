@@ -150,7 +150,7 @@
 }
 
 .deleteMedicineButton:hover {
-    color: rgba(100, 120, 200, 0.9); /* Color más oscuro al pasar el ratón */
+    color: rgba(255, 0, 0, 0.9); /* Color más oscuro al pasar el ratón */
 }
 .medicineLabel {
     display: flex; /* Usar flexbox para alinear el input */
