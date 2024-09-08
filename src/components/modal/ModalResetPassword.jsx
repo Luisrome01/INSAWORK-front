@@ -80,7 +80,6 @@ const ModalResetPassword = () => {
           {messageBar}
           <InputGeneral
             name={"Correo electrónico"}
-            type="text"
             placeholder=" ej. nombre@gmail.com"
             width="100%"
             value={email}
