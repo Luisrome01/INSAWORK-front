@@ -17,7 +17,7 @@ const ModalConfirmDelete = ({ onConfirm, onCancel }) => {
                     </button>
                 </div>
             </div>
-        </div>
+        </div> 
     );
 };
 
