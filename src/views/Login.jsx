@@ -111,7 +111,6 @@ const Login = ({ setUser }) => {
           </div>
           <InputGeneral
             name={"Correo Electrónico"}
-            type="text"
             placeholder=" ej. nombre@gmail.com"
             width="100%"
             value={email}
@@ -119,7 +118,6 @@ const Login = ({ setUser }) => {
           />
           <InputGeneral
             name={"Contraseña"}
-            type="text"
             isPassword={true}
             placeholder=" Contraseña"
             width="100%"
