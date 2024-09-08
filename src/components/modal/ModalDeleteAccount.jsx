@@ -27,7 +27,7 @@ const ModalDeleteAccount = ({ closeModal }) => {
         }
 
         try {
-            const response = await fetch("https://insawork.onrender.com/delete-user", {
+            const response = await fetch("https://insawork.onrender.com/user", {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
