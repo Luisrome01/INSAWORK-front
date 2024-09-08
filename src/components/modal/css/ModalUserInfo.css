@@ -103,8 +103,8 @@
 }
 
 .userInfoFirmaImage {
-    width: 300px; /* Ancho horizontal */
-    height: 150px; /* Alto más pequeño */
+    width: 200px; /* Ancho horizontal */
+    height: 100px; /* Alto más pequeño */
     border-radius: 8px; /* Bordes redondeados */
     object-fit: cover; /* Para que la imagen se ajuste al contenedor sin distorsionarse */
     cursor: pointer; /* Cambia el cursor al pasar sobre la imagen */

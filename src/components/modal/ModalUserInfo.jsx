@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './css/ModalUserInfo.css';
+import { FaTimes } from "react-icons/fa";
 
-const ModalUserInfo = ({ userId }) => {
+const ModalUserInfo = ({ userId, closeModal }) => {
     const [userInfo, setUserInfo] = useState({
         telefono: '',
         especialidad: '',
@@ -12,7 +13,14 @@ const ModalUserInfo = ({ userId }) => {
         firma: null,
     });
     const [file, setFile] = useState(null);
-    const [isOpen, setIsOpen] = useState(true);
+    const fieldLabels = {
+        telefono: 'Teléfono',
+        especialidad: 'Especialidad',
+        direccion: 'Dirección',
+        cedula: 'Cédula de Identidad',
+        inscripcionCM: 'Inscripción del Colegio de Médicos',
+        registro: 'Registro del Inpsasel',
+    };
 
     useEffect(() => {
         const fetchUserInfo = async () => {
@@ -71,9 +79,8 @@ const ModalUserInfo = ({ userId }) => {
             const data = await response.json();
             if (response.ok) {
                 console.log('User info updated:', data);
-                // Actualiza localStorage con los nuevos datos
                 localStorage.setItem('userInfo', JSON.stringify(data));
-                setIsOpen(false);
+                closeModal(false);  // Cerrar el modal
             } else {
                 console.error("Error updating user info:", data.msg);
             }
@@ -82,29 +89,25 @@ const ModalUserInfo = ({ userId }) => {
         }
     };
 
-    const handleCloseModal = () => {
-        setIsOpen(false);
-    };
-
     const handleFirmaClick = (e) => {
-        e.preventDefault(); // Previene el comportamiento predeterminado
+        e.preventDefault();
         document.getElementById('firmaInput').click();
     };
 
-    if (!isOpen) return null;
-
     return (
         <div className="userInfoModalContainer">
-            <div className="userInfoModalBackgroundBlur" onClick={handleCloseModal}></div>
+            <div className="userInfoModalBackgroundBlur" onClick={() => closeModal(false)}></div>
             <div className="userInfoModalContent">
                 <div className="userInfoModalHeader">
                     <h2 className="userInfoModalTitle">Información del Usuario</h2>
-                    <button className="userInfoCloseButton" onClick={handleCloseModal}>X</button>
+                    <button className="usuarioCloseButton" onClick={() => closeModal(false)}>
+                        <FaTimes />
+                    </button>
                 </div>
                 <form onSubmit={handleSubmit} className="userInfoModalBody">
-                    {['telefono', 'especialidad', 'direccion', 'cedula', 'inscripcionCM', 'registro'].map(field => (
+                    {Object.entries(fieldLabels).map(([field, label]) => (
                         <div className="userInfoField" key={field}>
-                            <label htmlFor={`${field}Input`}>{field.charAt(0).toUpperCase() + field.slice(1)}:</label>
+                            <label htmlFor={`${field}Input`}>{label}:</label>
                             <input
                                 type="text"
                                 name={field}
@@ -122,7 +125,7 @@ const ModalUserInfo = ({ userId }) => {
                             id="firmaInput"
                             onChange={handleFileChange}
                             className="userInfoFileInput"
-                            style={{ display: 'none' }} // Ocultamos el input de archivo
+                            style={{ display: 'none' }}
                         />
                         <label htmlFor="firmaInput" onClick={handleFirmaClick}>
                             <img
@@ -135,7 +138,7 @@ const ModalUserInfo = ({ userId }) => {
                     <button type="submit" className="userInfoSubmitButton">Guardar Información</button>
                 </form>
             </div>
-        </div> 
+        </div>
     );
 };
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Usar useNavigate en lugar de useHistory
 import MessageBar, { showErrorMessage, showSuccessMessage } from "../messageBar/MessageBar"; // Importar MessageBar
 import "./css/ModalDeleteAccount.css";
+import { FaTimes } from "react-icons/fa";
 
 const ModalDeleteAccount = ({ closeModal }) => {
     const [email, setEmail] = useState("");
@@ -55,7 +56,9 @@ const ModalDeleteAccount = ({ closeModal }) => {
             <div className="deleteAccountModalContent">
                 <div className="deleteAccountModalHeader">
                     <h2 className="deleteAccountModalTitle">Eliminar Cuenta</h2>
-                    <button className="deleteAccountCloseButton" onClick={() => closeModal(false)}>X</button>
+                    <button className="usuarioCloseButton" onClick={() => closeModal(false)}>
+                        <FaTimes />
+                    </button>
                 </div>
                 <div className="deleteAccountModalBody">
                     <input

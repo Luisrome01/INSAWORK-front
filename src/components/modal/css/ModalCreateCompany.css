@@ -76,10 +76,10 @@ h2 {
 /* Submit Button */
 button[type="submit"] {
     padding: 12px;
-    background-color: rgba(100, 120, 200, 0.9); /* Nuevo color del botón de crear empresa */
+    background-color: #005bff;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 15px;
     cursor: pointer;
     font-size: 16px;
 }
