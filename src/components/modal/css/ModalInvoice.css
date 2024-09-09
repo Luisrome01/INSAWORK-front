@@ -15,7 +15,7 @@ body.modal-open {
     align-items: center;
     z-index: 1000;
     overflow: hidden; /* Evita el scroll en el fondo */
-  }
+  } 
   
   /* Fondo del modal con desenfoque */
   .modalInvoiceBackgroundBlur {
@@ -133,7 +133,7 @@ body.modal-open {
   }
   
   .invoiceContent:hover {
-    background-color: rgba(150, 170, 240, 0.75);
+    background-color:#aee4fd;
   }
   
   .invoiceInfo {

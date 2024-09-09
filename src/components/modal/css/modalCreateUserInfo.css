@@ -15,10 +15,29 @@
     background: white;
     border-radius: 8px;
     padding: 20px;
-    width: 90%;
-    max-width: 500px;
+    width: 70%; /* Reduce el ancho para hacerlo más pequeño */
+    max-width: 400px; /* Ancho máximo más pequeño */
+    max-height: 70vh; /* Limita la altura del modal */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     position: relative;
+    overflow: hidden; /* Ocultamos los scrolls para que no se vean */
+}
+
+.modal-userinfo-body {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Scroll vertical activado */
+    max-height: 50vh; /* Limita la altura del contenido para que haya scroll si es necesario */
+    padding-right: 10px;
+}
+
+/* Scrollbar invisible */
+.modal-userinfo-body::-webkit-scrollbar {
+    width: 0px;
+}
+
+.modal-userinfo-body {
+    scrollbar-width: none; /* Oculta el scrollbar en Firefox */
 }
 
 .modal-userinfo-header {
@@ -50,13 +69,9 @@
     background: #e60000;
 }
 
-.modal-userinfo-body {
-    display: flex;
-    flex-direction: column;
-}
-
 .form-group {
     margin-bottom: 15px;
+    min-width: 300px; /* Asegura que los inputs sean lo suficientemente anchos */
 }
 
 .form-group label {

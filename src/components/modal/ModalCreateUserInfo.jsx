@@ -12,7 +12,7 @@ const ModalCreateUserInfo = ({ showModal, onClose, handleLogout }) => {
     inscripcionCM: '',
     registro: '',
     firma: null,
-  });
+  }); 
   const [message, setMessage] = useState(null);
 
   useEffect(() => {

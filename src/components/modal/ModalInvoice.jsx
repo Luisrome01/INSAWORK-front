@@ -17,7 +17,7 @@ const ModalInvoice = ({ closeModal }) => {
     document.body.style.overflow = showCreateInvoiceModal ? 'hidden' : 'auto';
 
     return () => {
-      // Enable scrolling again when the modal is closed
+      // Enable scrolling again when the modal is closed 
       document.body.style.overflow = 'auto';
     };
   }, [showCreateInvoiceModal]);
@@ -25,7 +25,7 @@ const ModalInvoice = ({ closeModal }) => {
   useEffect(() => {
     const doctorId = JSON.parse(localStorage.getItem("user"))._id;
 
-    fetch(`https://insawork.onrender.cominvoices/${doctorId}`)
+    fetch(`https://insawork.onrender.com/invoices/${doctorId}`)
       .then((response) => response.json())
       .then((data) => {
         const updatedInvoices = data.map((invoice) => ({

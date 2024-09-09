@@ -11,7 +11,7 @@ const searchPatients = async (query, doctorId) => {
   } catch (error) {
     console.error(error);
     return [];
-  }
+  } 
 };
 
 // Función para enviar la factura al backend
