@@ -1,0 +1,93 @@
+.appointmentCard {
+  position: relative;
+  width: 345.1px;
+  height: 141.1px;
+  background: #aee4fd;
+  border-radius: 17px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.appointmentCard:hover {
+  transition: transform 0.3s ease;
+  transform: scale(0.90);
+}
+
+.appointmentName {
+  position: absolute;
+  width: 283px;
+  height: 26.35px;
+  left: 23.8px;
+  top: 17.85px;
+  font-family: "SF Pro Display";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20.4px;
+  line-height: 24.65px;
+  color: #000000;
+}
+
+.appointmentStatusColor {
+  position: absolute;
+  width: 8.5px;
+  height: 8.5px;
+  left: 23.8px;
+  top: 56.95px;
+  border-radius: 50%;
+}
+
+.appointmentStatus {
+  position: absolute;
+  width: 153.85px;
+  height: 18.7px;
+  left: 43.35px;
+  top: 51.85px;
+  font-family: "SF Pro Display";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15.3px;
+  line-height: 17.85px;
+
+  color: #000000;
+}
+
+.iconContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 28.05px;
+  height: 27.2px;
+  left: 23.8px;
+  top: 90.1px;
+
+  background: #ffffff;
+  border-radius: 8.5px;
+}
+
+.appointmentDate {
+  position: absolute;
+  width: 220px;
+  height: 18.7px;
+  left: 66.3px;
+  top: 94.35px;
+
+  font-family: "SF Pro Display";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15.3px;
+  line-height: 17.85px;
+
+  color: #000000;
+}
+
+.rightIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 6%;
+  top: 75.86%;
+  width: 12.75px;
+  height: 12.75px;
+}
