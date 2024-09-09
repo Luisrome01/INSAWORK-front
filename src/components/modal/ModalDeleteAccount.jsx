@@ -24,7 +24,7 @@ const ModalDeleteAccount = ({ closeModal }) => {
         if (storedUser.email !== email) {
             displayMessage(showErrorMessage("El email ingresado no coincide.", "center")); // Mostrar error si el email no coincide
             return;
-        }
+        } 
 
         try {
             const response = await fetch("https://insawork.onrender.com/user", {

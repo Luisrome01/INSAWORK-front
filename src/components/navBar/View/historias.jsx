@@ -53,7 +53,7 @@ const Historias = () => {
             <div className="historias-content">
                 <div className="search-container">
                     <input
-                        type="text"
+                        type="text" 
                         placeholder="Buscar por nombre o cédula"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}

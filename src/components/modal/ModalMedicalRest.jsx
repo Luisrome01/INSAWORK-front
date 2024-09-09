@@ -5,7 +5,7 @@ import ModalCreateMedicalRest from "./ModalCreateMedicalRest";
 import ModalConfirmDelete from "./ModalConfirmDelete"; // Importar el nuevo modal
 import { FaTrashAlt } from "react-icons/fa";
 
-const ModalMedicalRest = ({ closeModal }) => {
+const ModalMedicalRest = ({ closeModal }) => { 
     const [data, setData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
@@ -155,6 +155,6 @@ const ModalMedicalRest = ({ closeModal }) => {
             {isDeleteModalOpen && <ModalConfirmDelete onConfirm={confirmDelete} onCancel={() => setIsDeleteModalOpen(false)} />}
         </div>
     );
-};
+}; 
 
 export default ModalMedicalRest;

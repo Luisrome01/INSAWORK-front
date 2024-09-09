@@ -38,7 +38,7 @@
 
 .card:hover {
     border: 1px solid black;
-    background-color: rgba(150, 170, 240, 0.75);
+    background-color: #aee4fd;
     transform: scale(1.05);
 }
 
@@ -46,7 +46,7 @@
     transform: scale(0.95) rotateZ(1.7deg);
 }
 
-.bottomContainers {
+.bottomContainers { 
     display: grid;
     grid-template-columns: 1fr 1fr; /* 2 columnas */
     gap: 15px;
@@ -92,7 +92,7 @@
 
 .imminentAppointmentsContainer::-webkit-scrollbar-thumb:hover,
 .notesContainer::-webkit-scrollbar-thumb:hover {
-    background: rgba(100, 120, 200, 0.75); /* Color al pasar el mouse, puedes ajustar esto */
+    background: #aee4fd; /* Color al pasar el mouse, puedes ajustar esto */
 }
 
 .notesContainer {
