@@ -115,7 +115,6 @@ const Register = () => {
                 {errors.email && <p className="RegErrorText">{errors.email}</p>}
                 <InputGeneral
                   name={"Nombre de Usuario"}
-                  type="text"
                   placeholder="ej. jubertperez123"
                   width="100%"
                   value={username}
@@ -127,7 +126,6 @@ const Register = () => {
                 )}
                 <InputGeneral
                   name={"Contraseña"}
-                  type={"text"}
                   isPassword={true}
                   placeholder="Contraseña"
                   width="100%"

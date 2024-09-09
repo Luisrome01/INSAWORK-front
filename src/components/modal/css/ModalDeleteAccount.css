@@ -28,7 +28,6 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
 }
 
 .deleteAccountModalHeader {
@@ -76,15 +75,11 @@
 
 .deleteAccountConfirmButton {
     padding: 12px;
-    background-color: rgba(174, 187, 253, 0.9);
+    background-color: #005BFF;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 15px;
     cursor: pointer;
     font-size: 16px;
     width: 100%;
-}
-
-.deleteAccountConfirmButton:hover {
-    background-color: rgba(174, 187, 253, 0.75);
 }

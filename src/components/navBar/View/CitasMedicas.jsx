@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import './css/CitasMedicas.css';
-import ModalCreateAppointment from '../../modal/ModalCreateAppointment';
-import ModalEditAppointment from '../../modal/ModalEditAppointment';
-import BtnGeneral from '../../buttons/BtnGeneral';
+import React, { useEffect, useState } from "react";
+import "./css/CitasMedicas.css";
+import ModalCreateAppointment from "../../modal/ModalCreateAppointment";
+import ModalEditAppointment from "../../modal/ModalEditAppointment";
+import BtnGeneral from "../../buttons/BtnGeneral";
+import AppointmentCard from "../../cards/AppointmentCard";
+import add from "../../../assets/add-appointment.png";
+import filter from "../../../assets/filter-appointment.png";
 
 const CitasMedicas = () => {
   const [appointments, setAppointments] = useState([]);
@@ -13,28 +16,33 @@ const CitasMedicas = () => {
   const [showModalEdit, setShowModalEdit] = useState(false);
   const [selectedAppointment, setSelectedAppointment] = useState(null);
   const [isImminentFilter, setIsImminentFilter] = useState(false);
-  const [monthFilter, setMonthFilter] = useState('');
+  const [monthFilter, setMonthFilter] = useState("");
   const [showFilters, setShowFilters] = useState(false);
 
   useEffect(() => {
     const fetchAppointments = async () => {
-      const doctorData = JSON.parse(localStorage.getItem('user'));
+      const doctorData = JSON.parse(localStorage.getItem("user"));
       const doctorId = doctorData ? doctorData._id : null;
-
       if (!doctorId) {
-        setError('Doctor ID not found in local storage.');
+        setError("Doctor ID not found in local storage.");
         setLoading(false);
         return;
       }
-
       try {
         const response = await fetch(`https://insawork.onrender.com/appointments/${doctorId}`);
         if (!response.ok) {
-          throw new Error('Failed to fetch appointments');
+          throw new Error("Failed to fetch appointments");
         }
         const data = await response.json();
-        setAppointments(data);
-        setFilteredAppointments(data);
+        const updatedData = data.map((appointment) => {
+          if (appointment.status === "pending") {
+            return { ...appointment, status: "Pendiente" };
+          }
+          return appointment;
+        });
+        setAppointments(updatedData);
+        setFilteredAppointments(updatedData);
+        console.log(updatedData);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -46,21 +54,29 @@ const CitasMedicas = () => {
   }, []);
 
   const fetchImminentAppointments = async () => {
-    const doctorData = JSON.parse(localStorage.getItem('user'));
+    const doctorData = JSON.parse(localStorage.getItem("user"));
     const doctorId = doctorData ? doctorData._id : null;
 
     if (!doctorId) {
-      setError('Doctor ID not found in local storage.');
+      setError("Doctor ID not found in local storage.");
       return;
     }
 
     try {
-      const response = await fetch(`https://insawork.onrender.com/appointments/${doctorId}/imminent`);
+      const response = await fetch(
+        `https://insawork.onrender.com/appointments/${doctorId}/imminent`
+      );
       if (!response.ok) {
-        throw new Error('Failed to fetch imminent appointments');
+        throw new Error("Failed to fetch imminent appointments");
       }
       const data = await response.json();
-      setFilteredAppointments(data);
+      const updatedData = data.map((appointment) => {
+        if (appointment.status === "pending") {
+          return { ...appointment, status: "Pendiente" };
+        }
+        return appointment;
+      });
+      setFilteredAppointments(updatedData);
       setIsImminentFilter(true);
     } catch (error) {
       setError(error.message);
@@ -70,7 +86,7 @@ const CitasMedicas = () => {
   const resetFilters = () => {
     setFilteredAppointments(appointments);
     setIsImminentFilter(false);
-    setMonthFilter('');
+    setMonthFilter("");
   };
 
   const handleMonthFilter = () => {
@@ -80,7 +96,7 @@ const CitasMedicas = () => {
 
     const month = parseInt(monthFilter);
     if (isNaN(month) || month < 1 || month > 12) {
-      alert('Por favor, selecciona un mes válido.');
+      alert("Por favor, selecciona un mes válido.");
       return;
     }
 
@@ -94,8 +110,8 @@ const CitasMedicas = () => {
   };
 
   const formatDateWithLeadingZero = (date) => {
-    const d = String(date.getDate()).padStart(2, '0');
-    const m = String(date.getMonth() + 1).padStart(2, '0');
+    const d = String(date.getDate()).padStart(2, "0");
+    const m = String(date.getMonth() + 1).padStart(2, "0");
     const y = date.getFullYear();
     return `${d}/${m}/${y}`;
   };
@@ -133,26 +149,36 @@ const CitasMedicas = () => {
 
   return (
     <div className="appointments-main-container">
-      <h1>Citas Médicas</h1>
-
-      <BtnGeneral
-        text="Crear Cita"
-        color="#FFFFFF"
-        bgColor="#1E90FF"
-        handleClick={handleModalToggle}
-        className="open-modal-button"
-      />
-
-      <div className="filter-toggle-container">
-        <BtnGeneral
-          text={showFilters ? 'Cerrar Filtros' : 'Desplegar Filtros'}
-          color="#FFFFFF"
-          bgColor="#1E90FF"
-          handleClick={toggleFilters}
-          className="filter-toggle-button"
-        />
+      <div className="appointment-subdivider">
+        <div className="appointments-count">
+          {monthFilter ? (
+            <p>
+              Tienes un total de {filteredAppointments.length} citas para el mes de{" "}
+              {new Date(0, monthFilter - 1).toLocaleString("es-ES", { month: "long" })}.
+            </p>
+          ) : isImminentFilter ? (
+            <p>Tienes un total de {filteredAppointments.length} citas para los próximos días.</p>
+          ) : (
+            <p>Tienes un total de {filteredAppointments.length} citas.</p>
+          )}
+        </div>
+        <div className="appointment-create-btn">
+          <img
+            src={add}
+            alt="add-appointment"
+            onClick={handleModalToggle}
+            style={{ width: "30px", height: "30px" }}
+          />
+        </div>
+        <div className="appointment-filter-btn">
+          <img
+            src={filter}
+            alt="filter-appointment"
+            onClick={toggleFilters}
+            style={{ width: "27px", height: "27px" }}
+          />
+        </div>
       </div>
-
       {showFilters && (
         <div className="filter-container">
           <select
@@ -163,7 +189,7 @@ const CitasMedicas = () => {
             <option value="">Selecciona un mes</option>
             {Array.from({ length: 12 }, (_, i) => (
               <option key={i} value={i + 1}>
-                {new Date(0, i).toLocaleString('es-ES', { month: 'long' })}
+                {new Date(0, i).toLocaleString("es-ES", { month: "long" })}
               </option>
             ))}
           </select>
@@ -193,48 +219,28 @@ const CitasMedicas = () => {
 
       {loading && <p>Cargando...</p>}
       {error && <p>Error: {error}</p>}
-
-      <div className="appointments-count">
-        {monthFilter ? (
-          <p>
-            Tienes un total de {filteredAppointments.length} citas para el mes de{' '}
-            {new Date(0, monthFilter - 1).toLocaleString('es-ES', { month: 'long' })}.
-          </p>
-        ) : isImminentFilter ? (
-          <p>Tienes un total de {filteredAppointments.length} citas para los próximos días.</p>
+      <div className="appointments-grid">
+        {filteredAppointments.length > 0 ? (
+          filteredAppointments.map((appointment) => {
+            const patient = appointment.patientId || appointment.patient;
+            return (
+              <AppointmentCard
+                key={appointment._id}
+                nombre={`Cita de ${patient.name} ${patient.lastname}`}
+                fecha={formatDateWithLeadingZero(new Date(appointment.date))}
+                estado={appointment.status}
+                onClick={() => handleEditClick(appointment)}
+              />
+            );
+          })
         ) : (
-          <p>Tienes un total de {filteredAppointments.length} citas.</p>
+          <p>No tienes citas para este día o periodo seleccionado.</p>
         )}
-      </div>
-
-      <div className="appointments-scroll-container">
-        <div className="appointments-container">
-          {filteredAppointments.length > 0 ? (
-            filteredAppointments.map((appointment) => {
-              const patient = appointment.patientId || appointment.patient;
-              return (
-                <div
-                  key={appointment._id}
-                  className="appointment-card"
-                  onClick={() => handleEditClick(appointment)}
-                >
-                  <h2>
-                    Cita de {patient.name} {patient.lastname}
-                  </h2>
-                  <p>Fecha: {formatDateWithLeadingZero(new Date(appointment.date))}</p>
-                  <p>Estado: {appointment.status}</p>
-                </div>
-              );
-            })
-          ) : (
-            <p>No tienes citas para este día o periodo seleccionado.</p>
-          )}
-        </div>
       </div>
 
       {showModalCreate && (
         <ModalCreateAppointment
-          doctorId={JSON.parse(localStorage.getItem('user'))._id}
+          doctorId={JSON.parse(localStorage.getItem("user"))._id}
           onClose={handleModalToggle}
         />
       )}

@@ -1,192 +1,241 @@
 .usuarioModalContainer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
 .usuarioModalBackgroundBlur {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .usuarioModalContent {
-    position: relative;
-    width: 90%; /* Ajustar el ancho para que sea más grande */
-    max-width: 900px; /* Aumentar el ancho máximo */
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+  position: relative;
+  width: 90%; /* Ajustar el ancho para que sea más grande */
+  max-width: 420px; /* Aumentar el ancho máximo */
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .usuarioModalHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px;
-    background: #f0f0f0;
-    border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
 }
 
 .usuarioModalTitle {
-    margin: 0;
-    font-size: 24px;
-    font-weight: bold;
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .usuarioCloseButton {
-    background: #FF0000;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 18px;
-    cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ff0000;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 .usuarioModalBody {
-    flex: 1;
-    display: flex;
-    padding: 16px;
-    align-items: flex-start; /* Alinear todo a la izquierda */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  padding-top: 0;
+  align-items: flex-start; /* Alinear todo a la izquierda */
 }
 
 .usuarioInfoContainer {
-    display: flex;
-    justify-content: space-between; /* Espacio entre la información del usuario y la imagen */
-    width: 100%; /* Para que ocupe todo el ancho disponible */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Espacio entre la información del usuario y la imagen */
+  width: 100%; /* Para que ocupe todo el ancho disponible */
+  gap: 15px;
 }
 
 .usuarioInfo {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Alinear la información del usuario a la izquierda */
-    flex: 1; /* Para ocupar espacio a la izquierda */
-    margin-right: 20px; /* Espacio entre la info y la imagen */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinear la información del usuario a la izquierda */
+  width: 100%; /* Para que ocupe todo el ancho disponible */
+  flex: 1; /* Para ocupar espacio a la izquierda */
+  margin-right: 20px; /* Espacio entre la info y la imagen */
 }
 
 .usuarioUsernameWrapper {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .usuarioUsernameInput {
-    margin-right: 8px;
-    padding: 5px;
-    font-size: 16px;
-    background-color: white; /* Cambiar color de fondo a blanco */
-    color: black; /* Asegurar que el texto sea negro para contraste */
-    border: 1px solid #ccc; /* Estilo de borde */
-    border-radius: 4px; /* Bordes redondeados */
+  margin-right: 8px;
+  padding: 5px;
+  font-size: 16px;
+  background-color: white; /* Cambiar color de fondo a blanco */
+  color: black; /* Asegurar que el texto sea negro para contraste */
+  border: 1px solid #ccc; /* Estilo de borde */
+  border-radius: 4px; /* Bordes redondeados */
 }
 
 .usuarioEditIcon {
-    cursor: pointer;
-    color: #555;
+  cursor: pointer;
+  color: #555;
 }
 
 .usuarioProfilePictureContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centrar la foto de perfil */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrar la foto de perfil */
 }
 
 .usuarioProfilePictureWrapper {
-    width: 180px; /* Aumentar tamaño del contenedor */
-    height: 180px; /* Aumentar tamaño del contenedor */
-    border-radius: 50%;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #ffffff; /* Fondo blanco */
-    position: relative;
-    cursor: pointer;
-    margin: 0 auto; /* Centrar el contenedor de la imagen */
+  width: 100px;
+  height: 100px;
+  background-color: #d1edff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  flex-direction: column;
+  color: #999;
+  font-size: 14px;
+  text-align: center;
 }
 
 .usuarioProfilePictureWrapper input[type="file"] {
-    display: none;
+  display: none;
+}
+
+.usuarioProfilePictureWrapper img {
+    width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .usuarioImagePreview {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    position: relative;
-    border-radius: 50%;
-    overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 .usuarioImagePreview img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Mantener proporciones */
-    border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .cameraIcon {
-    font-size: 24px;
-    color: #999999;
+  font-size: 24px;
+  color: #999999;
 }
 
 .usuarioImagePreview p {
-    margin: 0;
-    font-size: 14px;
-    color: #666666;
-    text-align: center;
+  margin: 0;
+  font-size: 14px;
+  color: #666666;
+  text-align: center;
 }
 
 .usuarioConfirmButton {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: rgba(174, 187, 253, 0.9);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 100%; /* Botón ocupa todo el ancho */
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #005bff;
+  font-size: 16px;
+  font-family: "SF Pro Display Medium", sans-serif;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%; /* Botón ocupa todo el ancho */
 }
-
+/* 
 .usuarioConfirmButton:hover {
-    background-color: rgba(174, 187, 253, 0.75);
-}
+  background-color: rgba(174, 187, 253, 0.75);
+} */
 
 .usuarioModalActions {
-    display: flex;
-    justify-content: space-between; /* Espacio entre los botones */
-    margin-top: 20px; /* Espaciado superior entre la información y los botones */
+  display: flex;
+  justify-content: center; /* Espacio entre los botones */
+  flex-direction: row;
+  width: 100%; /* Ajustar ancho */
+  gap: 16px;
+  margin-top: 10px; /* Espaciado superior entre la información y los botones */
 }
 
-.usuarioChangePasswordOpenButton,
-.usuarioDeleteAccountOpenButton {
-    padding: 10px 20px;
-    background-color: rgba(174, 187, 253, 0.9);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 48%; /* Ajustar ancho para que ocupen el espacio */
+.usuarioChangeButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  background-color: #005bff;
+  color: white;
+  border-radius: 15px;
+  border: none;
+  margin-top: 10px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 16px;
+  font-family: "SF Pro Display Medium", sans-serif;
+  transition: background-color 0.3s ease;
 }
 
-.usuarioChangePasswordOpenButton:hover,
-.usuarioDeleteAccountOpenButton:hover {
-    background-color: rgba(174, 187, 253, 0.75);
+.usuarioDeleteButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  background-color: #565656;
+  color: white;
+  border-radius: 15px;
+  border: none;
+  margin-top: 10px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 16px;
+  font-family: "SF Pro Display Medium", sans-serif;
+  transition: background-color 0.3s ease;
 }
- 
+
+.ImageUploadLabel {
+  margin-top: 0;
+}
+
+.userInformation {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}

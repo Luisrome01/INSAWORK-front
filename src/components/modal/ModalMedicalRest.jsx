@@ -152,7 +152,7 @@ const ModalMedicalRest = ({ closeModal }) => {
                 </div>
             </div>
             {isCreateModalOpen && <ModalCreateMedicalRest closeModal={() => setIsCreateModalOpen(false)} />}
-            {isDeleteModalOpen && <ModalConfirmDelete confirmDelete={confirmDelete} closeModal={() => setIsDeleteModalOpen(false)} />}
+            {isDeleteModalOpen && <ModalConfirmDelete onConfirm={confirmDelete} onCancel={() => setIsDeleteModalOpen(false)} />}
         </div>
     );
 }; 

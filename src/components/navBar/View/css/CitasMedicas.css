@@ -1,55 +1,54 @@
 /* Estilo del contenedor principal */
 .appointments-main-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    background-color: #f0f0f0; /* Fondo claro para contraste */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
 }
 
 /* Estilo del título */
 .appointments-main-container h1 {
-    font-size: 2rem;
-    color: #333; /* Color del texto */
-    margin-bottom: 20px;
+  font-size: 2rem;
+  color: #333; /* Color del texto */
+  margin-bottom: 20px;
 }
 
 /* Estilo del botón para desplegar filtros */
 .toggle-filters {
-    background-color: rgba(174, 187, 253, 0.9); /* Color solicitado */
-    color: #000;
-    border: none;
-    border-radius: 5px; 
-    padding: 10px 15px;
-    font-size: 1rem;
-    cursor: pointer;
-    margin-bottom: 15px;
-    transition: background-color 0.3s;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra para mayor profundidad */
+  background-color: rgba(174, 187, 253, 0.9); /* Color solicitado */
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 15px;
+  transition: background-color 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra para mayor profundidad */
 }
 
 .toggle-filters:hover {
-    background-color: rgba(150, 170, 230, 0.9); /* Color más oscuro al pasar el mouse */
+  background-color: rgba(150, 170, 230, 0.9); /* Color más oscuro al pasar el mouse */
 }
 
 /* Contenedor para los filtros */
 .filter-container {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
 /* Estilo del botón para cerrar filtros */
 .close-filters {
-    background-color: transparent;
-    border: none;
-    color: #000;
-    cursor: pointer;
-    align-self: flex-end; /* Alinear a la derecha */
-    font-size: 1.2rem;
-    margin-bottom: 10px; /* Espacio entre el botón y los filtros */
+  background-color: transparent;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  align-self: flex-end; /* Alinear a la derecha */
+  font-size: 1.2rem;
+  margin-bottom: 10px; /* Espacio entre el botón y los filtros */
 }
 
 /* Estilo del input de fecha y texto */
@@ -57,82 +56,130 @@
 .filter-container input[type="text"],
 .filter-container input[type="number"],
 .filter-container select {
-    background-color: #fff;
-    color: #000;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px 15px;
-    font-size: 1rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: border-color 0.3s; /* Transición suave al enfocar */
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s; /* Transición suave al enfocar */
 }
 
 .filter-container input[type="date"]:focus,
 .filter-container input[type="text"]:focus,
 .filter-container input[type="number"]:focus,
 .filter-container select:focus {
-    border-color: rgba(174, 187, 253, 0.9); /* Cambio de color al enfocar */
-}
-
-/* Estilo del contenedor de scroll */
-.appointments-scroll-container {
-    max-height: 60vh; /* Ajusta la altura máxima */
-    overflow-y: auto; /* Scroll solo en el eje Y */
-    width: 100%; /* Asegura que tome el 100% del ancho disponible */
-    background-color: #ffffff; /* Fondo blanco para las citas */
-    padding: 10px;
-    border-radius: 5px; /* Bordes redondeados */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-color: rgba(174, 187, 253, 0.9); /* Cambio de color al enfocar */
 }
 
 /* Estilo del contenedor de citas */
 .appointments-container {
-    display: flex;
-    flex-direction: column; /* Alineación vertical */
-    gap: 20px; /* Espaciado entre citas */
-    padding: 20px;
+  display: flex;
+  flex-direction: column; /* Alineación vertical */
+  gap: 20px; /* Espaciado entre citas */
+  padding: 20px;
 }
 
 /* Estilo de las tarjetas de citas */
 .appointment-card {
-    background-color: #ffffff; /* Fondo blanco para las tarjetas */
-    border: 1px solid #ddd; /* Borde más claro */
-    border-radius: 8px;
-    padding: 15px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    min-width: 220px; /* Tamaño mínimo de las tarjetas */
-    transition: transform 0.3s; /* Efecto al pasar el mouse */
-    cursor: pointer; /* Cambia a la mano al hacer hover */
+  background-color: #ffffff; /* Fondo blanco para las tarjetas */
+  border: 1px solid #ddd; /* Borde más claro */
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 220px; /* Tamaño mínimo de las tarjetas */
+  transition: transform 0.3s; /* Efecto al pasar el mouse */
+  cursor: pointer; /* Cambia a la mano al hacer hover */
 }
 
 .appointment-card:hover {
-    transform: scale(1.02); /* Efecto de ampliación */
-    background-color: rgba(174, 187, 253, 0.8); /* Cambiar color al hacer hover */
+  transform: scale(1.02); /* Efecto de ampliación */
+  background-color: rgba(174, 187, 253, 0.8); /* Cambiar color al hacer hover */
 }
 
 /* Estilo del botón para abrir el modal */
 .open-modal-button {
-    padding: 10px 15px;
-    background-color: #28a745; /* Verde */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  padding: 10px 15px;
+  background-color: #28a745; /* Verde */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .open-modal-button:hover {
-    background-color: #218838; /* Verde más oscuro */
+  background-color: #218838; /* Verde más oscuro */
 }
 
-/* Estilo del contador de citas */
+.appointments-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+.appointment-subdivider {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  width: 95%;
+  padding: 20px;
+  gap: 15px;
+}
+
 .appointments-count {
-    margin: 20px 0;
-    font-size: 1.2rem;
-    color: #333; /* Color del texto */
+  display: flex;
+  align-items: center;
+  width: 90%;
+  height: 50px;
+  left: 509px;
+  top: 205px;
+  background: #f4f2f2;
+  border-radius: 15px;
+}
+
+.appointments-count p {
+  display: flex;
+  margin-left: 20px;
+}
+
+.appointment-create-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background: #f4f2f2;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.appointment-filter-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background: #f4f2f2;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.appointment-create-btn:hover {
+  transition: transform 0.3s ease;
+  transform: scale(0.85);
+}	
+
+.appointment-filter-btn:hover {
+    transition: transform 0.3s ease;
+    transform: scale(0.85);
 }
