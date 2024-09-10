@@ -28,13 +28,13 @@ const Reportes = ({ listaCitas, setListaCitasExterna }) => {
                     className="card-reportes"
                     onClick={() => setIsModalReportsOpen(true)}
                 >
-                    Abrir Modal Reportes
+                    Reportes Medicos
                 </div>
                 <div 
                     className="card-reportes"
                     onClick={() => setIsModalAptitudeOpen(true)}
                 >
-                    Abrir Modal Aptitude
+                    Solicitud de Servicios Medicos
                 </div>
             </div>
 

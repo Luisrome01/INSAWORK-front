@@ -56,7 +56,7 @@
 }
 
 .paciente-modal-close-button {
-    background-color: #dc3545; /* Rojo para el botón de cerrar */
+    background-color: red; /* Rojo para el botón de cerrar */
     color: #fff; /* Blanco para el texto del botón de cerrar */
 }
 
@@ -144,4 +144,22 @@
 
 .paciente-modal .paciente-modal-cancel-button:hover {
     background-color: #c82333; /* Rojo más oscuro al pasar el mouse */
+}
+.paciente-modal-open-history-button {
+    background-color: #007bff; /* Color de fondo azul */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 10px 20px; /* Espaciado interno */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+    font-size: 16px; /* Tamaño de fuente */
+    transition: background-color 0.3s; /* Transición suave para el color de fondo */
+}
+
+.paciente-modal-open-history-button:hover {
+    background-color: #0056b3; /* Color de fondo al pasar el mouse */
+}
+
+.paciente-modal-open-history-button:active {
+    background-color: #004494; /* Color de fondo al hacer clic */
 }

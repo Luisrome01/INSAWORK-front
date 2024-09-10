@@ -21,7 +21,7 @@ const ModalUserInfo = ({ userId, closeModal }) => {
         inscripcionCM: 'Inscripción del Colegio de Médicos',
         registro: 'Registro del Inpsasel',
     };
-
+ 
     useEffect(() => {
         const fetchUserInfo = async () => {
             try {

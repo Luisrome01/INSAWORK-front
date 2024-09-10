@@ -11,7 +11,7 @@ const ModalPaciente = ({ patient, closeModal, onUpdateSuccess }) => {
     const [isHistoriaModalOpen, setIsHistoriaModalOpen] = useState(false);
     
     useEffect(() => {
-        // Fetch companies from the backend
+        // Fetch companies from the backend 
         const fetchCompanies = async () => {
             try {
                 const response = await fetch('https://insawork.onrender.com/company');

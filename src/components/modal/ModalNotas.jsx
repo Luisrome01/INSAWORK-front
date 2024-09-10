@@ -11,7 +11,7 @@ const ModalNotas = ({ doctorId, onClose }) => {
     const [editingNoteContent, setEditingNoteContent] = useState("");
     const [confirmDeleteId, setConfirmDeleteId] = useState(null);
 
-    useEffect(() => {
+    useEffect(() => { 
         fetchNotes();
     }, []);
 

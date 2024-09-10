@@ -72,11 +72,22 @@
 .inputContainer input {
     width: 100%;
     padding: 8px;
-    border: 1px solid #ddd;
+    border: 1px solid black; /* Borde negro */
     border-radius: 4px;
+    background-color: white; /* Fondo blanco */
 }
 
-.createButton {
+/* Estilo específico para los inputs de tipo date */
+.inputContainer input[type="date"] {
+    padding-right: 30px; /* Espacio para el icono */
+}
+
+/* Cambiar color del icono de los inputs de tipo date */
+.inputContainer input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0%); /* Cambiar a color negro */
+}
+
+.createButton { 
     width: 100%;
     height: 40px;
     color: white;
@@ -88,4 +99,3 @@
     display: block;
     margin: 20px auto 0; /* Centra el botón y agrega espacio superior */
 }
- 

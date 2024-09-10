@@ -62,7 +62,7 @@ const ModalCreateAptitude = ({ closeModal }) => {
             <div className="modalCreateAptitudeBox">
                 <div className="modalHeader">
                     <h2>Crear Prueba de Aptitud</h2>
-                    <button className="modalCloseButton" onClick={() => closeModal(false)}>X</button>
+                    <button className="modalCloseButtonn" onClick={() => closeModal(false)}>X</button>
                 </div>
                 <div className="modalBody">
                     <div className="formGroup">

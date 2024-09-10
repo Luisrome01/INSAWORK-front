@@ -14,7 +14,7 @@
 .modal-notes-container {
     background: white;
     border-radius: 8px;
-    padding: 20px;
+    padding: 20px; 
     max-width: 600px;
     width: 100%;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -82,7 +82,7 @@
 .modal-notes-create-button {
     padding: 10px 15px;
     border-radius: 4px;
-    background-color: rgba(100, 120, 200, 0.9);
+    background-color: #005bff;
     color: white;
     border: none;
     cursor: pointer;
@@ -134,15 +134,15 @@
 }
 
 .modal-notes-edit-button { 
-    color: black;
+    color: #005bff;
 }
 
 .modal-notes-edit-button:hover {
-    color: rgba(100, 120, 200, 1);
+    color: #005bff;
 }
 
 .modal-notes-delete-button {
-    color: #dc3545;
+    color: #000000;
 }
 
 .modal-notes-delete-button:hover {
@@ -150,7 +150,7 @@
 }
 
 .modal-notes-save-button {
-    color: rgba(100, 120, 200, 0.9);
+    color: #005bff;
 }
 
 .modal-notes-save-button:hover {

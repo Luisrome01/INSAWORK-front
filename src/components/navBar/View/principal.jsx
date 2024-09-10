@@ -93,7 +93,7 @@ const Principal = () => {
             }
             const data = await response.json();
             setNotes(data);
-        } catch (error) {
+        } catch (error) { 
             console.error(error);
         }
     };
@@ -168,16 +168,15 @@ const Principal = () => {
                     }} 
                 />
             )}
-            {showModalAppointment && (
-                <ModalCreateAppointment 
-                    key={showModalAppointment ? 'open' : 'close'} 
-                    doctorId={doctorId} 
-                    onClose={() => {
-                        handleCloseModalAppointment();
-                        setTimeout(() => setShowModalAppointment(false), 100);
-                    }} 
-                />
-            )}
+           {showModalAppointment && (
+    <ModalCreateAppointment 
+        doctorId={doctorId} 
+        onClose={() => {
+            handleCloseModalAppointment(); 
+            setShowModalAppointment(false); 
+        }} 
+    />
+)}
             {showModalNotas && (
                 <ModalNotas 
                     doctorId={doctorId} 

@@ -140,13 +140,13 @@
 }
 
 .deleteMedicineButton {
-    background: none; /* Sin fondo */
-    border: none; /* Sin borde */
-    cursor: pointer; /* Cursor de puntero */
-    color: rgba(0, 0, 0, 0.75); /* Color igual al del scrollbar */
-    font-size: 16px; /* Tamaño de fuente */
+    background: none; 
+    border: none; 
+    cursor: pointer; 
+    color: rgba(0, 0, 0, 0.75); 
+    font-size: 16px; 
 }
-
+ 
 .deleteMedicineButton:hover {
     color: rgba(255, 0, 0, 0.9); /* Color más oscuro al pasar el ratón */
 }

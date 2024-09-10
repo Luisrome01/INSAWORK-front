@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { FaTrash, FaTimes } from 'react-icons/fa';
+import { FaTrashAlt, FaTimes } from 'react-icons/fa';
 import './css/ModalCreateCompany.css';
 
 const ModalCreateCompany = ({ onClose }) => {
     const [companyData, setCompanyData] = useState({
         name: '',
         email: '',
-        phone: '',
+        phone: '', 
         address: '',
         rif: ''
     });
@@ -107,7 +107,7 @@ const ModalCreateCompany = ({ onClose }) => {
                                         <span>Dirección: {company.address}</span>
                                         <span>RIF: {company.rif}</span>
                                     </div>
-                                    <FaTrash 
+                                    <FaTrashAlt 
                                         className="delete-icon"
                                         onClick={() => handleDeleteCompany(company._id)}
                                     />

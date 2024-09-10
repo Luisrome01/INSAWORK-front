@@ -23,7 +23,7 @@ const ModalCreateAppointment = ({ doctorId }) => {
 
     useEffect(() => {
         const fetchPatients = async () => {
-            try {
+            try { 
                 const response = await fetch(`https://insawork.onrender.com/patients/${doctorId}`);
                 const data = await response.json();
                 setPatients(data);

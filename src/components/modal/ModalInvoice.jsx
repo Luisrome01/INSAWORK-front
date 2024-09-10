@@ -21,7 +21,7 @@ const ModalInvoice = ({ closeModal }) => {
       document.body.style.overflow = "auto";
     };
   }, [showCreateInvoiceModal]);
-
+ 
   useEffect(() => {
     const doctorId = JSON.parse(localStorage.getItem("user"))._id;
 
@@ -154,7 +154,7 @@ const ModalInvoice = ({ closeModal }) => {
                         </p>
                       </div>
                       <FaTrashAlt
-                        className="deleteIcon"
+                        className="deleteIconn"
                         onClick={(e) => {
                           e.stopPropagation();
                           handleDeleteClick(invoice._id);
