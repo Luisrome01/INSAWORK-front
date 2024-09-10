@@ -99,9 +99,9 @@
 }
 
 .expand-toggle {
-    background-color: rgba(150, 170, 240, 0.75);
+    background-color: #007bff;
     color: rgb(255, 255, 255);;
-    border: 1px solid rgba(150, 170, 240, 0.75);;
+    border: 1px solid #007bff;
     padding: 10px;
     cursor: pointer;
     margin-bottom: 10px;
@@ -110,7 +110,7 @@
 }
 
 .expand-toggle:hover {
-    background-color: rgba(150, 170, 240, 0.75);
+    background-color: #0056b3;
     color: white;
 }
 
@@ -129,7 +129,7 @@
   }
   
   .treatment-item:hover {
-    background-color: rgba(150, 170, 240, 0.75); /* Cambia el color de fondo al hacer hover */
+    background-color: #aee4fd; /* Cambia el color de fondo al hacer hover */
   }
 
 .treatment-item.selected {
@@ -164,7 +164,7 @@
 }
 
 .create-treatment-btn:hover {
-    background-color: rgba(150, 170, 240, 0.75);
+    background-color: #aee4fd;
     color: white;
 }
 
@@ -172,7 +172,7 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
-    color: #ff0000; 
+    color: #000000; 
     transition: color 0.3s ease;
     width: 100%; /* Ocupa todo el ancho disponible */
     text-align: right; 
@@ -210,7 +210,7 @@
     cursor:pointer;
   }
   .external-exam-item:hover {
-    background-color: rgba(150, 170, 240, 0.75); /* Cambia el color de fondo al hacer hover */
+    background-color: #aee4fd; /* Cambia el color de fondo al hacer hover */
   }
   .external-exams-actions {
     margin-top: 20px;
@@ -255,7 +255,7 @@
 
 
   .historia-modal-actions button {
-    background-color: #AEBBFD; /* Color especificado */
+    background-color: #007bff; /* Color especificado */
     color: rgb(255, 255, 255);
     border: none;
     padding: 10px 20px;
@@ -264,5 +264,6 @@
   }
   
   .historia-modal-actions button:hover {
-    background-color: #9AB0F2; /* Color más oscuro para el hover (opcional) */
+    background-color:  #0056b3;
+    ; /* Color más oscuro para el hover (opcional) */
   }

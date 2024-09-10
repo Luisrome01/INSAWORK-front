@@ -12,7 +12,7 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 15px;
     height: 30%; /* Ocupar el 30% de la altura total */
-    width: 100%;
+    width: 100%; 
     margin-bottom: 0; /* Eliminamos el margen para que no haya espacio extra */
 }
 
@@ -54,8 +54,7 @@
     margin-top: 0; /* Eliminamos el margen superior para que los contenedores estén pegados a las tarjetas */
 }
 
-.imminentAppointmentsContainer,
-.notesContainer {
+.imminentAppointmentsContainer {
     background: rgba(217, 217, 217, 0.58);
     border: 1px solid white;
     box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
@@ -73,39 +72,67 @@
     text-align: center; /* Centrar el texto dentro del contenedor */
 }
 
-.imminentAppointmentsContainer,
-.notesContainer {
+.imminentAppointmentsContainer{
     height: 100%; /* Ambos contenedores ocupan el 100% de su contenedor padre */
 }
 
-/* Estilo para el scrollbar transparente */
-.imminentAppointmentsContainer::-webkit-scrollbar,
+.imminentAppointmentsContainer::-webkit-scrollbar {
+    width: 8px; /* Ancho del scrollbar */
+}
+
+.imminentAppointmentsContainer::-webkit-scrollbar-thumb {
+    background: transparent; /* Color del scrollbar completamente transparente */
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+
+
+.notesContainer {
+    background: rgba(217, 217, 217, 0.58);
+    border: 1px solid white;
+    box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(6px);
+    border-radius: 17px;
+    display: flex;
+    flex-direction: column; /* Mantener la dirección vertical */
+    padding: 20px;
+    margin-top: 15px; /* Para espaciar del contenedor de las tarjetas */
+    overflow-y: auto; /* Agregar scroll vertical */
+    height: 100%; /* Mantener altura original */
+    flex: 1; 
+    cursor: pointer;
+    word-wrap: break-word; 
+    text-align: center; 
+    align-items: center; /* Centrar elementos en el eje horizontal */
+}
+
+.notesContainer h2 {
+    margin: 0; /* Eliminar márgenes para que esté centrado */
+    font-weight: bolder; /* Negrita para el título */
+    color: black;
+    font-size: 24px; /* Ajusta el tamaño según prefieras */
+}
+
+.notesContainer p {
+    margin: 5px 0; /* Espaciado entre el título y el mensaje */
+    font-weight: bold; /* Negrita para el mensaje */
+    color: black; /* Color del texto */
+    font-size: 18px; /* Ajusta el tamaño según prefieras */
+}
+
 .notesContainer::-webkit-scrollbar {
     width: 8px; /* Ancho del scrollbar */
 }
 
-.imminentAppointmentsContainer::-webkit-scrollbar-thumb,
 .notesContainer::-webkit-scrollbar-thumb {
     background: transparent; /* Color del scrollbar completamente transparente */
     border-radius: 10px; /* Bordes redondeados */
 }
 
-.imminentAppointmentsContainer::-webkit-scrollbar-thumb:hover,
 .notesContainer::-webkit-scrollbar-thumb:hover {
     background: #aee4fd; /* Color al pasar el mouse, puedes ajustar esto */
 }
 
-.notesContainer {
-    display: flex;
-    align-items: flex-start; /* Alinear al inicio para permitir el crecimiento hacia abajo */
-    justify-content: flex-start; /* Alinear al inicio para permitir el crecimiento hacia abajo */
-    font-weight: bolder;
-    color: black;
-    font-size: 18px;
-    max-width: 100%; /* Asegura que no se expanda más allá de su contenedor */
-    overflow-wrap: break-word; /* Asegura que palabras largas se dividan */
-    word-wrap: break-word; /* Compatibilidad adicional */
-}
 
 /* Cada tarjeta de cita */
 .appointment-card {

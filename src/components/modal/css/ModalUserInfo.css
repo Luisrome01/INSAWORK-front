@@ -8,7 +8,7 @@
     right: 0;
     bottom: 0;
     z-index: 1000;
-    background-color: rgba(0, 0, 0, 0.7); /* Fondo más oscuro para mejorar la legibilidad */
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 .userInfoModalBackgroundBlur {
@@ -17,7 +17,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    cursor: pointer; /* Cambiar el cursor al pasar sobre el fondo */
+    cursor: pointer;
 }
 
 .userInfoModalContent {
@@ -26,8 +26,15 @@
     padding: 20px;
     width: 90%;
     max-width: 500px;
+    max-height: 80%; /* Ajusta la altura máxima */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    position: relative; /* Necesario para el botón de cerrar */
+    position: relative;
+    overflow-y: auto; /* Permite el scroll vertical */
+    scrollbar-width: none; /* Para navegadores Firefox */
+}
+
+.userInfoModalContent::-webkit-scrollbar {
+    display: none; /* Para navegadores WebKit (Chrome, Safari) */
 }
 
 .userInfoModalHeader {
@@ -52,11 +59,11 @@
     height: 35px;
     font-size: 16px;
     cursor: pointer;
-    transition: background 0.3s; /* Efecto suave al pasar el ratón */
+    transition: background 0.3s;
 }
 
 .userInfoCloseButton:hover {
-    background: #e60000; /* Color de fondo más oscuro al pasar el ratón */
+    background: #e60000;
 }
 
 .userInfoModalBody {
@@ -71,20 +78,20 @@
 .userInfoField label {
     display: block;
     margin-bottom: 5px;
-    font-weight: 600; /* Negrita para los labels */
+    font-weight: 600;
 }
 
 .userInfoInputField {
     width: 100%;
-    padding: 8px; /* Padding más grande para una mejor experiencia */
-    font-size: 16px; /* Tamaño de fuente más grande */
+    padding: 8px;
+    font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    background-color: white; /* Asegurando que el fondo sea blanco */
+    background-color: white;
 }
 
 .userInfoFileInput {
-    display: none; /* Ocultar el input de archivo */
+    display: none;
 }
 
 .userInfoSubmitButton {
@@ -102,13 +109,13 @@
     background-color: rgba(150, 170, 240, 0.9);
 }
 
-.userInfoFirmaImage {
-    width: 200px; /* Ancho horizontal */
-    height: 100px; /* Alto más pequeño */
-    border-radius: 8px; /* Bordes redondeados */
-    object-fit: cover; /* Para que la imagen se ajuste al contenedor sin distorsionarse */
-    cursor: pointer; /* Cambia el cursor al pasar sobre la imagen */
+.userInfoFirmaImage { 
+    width: 200px; 
+    height: 100px; 
+    border-radius: 8px; 
+    object-fit: cover; 
+    cursor: pointer; 
     display: block;
     margin: 0 auto;
-    border: 2px solid #ccc; /* Añadir un borde gris claro */
+    border: 2px solid #ccc; 
 }

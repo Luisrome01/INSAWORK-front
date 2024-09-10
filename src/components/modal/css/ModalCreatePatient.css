@@ -38,7 +38,7 @@
 }
 
 .modal-create-patient-close-button {
-    background: #e74c3c;
+    background: red;
     color: white;
     border: none;
     width: 40px;

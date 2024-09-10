@@ -32,7 +32,7 @@ const ModalCreateMedicalRest = ({ closeModal }) => {
             fecha_final: fechaFinal,
             comentarios
         };
-
+ 
         try {
             const response = await fetch("https://insawork.onrender.com/create-medical-rest", {
                 method: "POST",

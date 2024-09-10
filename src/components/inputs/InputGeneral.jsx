@@ -43,6 +43,7 @@ const InputGeneral = ({
           value={value}
           onChange={onChange}
           className="InputGeneral"
+          
           onKeyDown={(event) => {
             if (event.key === "Enter" && typeof onEnter === "function") {
               onEnter();

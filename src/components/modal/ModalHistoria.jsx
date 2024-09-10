@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./css/modalHistoria.css";
-import { FaTrash } from 'react-icons/fa';
+import { FaTrashAlt } from 'react-icons/fa';
 import ModalCreateTreatment from './ModalCreateTreatment';
 import ModalExternalExam from './ModalExternalExam';
 import ModalCreateExternalExam from './ModalCreateExternalExam';
@@ -491,7 +491,7 @@ useEffect(() => {
                                 className="delete-treatment-btn"
                                 onClick={() => handleDeleteTreatment(treatment._id)}
                               >
-                                <FaTrash />
+                                <FaTrashAlt />
                               </button>
                             </div>
                             <div><strong>Dosis:</strong> {treatment.dose || 'No disponible'}</div>
@@ -565,7 +565,7 @@ useEffect(() => {
                   handleDeleteExternalExam(exam._id);
                 }}
               >
-                <FaTrash />
+                <FaTrashAlt />
               </button>
             </li>
           ))}
