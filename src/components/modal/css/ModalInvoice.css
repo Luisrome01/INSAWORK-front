@@ -133,12 +133,24 @@ body.modal-open {
   background-color: #aee4fd;
 }
 
-.deleteIcon {
-  cursor: pointer;
-  color: red;
+.deleteIconn { 
+  background: none; 
+  border: none; 
+  cursor: pointer; 
+  color: rgba(0, 0, 0, 0.75); 
   font-size: 20px;
   position: absolute;
   right: 10px;
+}
+
+
+
+  
+  
+
+
+.deleteIconn:hover {
+  color: rgba(255, 0, 0, 0.9); 
 }
 
 .itemSeparator {

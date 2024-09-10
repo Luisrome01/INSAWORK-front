@@ -86,7 +86,7 @@
     font-size: 18px;
     margin-right: 16px;
 }
-
+ 
 .createRestButton {
     background: rgb(0, 91, 255);
     color: white;
@@ -147,7 +147,7 @@
     top: 10px;
     right: 10px;
     cursor: pointer;
-    color: red;
+    color: rgb(0, 0, 0);
     font-size: 20px;
     transition: transform 0.2s;
     border: none;
@@ -157,4 +157,5 @@
 
 .deleteButton:hover {
     transform: scale(1.1);
+   color: red;
 }

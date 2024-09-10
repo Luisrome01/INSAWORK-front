@@ -14,7 +14,7 @@ const ModalAptitude = ({ closeModal }) => {
     const [selectedAptitudeId, setSelectedAptitudeId] = useState(null);
 
     // Fetch aptitude proofs when the component mounts
-    useEffect(() => {
+    useEffect(() => { 
         const doctorId = JSON.parse(localStorage.getItem('user'))._id;
 
         fetch(`https://insawork.onrender.com/aptitudeproofs/${doctorId}`)
@@ -111,7 +111,7 @@ const ModalAptitude = ({ closeModal }) => {
                 <div className="modalBody">
                     <div className="modalBodyContainer">
                         <div className="modalSearchContainer">
-                            <p className="searchTitle">Buscar Prueba de Aptitud:</p>
+                            <p className="searchTitle"> Prueba de Aptitud</p>
                             <InputBusqueda
                                 width="250px"
                                 height="40px"

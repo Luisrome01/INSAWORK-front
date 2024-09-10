@@ -16,7 +16,7 @@ const ModalMedicalRest = ({ closeModal }) => {
     // Fetch reposos médicos
     useEffect(() => {
         const doctorId = JSON.parse(localStorage.getItem('user'))._id;
-
+ 
         fetch(`https://insawork.onrender.com/getall-medical-rest/${doctorId}`)
             .then(response => response.json())
             .then(data => {

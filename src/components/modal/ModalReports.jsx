@@ -17,7 +17,7 @@ const ModalReports = ({ closeModal }) => {
     useEffect(() => {
         const doctorId = JSON.parse(localStorage.getItem('user'))._id;
 
-        fetch(`https://insawork.onrender.com/reports/${doctorId}`)
+        fetch(`https://insawork.onrender.com/reports/${doctorId}`) 
             .then(response => response.json())
             .then(data => {
                 setData(data);
@@ -93,7 +93,7 @@ const ModalReports = ({ closeModal }) => {
             <div className="modalReportsBackgroundBlur"></div>
             <div className="modalReportsContent">
                 <div className="modalHeader">
-                    <p className="searchTitle">Cerrar Reportes Médicos:</p>
+                    <p className="searchTitle">Reportes Médicos</p>
                     <button
                         className="closeButton"
                         onClick={() => closeModal(false)}
@@ -135,7 +135,7 @@ const ModalReports = ({ closeModal }) => {
                                             <p><strong>Fecha:</strong> {new Date(report.fecha_reporte).toLocaleDateString()}</p>
                                         </div>
                                         <FaTrashAlt
-                                            className="deleteIcon"
+                                            className="deleteIconn"
                                             onClick={() => handleDeleteClick(report._id)}
                                         />
                                         <hr className="itemSeparator" />
