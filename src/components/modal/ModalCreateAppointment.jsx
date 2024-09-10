@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./css/ModalCreateAppointment.css";
 import MessageBar, { showErrorMessage, showSuccessMessage } from "../messageBar/MessageBar";
+import { FaTimes } from 'react-icons/fa';
 
 const ModalCreateAppointment = ({ doctorId }) => {
     const [patients, setPatients] = useState([]);
@@ -136,8 +137,8 @@ const ModalCreateAppointment = ({ doctorId }) => {
             <div className="createAppointmentModalContent">
                 <div className="createAppointmentModalHeader">
                     <h2 className="createAppointmentModalTitle">Crear Cita</h2>
-                    <button className="createAppointmentCloseButton" onClick={handleCloseModal}>
-                        X
+                    <button className="usuarioCloseButton" onClick={handleCloseModal}>
+                        <FaTimes />
                     </button>
                 </div>
                 <div className="createAppointmentModalBody">
@@ -152,7 +153,7 @@ const ModalCreateAppointment = ({ doctorId }) => {
                                 onChange={(e) => setFilter(e.target.value)}
                                 className="createAppointmentFilterInput"
                             />
-                            <ul className="patientList" style={{ maxHeight: "200px", overflowY: "scroll" }}>
+                            <ul className="patientList" style={{ maxHeight: "220px", overflowY: "scroll", marginTop: '20px' }}>
                                 {filteredPatients.map(patient => (
                                     <li key={patient._id} onClick={() => handlePatientSelect(patient)}>
                                         {patient.name} {patient.lastname} - {patient.cedula}
@@ -162,8 +163,8 @@ const ModalCreateAppointment = ({ doctorId }) => {
                         </>
                     ) : (
                         <>
-                            <h3>Detalles de la Cita para {selectedPatient.name}:</h3>
-                            <label>
+                            <h3 className="name-details">Detalles de la Cita para {selectedPatient.name}:</h3>
+                            <label className="labelSpacing">
                                 Fecha:
                                 <input 
                                     type="date"
@@ -172,7 +173,7 @@ const ModalCreateAppointment = ({ doctorId }) => {
                                     className="createAppointmentInputField"
                                 />
                             </label>
-                            <label>
+                            <label className="labelSpacing">
                                 Hora:
                                 <input 
                                     type="text"
@@ -183,7 +184,7 @@ const ModalCreateAppointment = ({ doctorId }) => {
                                     maxLength="5" // Limitar a 5 caracteres (HH:MM)
                                 />
                             </label>
-                            <label>
+                            <label className="labelSpacing">
                                 Motivo:
                                 <input 
                                     type="text"

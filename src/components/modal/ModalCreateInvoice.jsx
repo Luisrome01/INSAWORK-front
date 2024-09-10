@@ -1,33 +1,35 @@
 import React, { useState, useEffect } from "react";
 import "./css/ModalCreateInvoice.css";
-import { FaArrowLeft } from 'react-icons/fa';
+import { FaArrowLeft, FaTimes } from "react-icons/fa";
 
 // Función para buscar pacientes
 const searchPatients = async (query, doctorId) => {
   try {
-    const response = await fetch(`https://insawork.onrender.com/patients/${doctorId}?query=${query}`);
-    if (!response.ok) throw new Error('Error fetching patients');
+    const response = await fetch(
+      `https://insawork.onrender.com/patients/${doctorId}?query=${query}`
+    );
+    if (!response.ok) throw new Error("Error fetching patients");
     return response.json();
   } catch (error) {
     console.error(error);
     return [];
-  } 
+  }
 };
 
 // Función para enviar la factura al backend
 const createInvoice = async (invoiceData) => {
   try {
-    const response = await fetch('https://insawork.onrender.com/invoices', {
-      method: 'POST',
+    const response = await fetch("https://insawork.onrender.com/invoices", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(invoiceData),
     });
-    if (!response.ok) throw new Error('Error creating invoice');
+    if (!response.ok) throw new Error("Error creating invoice");
     const blob = await response.blob();
     const url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = url;
     link.download = `factura_${invoiceData.nombre_razon}.pdf`;
     document.body.appendChild(link);
@@ -58,7 +60,7 @@ const ModalCreateInvoice = ({ closeModal }) => {
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    const doctorId = JSON.parse(localStorage.getItem('user'))._id;
+    const doctorId = JSON.parse(localStorage.getItem("user"))._id;
     if (searchQuery.length > 1) {
       // Solo buscar si la consulta tiene más de un carácter
       searchPatients(searchQuery, doctorId).then(setPatients);
@@ -96,7 +98,7 @@ const ModalCreateInvoice = ({ closeModal }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const doctorId = JSON.parse(localStorage.getItem('user'))._id;
+    const doctorId = JSON.parse(localStorage.getItem("user"))._id;
     const invoiceData = { ...formData, doctorId };
     createInvoice(invoiceData);
   };
@@ -107,8 +109,8 @@ const ModalCreateInvoice = ({ closeModal }) => {
       <div className="modalCreateInvoiceContent">
         <div className="modalCreateInvoiceHeader">
           <h2>Crear Factura</h2>
-          <button className="closeButton" onClick={() => closeModal()}>
-            X
+          <button className="usuarioCloseButton"onClick={() => closeModal()}>
+            <FaTimes />
           </button>
         </div>
         <div className="modalCreateInvoiceBody">
@@ -120,8 +122,12 @@ const ModalCreateInvoice = ({ closeModal }) => {
                   <button type="button" className="backButton" onClick={handlePatientDeselect}>
                     <FaArrowLeft />
                   </button>
-                  <p><strong>Paciente Seleccionado:</strong></p>
-                  <p>{selectedPatient.name} {selectedPatient.lastname}</p>
+                  <p>
+                    <strong>Paciente Seleccionado:</strong>
+                  </p>
+                  <p>
+                    {selectedPatient.name} {selectedPatient.lastname}
+                  </p>
                 </div>
               ) : (
                 <div className="searchContainer">
@@ -134,7 +140,7 @@ const ModalCreateInvoice = ({ closeModal }) => {
                   {patients.length > 0 && (
                     <div className="patientDropdown">
                       <ul className="patientList">
-                        {patients.map(patient => (
+                        {patients.map((patient) => (
                           <li key={patient._id} onClick={() => handlePatientSelect(patient)}>
                             {patient.name} {patient.lastname} - {patient.cedula}
                           </li>
@@ -226,7 +232,9 @@ const ModalCreateInvoice = ({ closeModal }) => {
                 required
               />
             </div>
-            <button type="submit" className="submitButton">Crear Factura</button>
+            <button type="submit" className="submitButton">
+              Crear Factura
+            </button>
           </form>
         </div>
       </div>

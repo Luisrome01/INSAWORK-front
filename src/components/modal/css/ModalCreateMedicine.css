@@ -24,8 +24,8 @@
     width: 100%;
     max-width: 600px; /* Tamaño máximo del modal */
     background: white;
-    border-radius: 8px;
-    padding: 30px; /* Padding aumentado */
+    border-radius: 15px;
+    padding: 20px; /* Padding aumentado */
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
@@ -38,9 +38,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-    background-color: #f0f0f0;
-    padding: 10px;
     border-radius: 4px;
 }
 
@@ -85,7 +82,7 @@
 }
 
 .medicineList::-webkit-scrollbar-thumb {
-    background-color: rgba(150, 170, 240, 0.75); /* Color del scrollbar */
+    background-color: #005bff; /* Color del scrollbar */
     border-radius: 4px; /* Bordes redondeados para el scrollbar */
 }
 
@@ -126,19 +123,20 @@
 }
 
 .createMedicineSubmitButton,
-.createMedicineToggleFormButton {
+.createMedicineToggleFormButton,
+.createMedicineCloseFormButton {
     padding: 12px; /* Padding aumentado */
-    background-color: rgba(150, 170, 240, 0.75); /* Color del botón */
+    background-color: #005bff; /* Color del botón */
     color: white;
     border: none;
-    border-radius: 4px;
+    margin-top: 10px;
+    border-radius: 15px;
     cursor: pointer;
     font-size: 16px;
 }
 
-.createMedicineSubmitButton:hover,
-.createMedicineToggleFormButton:hover {
-    background-color: rgba(100, 120, 200, 0.9); /* Color más oscuro al pasar el ratón */
+.createMedicineCloseFormButton {
+    background-color: #565656;
 }
 
 .deleteMedicineButton {

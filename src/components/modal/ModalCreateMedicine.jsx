@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./css/ModalCreateMedicine.css";
 import MessageBar, { showErrorMessage, showSuccessMessage } from "../messageBar/MessageBar";
-import { FaTrashAlt } from 'react-icons/fa';
+import { FaTrashAlt, FaTimes } from 'react-icons/fa';
 import ModalConfirmDelete from "./ModalConfirmDelete";
 
 const ModalCreateMedicine = ({ doctorId, onClose }) => {
@@ -128,8 +128,8 @@ const ModalCreateMedicine = ({ doctorId, onClose }) => {
             <div className="createMedicineModalContent">
                 <div className="createMedicineModalHeader">
                     <h2 className="createMedicineModalTitle">Gestionar Medicinas</h2>
-                    <button className="createMedicineCloseButton" onClick={onClose}>
-                        X
+                    <button className="usuarioCloseButton" onClick={onClose}>
+                        <FaTimes />
                     </button>
                 </div>
                 <div className="createMedicineModalBody">
@@ -170,7 +170,7 @@ const ModalCreateMedicine = ({ doctorId, onClose }) => {
                             <button className="createMedicineSubmitButton" onClick={handleSubmitMedicine}>
                                 Crear Medicina
                             </button>
-                            <button className="createMedicineToggleFormButton" onClick={handleFormToggle}>
+                            <button className="createMedicineCloseFormButton" onClick={handleFormToggle}>
                                 Ocultar Formulario
                             </button>
                         </>

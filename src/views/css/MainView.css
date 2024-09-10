@@ -54,7 +54,7 @@ html {
   left: 5%;
   width: 90%;
   height: 5px;
-  background-image: linear-gradient(to right, #005BFF, #06F3FF);
+  background-image: linear-gradient(to right, #005bff, #06f3ff);
   background-repeat: no-repeat;
   border-radius: 5px;
 }
@@ -78,7 +78,7 @@ html {
   justify-content: center;
   align-items: center;
   height: 45px;
-  background-color: #AEE4FD;
+  background-color: #aee4fd;
   border-radius: 10px;
   width: 260px;
   gap: 8px;
@@ -88,4 +88,13 @@ html {
 .FactContentBottom {
   /* display: flex; */
   overflow-y: scroll;
+}
+
+.FactContentBottom::-webkit-scrollbar {
+  width: 8px; /* Ancho del scrollbar */
+}
+
+.FactContentBottom::-webkit-scrollbar-thumb {
+  background-color: #005bff; /* Color del scrollbar */
+  border-radius: 4px; /* Bordes redondeados para el scrollbar */
 }
