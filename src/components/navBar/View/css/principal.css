@@ -1,5 +1,5 @@
 .principalContainer {
-    padding: 20px;
+    padding: 50px;
     text-align: center;
     height: 100vh;
     box-sizing: border-box;
@@ -21,7 +21,7 @@
     width: 100%;
     height: 80%; /* Reducimos la altura de las tarjetas al 80% */
     background: rgb(255, 255, 255);
-    border: 1px solid white;
+    border: none;
     box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
     backdrop-filter: blur(6px);
     border-radius: 17px;
@@ -37,7 +37,7 @@
 }
 
 .card:hover {
-    border: 1px solid black;
+    border: none;
     background-color: #aee4fd;
     transform: scale(1.05);
 }

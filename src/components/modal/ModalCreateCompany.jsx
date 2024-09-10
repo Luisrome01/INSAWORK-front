@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaTrash } from 'react-icons/fa'; // Importa el icono de papelera
+import { FaTrash, FaTimes } from 'react-icons/fa';
 import './css/ModalCreateCompany.css';
 
 const ModalCreateCompany = ({ onClose }) => {
@@ -87,8 +87,12 @@ const ModalCreateCompany = ({ onClose }) => {
     return (
         <div className="modal-overlay">
             <div className="modal-content">
-                <button className="modal-close" onClick={onClose}>X</button>
-                <h2>{showList ? 'Lista de Empresas' : 'Crear Empresa'}</h2>
+                <div className="createMedicineModalHeader">
+                    <h2 className="createMedicineModalTitle">{showList ? 'Lista de Empresas' : 'Crear Empresa'}</h2>
+                    <button className="usuarioCloseButton" onClick={onClose}>
+                        <FaTimes />
+                    </button>
+                </div>
 
                 {showList ? (
                     <>
@@ -97,10 +101,10 @@ const ModalCreateCompany = ({ onClose }) => {
                             {companies.map((company) => (
                                 <li key={company._id} className="company-list-item">
                                     <div className="company-details">
-                                        <strong>{company.name}</strong><br />
-                                        <span>Email: {company.email}</span><br />
-                                        <span>Teléfono: {company.phone}</span><br />
-                                        <span>Dirección: {company.address}</span><br />
+                                        <strong>{company.name}</strong>
+                                        <span>Email: {company.email}</span>
+                                        <span>Teléfono: {company.phone}</span>
+                                        <span>Dirección: {company.address}</span>
                                         <span>RIF: {company.rif}</span>
                                     </div>
                                     <FaTrash 
@@ -169,7 +173,7 @@ const ModalCreateCompany = ({ onClose }) => {
                         </button>
                     </form>
                 )}
-                <button className="toggle-view-button" onClick={handleToggleView}>
+                <button className={showList ? 'toggle-view-button-show' : 'toggle-view-button-hide'} onClick={handleToggleView}>
                     {showList ? 'Crear Nueva Empresa' : 'Ver Empresas'}
                 </button>
             </div>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./css/ModalCreateMedicalRest.css";
 import InputGeneral from "../inputs/InputGeneral";
 import { showErrorMessage, showSuccessMessage, showWarningMessage } from "../messageBar/MessageBar";
+import { FaTimes } from "react-icons/fa";
 
 const ModalCreateMedicalRest = ({ closeModal }) => {
     const [cedulaPaciente, setCedulaPaciente] = useState("");
@@ -67,7 +68,9 @@ const ModalCreateMedicalRest = ({ closeModal }) => {
             <div className="modalCreateMedicalRestContent">
                 <div className="modalHeader">
                     <h2>Crear Reposo Médico</h2>
-                    <button className="closeButton" onClick={() => closeModal(false)}>X</button>
+                    <button className="usuarioCloseButton" onClick={() => closeModal(false)}>
+                        <FaTimes />
+                    </button>
                 </div>
                 <div className="modalBody">
                     <div className="inputContainer">

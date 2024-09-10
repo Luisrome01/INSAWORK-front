@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./css/ModalInvoice.css";
-import { FaTrashAlt  } from "react-icons/fa";
+import { FaTrashAlt, FaTimes } from "react-icons/fa";
 import ModalConfirmDelete from "./ModalConfirmDelete";
-import ModalCreateInvoice from "./ModalCreateInvoice"; 
+import ModalCreateInvoice from "./ModalCreateInvoice";
 
 const ModalInvoice = ({ closeModal }) => {
   const [invoices, setInvoices] = useState([]);
@@ -14,11 +14,11 @@ const ModalInvoice = ({ closeModal }) => {
 
   useEffect(() => {
     // Disable scrolling on the body when the modal is open
-    document.body.style.overflow = showCreateInvoiceModal ? 'hidden' : 'auto';
+    document.body.style.overflow = showCreateInvoiceModal ? "hidden" : "auto";
 
     return () => {
-      // Enable scrolling again when the modal is closed 
-      document.body.style.overflow = 'auto';
+      // Enable scrolling again when the modal is closed
+      document.body.style.overflow = "auto";
     };
   }, [showCreateInvoiceModal]);
 
@@ -75,12 +75,14 @@ const ModalInvoice = ({ closeModal }) => {
 
   const handleConfirmDelete = () => {
     fetch(`https://insawork.onrender.com/invoices/${invoiceToDelete}`, {
-      method: 'DELETE',
+      method: "DELETE",
     })
       .then((response) => {
         if (response.ok) {
-          setInvoices(invoices.filter(invoice => invoice._id !== invoiceToDelete));
-          setFilteredInvoices(filteredInvoices.filter(invoice => invoice._id !== invoiceToDelete));
+          setInvoices(invoices.filter((invoice) => invoice._id !== invoiceToDelete));
+          setFilteredInvoices(
+            filteredInvoices.filter((invoice) => invoice._id !== invoiceToDelete)
+          );
           setShowConfirmDelete(false);
         } else {
           throw new Error("Failed to delete the invoice.");
@@ -105,16 +107,15 @@ const ModalInvoice = ({ closeModal }) => {
     <div className="modalInvoiceContainer">
       <div className="modalInvoiceBackgroundBlur" onClick={() => closeModal()}></div>
       <div className="modalInvoiceContent">
-        <div className="modalHeader">
-          <p className="searchTitle">Facturas:</p>
-          <button className="closeButton" onClick={() => closeModal()}>
-            X
+        <div className="invoiceHeader">
+          <h2 className="createMedicineModalTitle">Facturas</h2>
+          <button className="usuarioCloseButton"  onClick={() => closeModal()}>
+            <FaTimes />
           </button>
         </div>
-        <div className="modalBody">
+        <div className="invoiceBody">
           <div className="modalBodyContainer">
             <div className="modalSearchContainer">
-              <p className="searchTitle">Buscar Factura:</p>
               <input
                 type="text"
                 className="searchInput"
@@ -136,11 +137,14 @@ const ModalInvoice = ({ closeModal }) => {
                           <strong>Razón Social:</strong> {invoice.nombre_razon}
                         </p>
                         <p className="name">
-                          <strong>Nombre:</strong> {invoice.patientId ? invoice.patientId.name : "N/A"}
-                          <strong> </strong> {invoice.patientId ? invoice.patientId.lastname : "N/A"}
+                          <strong>Nombre:</strong>{" "}
+                          {invoice.patientId ? invoice.patientId.name : "N/A"}
+                          <strong> </strong>{" "}
+                          {invoice.patientId ? invoice.patientId.lastname : "N/A"}
                         </p>
                         <p>
-                          <strong>Cédula:</strong> {invoice.patientId ? invoice.patientId.cedula : "N/A"}
+                          <strong>Cédula:</strong>{" "}
+                          {invoice.patientId ? invoice.patientId.cedula : "N/A"}
                         </p>
                         <p>
                           <strong>Fecha:</strong> {invoice.fecha}
@@ -149,10 +153,13 @@ const ModalInvoice = ({ closeModal }) => {
                           <strong>Total:</strong> {invoice.total ? `$${invoice.total}` : "N/A"}
                         </p>
                       </div>
-                      <FaTrashAlt  className="deleteIcon" onClick={(e) => {
-                        e.stopPropagation();
-                        handleDeleteClick(invoice._id);
-                      }} />
+                      <FaTrashAlt
+                        className="deleteIcon"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDeleteClick(invoice._id);
+                        }}
+                      />
                     </div>
                     <hr className="itemSeparator" />
                   </div>
@@ -165,14 +172,9 @@ const ModalInvoice = ({ closeModal }) => {
         </div>
       </div>
       {showConfirmDelete && (
-        <ModalConfirmDelete 
-          onConfirm={handleConfirmDelete} 
-          onCancel={handleCancelDelete} 
-        />
+        <ModalConfirmDelete onConfirm={handleConfirmDelete} onCancel={handleCancelDelete} />
       )}
-      {showCreateInvoiceModal && (
-        <ModalCreateInvoice closeModal={handleCloseCreateInvoiceModal} />
-      )}
+      {showCreateInvoiceModal && <ModalCreateInvoice closeModal={handleCloseCreateInvoiceModal} />}
     </div>
   );
 };

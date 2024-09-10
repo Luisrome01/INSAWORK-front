@@ -36,8 +36,6 @@
     display: flex;
     justify-content: flex-end;
     padding: 16px;
-    background: #f0f0f0;
-    border-bottom: 1px solid #ddd;
 }
 
 .closeButton {

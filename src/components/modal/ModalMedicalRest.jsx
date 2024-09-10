@@ -3,7 +3,7 @@ import InputBusqueda from "../inputs/InputBusqueda";
 import "./css/ModalMedicalRest.css";
 import ModalCreateMedicalRest from "./ModalCreateMedicalRest";
 import ModalConfirmDelete from "./ModalConfirmDelete"; // Importar el nuevo modal
-import { FaTrashAlt } from "react-icons/fa";
+import { FaTrashAlt, FaTimes } from "react-icons/fa";
 
 const ModalMedicalRest = ({ closeModal }) => { 
     const [data, setData] = useState([]);
@@ -96,21 +96,17 @@ const ModalMedicalRest = ({ closeModal }) => {
         <div className="modalMedicalRestContainer">
             <div className="modalMedicalRestBackgroundBlur"></div>
             <div className="modalMedicalRestContent">
-                <div className="modalHeader">
-                    <p className="searchTitle">Reposos Médicos:</p>
-                    <button
-                        className="closeButton"
-                        onClick={() => closeModal(false)}
-                    >
-                        X
+                <div className="medicalRestHeader">
+                    <h2 className="createMedicineModalTitle">Reposos Médicos</h2>
+                    <button className="usuarioCloseButton" onClick={() => closeModal(false)}>
+                        <FaTimes />
                     </button>
                 </div>
                 <div className="modalBody">
                     <div className="modalBodyContainer">
-                        <div className="modalSearchContainer">
-                            <p className="searchTitle">Buscar Reposo Médico:</p>
+                        <div className="medicalRestSearch">
                             <InputBusqueda
-                                width="250px"
+                                width="430px"
                                 height="40px"
                                 color="#D9D9D9"
                                 placeholder="Busca por nombre o cédula..."
@@ -118,7 +114,7 @@ const ModalMedicalRest = ({ closeModal }) => {
                                 onChange={handleSearchChange}
                             />
                             <button
-                                className="createButton"
+                                className="createRestButton"
                                 onClick={() => setIsCreateModalOpen(true)}
                             >
                                 +
