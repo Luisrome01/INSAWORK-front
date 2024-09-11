@@ -116,8 +116,12 @@ const CitasMedicas = () => {
     return `${d}/${m}/${y}`;
   };
 
+  const handleModalOpen = () => {
+    setShowModalCreate(true);
+  };
+
   const handleModalToggle = () => {
-    setShowModalCreate(!showModalCreate);
+    setShowModalCreate(false);
   };
 
   const toggleFilters = () => {
@@ -166,7 +170,7 @@ const CitasMedicas = () => {
           <img
             src={add}
             alt="add-appointment"
-            onClick={handleModalToggle}
+            onClick={handleModalOpen}
             style={{ width: "30px", height: "30px" }}
           />
         </div>
@@ -226,7 +230,7 @@ const CitasMedicas = () => {
         )}
       </div>
 
-      {showModalCreate && (
+      {showModalCreate === true && (
         <ModalCreateAppointment
           doctorId={JSON.parse(localStorage.getItem("user"))._id}
           onClose={handleModalToggle}
