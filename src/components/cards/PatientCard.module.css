@@ -1,24 +1,24 @@
-.appointmentCard {
+.patientCard {
   position: relative;
   width: 345.1px;
-  height: 141.1px;
+  height: 151.1px;
   background: #aee4fd;
   border-radius: 17px;
   cursor: pointer;
   transition: transform 0.3s ease;
 }
 
-.appointmentCard:hover { 
+.patientCard:hover {
   transition: transform 0.3s ease;
-  transform: scale(0.90);
+  transform: scale(0.9);
 }
 
-.appointmentName {
+.patientName {
   position: absolute;
-  width: 283px;
+  width: 213px;
   height: 26.35px;
-  left: 23.8px;
-  top: 17.85px;
+  left: 108px;
+  top: 19.85px;
   font-family: "SF Pro Display";
   font-style: normal;
   font-weight: 500;
@@ -27,21 +27,12 @@
   color: #000000;
 }
 
-.appointmentStatusColor {
-  position: absolute;
-  width: 8.5px;
-  height: 8.5px;
-  left: 23.8px;
-  top: 56.95px;
-  border-radius: 50%;
-}
-
-.appointmentStatus {
+.patientStatus {
   position: absolute;
   width: 153.85px;
   height: 18.7px;
-  left: 43.35px;
-  top: 51.85px;
+  left: 108px;
+  top: 52.85px;
   font-family: "SF Pro Display";
   font-style: normal;
   font-weight: 500;
@@ -59,18 +50,18 @@
   width: 28.05px;
   height: 27.2px;
   left: 23.8px;
-  top: 90.1px;
+  top: 103.1px;
 
   background: #ffffff;
   border-radius: 8.5px;
 }
 
-.appointmentDate {
+.patientDate {
   position: absolute;
   width: 220px;
   height: 18.7px;
   left: 66.3px;
-  top: 94.35px;
+  top: 107.35px;
 
   font-family: "SF Pro Display";
   font-style: normal;
@@ -92,8 +83,27 @@
   height: 12.75px;
 }
 
+.patientPhoto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  left: 23.8px;
+  top: 19.85px;
+  border-radius: 10px;
+}
+
 .icon {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 100%;
 }

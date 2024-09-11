@@ -99,7 +99,7 @@
 
 .appointment-card:hover {
   transform: scale(1.02); /* Efecto de ampliación */
-  background-color: rgba(174, 187, 253, 0.8); /* Cambiar color al hacer hover */
+  background-color: #AEE4FD; /* Cambiar color al hacer hover */
 }
 
 /* Estilo del botón para abrir el modal */
@@ -123,6 +123,14 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   padding: 20px;
+}
+
+.appointments-grid p {
+  display: flex;
+  padding-top: 0;
+  padding-left: 20px;
+  margin: 0;
+  width: 500px
 }
 
 .appointment-subdivider {
@@ -182,4 +190,14 @@
 .appointment-filter-btn:hover {
     transition: transform 0.3s ease;
     transform: scale(0.85);
+}
+
+.modal-create-medica-button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 16px;
 }

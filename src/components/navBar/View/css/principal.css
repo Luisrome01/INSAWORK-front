@@ -114,7 +114,6 @@
 }
 
 .notesContainer p {
-    margin: 5px 0; /* Espaciado entre el título y el mensaje */
     font-weight: bold; /* Negrita para el mensaje */
     color: black; /* Color del texto */
     font-size: 18px; /* Ajusta el tamaño según prefieras */

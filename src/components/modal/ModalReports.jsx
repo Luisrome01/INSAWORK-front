@@ -3,7 +3,7 @@ import InputBusqueda from "../inputs/InputBusqueda";
 import "./css/ModalReports.css";
 import ModalCreateReport from "./ModalCreateReport";
 import ModalConfirmDelete from "./ModalConfirmDelete"; 
-import { FaTrashAlt } from "react-icons/fa";
+import { FaTrashAlt, FaTimes, FaPlus } from "react-icons/fa";
 
 const ModalReports = ({ closeModal }) => {
     const [data, setData] = useState([]);
@@ -92,21 +92,17 @@ const ModalReports = ({ closeModal }) => {
         <div className="modalReportsContainer">
             <div className="modalReportsBackgroundBlur"></div>
             <div className="modalReportsContent">
-                <div className="modalHeader">
-                    <p className="searchTitle">Reportes Médicos</p>
-                    <button
-                        className="closeButton"
-                        onClick={() => closeModal(false)}
-                    >
-                        X
+                <div className="pacienteHeaderModal">
+                    <h2 className="createMedicineModalTitle">Reportes Médicos</h2>
+                    <button className="usuarioCloseButton" onClick={() => closeModal(false)}>
+                        <FaTimes />
                     </button>
                 </div>
                 <div className="modalBody">
                     <div className="modalBodyContainer">
-                        <div className="modalSearchContainer">
-                            <p className="searchTitle">Buscar Reporte Médico:</p>
+                        <div className="medicalRestSearch">
                             <InputBusqueda
-                                width="250px"
+                                width="430px"
                                 height="40px"
                                 color="#D9D9D9"
                                 placeholder="Busca por nombre o cédula..."
@@ -114,10 +110,10 @@ const ModalReports = ({ closeModal }) => {
                                 onChange={handleSearchChange}
                             />
                             <button
-                                className="createButton"
+                                className="createRestButton"
                                 onClick={() => setIsCreateModalOpen(true)}
                             >
-                                +
+                                <FaPlus />
                             </button>
                         </div>
                         

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./css/ModalCreatePatient.css";
+import { FaTimes } from "react-icons/fa"; // Importa el ícono de lápiz para editar
 import { showErrorMessage, showSuccessMessage, showWarningMessage } from "../messageBar/MessageBar";
 
 const ModalCreatePatient = ({ closeModal }) => {
@@ -137,9 +138,11 @@ const ModalCreatePatient = ({ closeModal }) => {
         <div className="modal-create-patient-container">
     <div className="modal-create-patient-overlay"></div>
     <div className="modal-create-patient-content">
-        <div className="modal-create-patient-header">
-            <h2>Crear Paciente</h2>
-            <button className="modal-create-patient-close-button" onClick={() => closeModal(false)}>X</button>
+        <div className="pacienteHeaderModal">
+          <h2 className="createMedicineModalTitle">Crear Paciente</h2>
+          <button className="usuarioCloseButton" onClick={() => closeModal(false)}>
+            <FaTimes />
+          </button>
         </div>
         <div className="modal-create-patient-body">
             <div className="modal-create-patient-form-group">

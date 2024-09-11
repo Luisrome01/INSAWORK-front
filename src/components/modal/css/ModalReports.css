@@ -24,7 +24,7 @@
 .modalReportsContent {
     position: relative;
     width: 80%;
-    max-width: 800px;
+    max-width: 537px;
     background: white;
     border-radius: 8px;
     overflow: hidden;
@@ -73,7 +73,7 @@
 .createButton {
     background: rgb(0, 91, 255);
     color: white;
-    padding: 8px 16px;
+    /* padding: 8px 16px; */
     border-radius: 8px; 
     cursor: pointer;
     font-size: 16px;
@@ -136,4 +136,8 @@
 .deleteIconn:hover {
     transform: scale(1.1);
     color: red;
+}
+
+.pacienteHeaderModal {
+    padding: 20px;
 }
