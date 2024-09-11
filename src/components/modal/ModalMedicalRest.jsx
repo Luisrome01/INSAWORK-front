@@ -3,7 +3,7 @@ import InputBusqueda from "../inputs/InputBusqueda";
 import "./css/ModalMedicalRest.css";
 import ModalCreateMedicalRest from "./ModalCreateMedicalRest";
 import ModalConfirmDelete from "./ModalConfirmDelete"; // Importar el nuevo modal
-import { FaTrashAlt, FaTimes } from "react-icons/fa";
+import { FaTrashAlt, FaTimes, FaPlus } from "react-icons/fa";
 
 const ModalMedicalRest = ({ closeModal }) => { 
     const [data, setData] = useState([]);
@@ -117,7 +117,7 @@ const ModalMedicalRest = ({ closeModal }) => {
                                 className="createRestButton"
                                 onClick={() => setIsCreateModalOpen(true)}
                             >
-                                +
+                                <FaPlus />
                             </button>
                         </div>
 

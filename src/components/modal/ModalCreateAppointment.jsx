@@ -3,7 +3,7 @@ import "./css/ModalCreateAppointment.css";
 import MessageBar, { showErrorMessage, showSuccessMessage } from "../messageBar/MessageBar";
 import { FaTimes } from 'react-icons/fa';
 
-const ModalCreateAppointment = ({ doctorId }) => {
+const ModalCreateAppointment = ({ doctorId, onClose }) => {
     const [patients, setPatients] = useState([]);
     const [filteredPatients, setFilteredPatients] = useState([]);
     const [selectedPatient, setSelectedPatient] = useState(null);
@@ -23,7 +23,7 @@ const ModalCreateAppointment = ({ doctorId }) => {
 
     useEffect(() => {
         const fetchPatients = async () => {
-            try { 
+            try {
                 const response = await fetch(`https://insawork.onrender.com/patients/${doctorId}`);
                 const data = await response.json();
                 setPatients(data);
@@ -55,10 +55,8 @@ const ModalCreateAppointment = ({ doctorId }) => {
             return;
         }
 
-        // Verificar que el tiempo esté en formato HH:MM
         const [hour, minute] = time.split(":").map(Number);
 
-        // Validar si la hora y los minutos son válidos
         if (isNaN(hour) || isNaN(minute) || hour < 0 || hour > 23 || minute < 0 || minute > 59) {
             displayMessage(showErrorMessage("Hora no válida. Debe estar en formato HH:MM.", "center"));
             return;
@@ -76,7 +74,7 @@ const ModalCreateAppointment = ({ doctorId }) => {
                     patientId: selectedPatient._id,
                     doctorId,
                     date,
-                    time: formattedTime, // Usar la hora formateada
+                    time: formattedTime,
                     motive,
                 }),
             });
@@ -86,7 +84,7 @@ const ModalCreateAppointment = ({ doctorId }) => {
             if (response.ok) {
                 displayMessage(showSuccessMessage("Cita creada exitosamente.", "center"));
                 setTimeout(() => {
-                    setIsOpen(false); // Cerrar el modal después de crear la cita
+                    handleCloseModal();
                 }, 3000);
             } else {
                 displayMessage(showErrorMessage(result.msg || "Error al crear la cita.", "center"));
@@ -98,6 +96,7 @@ const ModalCreateAppointment = ({ doctorId }) => {
 
     const handleCloseModal = () => {
         setIsOpen(false); // Cambiar el estado para cerrar el modal
+        if (onClose) onClose(); // Llamar a la función onClose si se proporciona
     };
 
     const handleTimeChange = (e) => {
@@ -106,19 +105,15 @@ const ModalCreateAppointment = ({ doctorId }) => {
     };
 
     const formatTimeInput = (value) => {
-        // Asegurarse de que el valor sea un número y tenga la longitud adecuada
         const regex = /^[0-9]*$/;
         if (!regex.test(value)) return time;
 
-        // Limitamos la longitud del valor a 5 caracteres (HH:MM)
         let formattedValue = value.slice(0, 5);
 
-        // Asegurarse de que el formato sea HH:MM
         if (formattedValue.length > 2) {
             formattedValue = formattedValue.slice(0, 2) + ":" + formattedValue.slice(2, 4);
         }
 
-        // Agregar ceros a la izquierda si es necesario
         const parts = formattedValue.split(":");
         if (parts.length === 2) {
             const hours = parts[0].padStart(2, "0");

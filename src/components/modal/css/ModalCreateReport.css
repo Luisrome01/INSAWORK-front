@@ -22,12 +22,11 @@
 .modalCreateReportContent {
     position: relative;
     background: white;
-    border-radius: 8px;
+    border-radius: 15px;
     width: 90%;
     max-width: 600px; /* Ajusta el ancho máximo según sea necesario */
     max-height: 90%;
     overflow-y: auto; /* Agrega scroll vertical si el contenido es largo */
-    padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 

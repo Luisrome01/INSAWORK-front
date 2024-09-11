@@ -88,6 +88,9 @@
 }
  
 .createRestButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: rgb(0, 91, 255);
     color: white;
     width: 40px;

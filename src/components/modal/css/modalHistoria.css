@@ -90,9 +90,6 @@
 .historia-modal-cancel-button {
     background-color: #dc3545; /* Red for cancel button */
 }
-.historia-modal-input-group {
-    padding: 20px;
-}
 
 .treatment-section {
     margin: 20px 0;
@@ -104,14 +101,11 @@
     border: 1px solid #007bff;
     padding: 10px;
     cursor: pointer;
+    margin-top: 10px;
+    margin-right: 20px;
     margin-bottom: 10px;
     border-radius: 5px;
     transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.expand-toggle:hover {
-    background-color: #0056b3;
-    color: white;
 }
 
 .treatments-list {
@@ -266,4 +260,8 @@
   .historia-modal-actions button:hover {
     background-color:  #0056b3;
     ; /* Color más oscuro para el hover (opcional) */
+  }
+
+  .pacienteHeaderModal {
+    padding-bottom: 0;
   }

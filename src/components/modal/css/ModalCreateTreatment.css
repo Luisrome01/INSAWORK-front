@@ -37,7 +37,7 @@
 }
 
 .modal-create-treatment-close-button:hover {
-    color: #aebbfd; /* Cambia de color al pasar el mouse */
+    color: #ff2727; /* Cambia de color al pasar el mouse */
 }
 
 .modal-create-treatment-input,
@@ -55,19 +55,14 @@
     display: block;
     width: 100%;
     padding: 8px;
-    background-color: #aebbfd; /* Color personalizado */
+    background-color: #005BFF; /* Color personalizado */
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 10px;
     font-size: 1rem;
     cursor: pointer;
     margin-top: 10px;
     text-align: center;
-}
-
-.modal-create-treatment-add-btn:hover,
-.modal-create-treatment-submit-btn:hover {
-    background-color: #9c9ccf; /* Cambia de color al pasar el mouse */
 }
 
 .selected-medicines-list {

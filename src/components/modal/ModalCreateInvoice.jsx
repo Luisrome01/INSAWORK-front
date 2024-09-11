@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./css/ModalCreateInvoice.css";
-import { FaArrowLeft, FaTimes } from "react-icons/fa";
+import { FaTimes } from "react-icons/fa";
 
-// Función para buscar pacientes
-const searchPatients = async (query, doctorId) => {
+const fetchAllPatients = async (doctorId) => {
   try {
-    const response = await fetch(
-      `https://insawork.onrender.com/patients/${doctorId}?query=${query}`
-    );
+    const response = await fetch(`https://insawork.onrender.com/patients/${doctorId}`);
     if (!response.ok) throw new Error("Error fetching patients");
     return response.json();
   } catch (error) {
@@ -56,18 +53,11 @@ const ModalCreateInvoice = ({ closeModal }) => {
   });
 
   const [patients, setPatients] = useState([]);
-  const [selectedPatient, setSelectedPatient] = useState(null);
-  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const doctorId = JSON.parse(localStorage.getItem("user"))._id;
-    if (searchQuery.length > 1) {
-      // Solo buscar si la consulta tiene más de un carácter
-      searchPatients(searchQuery, doctorId).then(setPatients);
-    } else {
-      setPatients([]);
-    }
-  }, [searchQuery]);
+    fetchAllPatients(doctorId).then(setPatients);
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -77,23 +67,11 @@ const ModalCreateInvoice = ({ closeModal }) => {
     }));
   };
 
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
-
-  const handlePatientSelect = (patient) => {
-    setSelectedPatient(patient);
+  const handlePatientChange = (e) => {
     setFormData((prevData) => ({
       ...prevData,
-      patientId: patient._id,
+      patientId: e.target.value,
     }));
-    setSearchQuery(""); // Clear search query
-    setPatients([]);
-  };
-
-  const handlePatientDeselect = () => {
-    setSelectedPatient(null);
-    setSearchQuery(""); // Clear search query
   };
 
   const handleSubmit = (e) => {
@@ -109,7 +87,7 @@ const ModalCreateInvoice = ({ closeModal }) => {
       <div className="modalCreateInvoiceContent">
         <div className="modalCreateInvoiceHeader">
           <h2>Crear Factura</h2>
-          <button className="usuarioCloseButton"onClick={() => closeModal()}>
+          <button className="usuarioCloseButton" onClick={() => closeModal()}>
             <FaTimes />
           </button>
         </div>
@@ -117,39 +95,19 @@ const ModalCreateInvoice = ({ closeModal }) => {
           <form onSubmit={handleSubmit}>
             <div className="formGroup">
               <label>Paciente:</label>
-              {selectedPatient ? (
-                <div className="selectedPatient">
-                  <button type="button" className="backButton" onClick={handlePatientDeselect}>
-                    <FaArrowLeft />
-                  </button>
-                  <p>
-                    <strong>Paciente Seleccionado:</strong>
-                  </p>
-                  <p>
-                    {selectedPatient.name} {selectedPatient.lastname}
-                  </p>
-                </div>
-              ) : (
-                <div className="searchContainer">
-                  <input
-                    type="text"
-                    placeholder="Buscar paciente por nombre o cédula"
-                    value={searchQuery}
-                    onChange={handleSearchChange}
-                  />
-                  {patients.length > 0 && (
-                    <div className="patientDropdown">
-                      <ul className="patientList">
-                        {patients.map((patient) => (
-                          <li key={patient._id} onClick={() => handlePatientSelect(patient)}>
-                            {patient.name} {patient.lastname} - {patient.cedula}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </div>
-              )}
+              <select
+                name="patientId"
+                value={formData.patientId}
+                onChange={handlePatientChange}
+                required
+              >
+                <option value="">Seleccione un paciente</option>
+                {patients.map((patient) => (
+                  <option key={patient._id} value={patient._id}>
+                    {patient.name} {patient.lastname} - {patient.cedula}
+                  </option>
+                ))}
+              </select>
             </div>
             {/* El resto de los campos del formulario */}
             <div className="formGroup">

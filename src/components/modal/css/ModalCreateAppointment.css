@@ -69,6 +69,10 @@
   z-index: 1;
 }
 
+.createAppointmentModalBody h3 {
+  margin-top: 50px;
+}
+
 .patientList {
   list-style-type: none;
   padding: 0;

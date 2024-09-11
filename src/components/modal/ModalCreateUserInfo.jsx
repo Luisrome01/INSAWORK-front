@@ -126,7 +126,7 @@ const ModalCreateUserInfo = ({ showModal, onClose, handleLogout }) => {
                 <label htmlFor="registro">Registro</label>
                 <input type="text" name="registro" value={formData.registro} onChange={handleFormChange} className="form-input" />
               </div>
-              <div className="form-group">
+              <div className="form-group-firma">
                 <label htmlFor="firma">
                   {formData.firma ? (
                     <img

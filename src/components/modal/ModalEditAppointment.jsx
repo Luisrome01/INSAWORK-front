@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './css/ModalEditAppointment.css';
 import BtnGeneral from '/src/components/buttons/BtnGeneral';
 import MessageBar, { showErrorMessage, showSuccessMessage } from '../messageBar/MessageBar';
+import { FaTimes } from 'react-icons/fa';
 
 const ModalEditAppointment = ({ appointmentId, onClose, onUpdate }) => {
   const [appointment, setAppointment] = useState(null);
@@ -89,10 +90,10 @@ const ModalEditAppointment = ({ appointmentId, onClose, onUpdate }) => {
     <div className="modal-edit-appointment-container">
       <div className="modal-edit-appointment-background-blur"></div>
       <div className="modal-edit-appointment-content">
-        <div className="modal-edit-appointment-header">
-          <h2 className="modal-edit-appointment-title">Editar Cita</h2>
-          <button className="modal-edit-appointment-close-button" onClick={onClose}>
-            X
+        <div className="createAppointmentModalHeader">
+          <h2 className="createAppointmentModalTitle">Editar Cita</h2>
+          <button className="usuarioCloseButton" onClick={onClose}>
+              <FaTimes />
           </button>
         </div>
         <div className="modal-edit-appointment-body">
@@ -155,14 +156,9 @@ const ModalEditAppointment = ({ appointmentId, onClose, onUpdate }) => {
                   required
                 />
               </div>
-
-              <BtnGeneral
-                text="Guardar Cambios"
-                color="#FFFFFF"
-                bgColor="#1E90FF"
-                className="submit-button"
-                type="submit"
-              />
+              <button className="createAppointmentSubmitButton" type='submit'>
+              Guardar Cambios
+              </button>
             </form>
           )}
         </div>

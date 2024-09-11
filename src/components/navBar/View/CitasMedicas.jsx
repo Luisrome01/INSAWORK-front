@@ -116,8 +116,12 @@ const CitasMedicas = () => {
     return `${d}/${m}/${y}`;
   };
 
+  const handleModalOpen = () => {
+    setShowModalCreate(true);
+  };
+
   const handleModalToggle = () => {
-    setShowModalCreate(!showModalCreate);
+    setShowModalCreate(false);
   };
 
   const toggleFilters = () => {
@@ -166,7 +170,7 @@ const CitasMedicas = () => {
           <img
             src={add}
             alt="add-appointment"
-            onClick={handleModalToggle}
+            onClick={handleModalOpen}
             style={{ width: "30px", height: "30px" }}
           />
         </div>
@@ -193,27 +197,15 @@ const CitasMedicas = () => {
               </option>
             ))}
           </select>
-          <BtnGeneral
-            text="Filtrar por Mes"
-            color="#FFFFFF"
-            bgColor="#1E90FF"
-            handleClick={handleMonthFilter}
-            className="filter-button month"
-          />
-          <BtnGeneral
-            text="Mostrar Citas Próximas"
-            color="#FFFFFF"
-            bgColor="#1E90FF"
-            handleClick={fetchImminentAppointments}
-            className="filter-button imminent"
-          />
-          <BtnGeneral
-            text="Resetear Filtros"
-            color="#FFFFFF"
-            bgColor="#dc3545"
-            handleClick={resetFilters}
-            className="filter-button reset"
-          />
+          <button className="modal-create-medica-button" onClick={handleMonthFilter}>
+            Filtrar por Mes
+          </button>
+          <button className="modal-create-medica-button" onClick={fetchImminentAppointments}>
+            Mostrar Citas Próximas
+          </button>
+          <button className="modal-create-medica-button" onClick={resetFilters}>
+            Resetear Filtros
+          </button>
         </div>
       )}
 
@@ -238,7 +230,7 @@ const CitasMedicas = () => {
         )}
       </div>
 
-      {showModalCreate && (
+      {showModalCreate === true && (
         <ModalCreateAppointment
           doctorId={JSON.parse(localStorage.getItem("user"))._id}
           onClose={handleModalToggle}

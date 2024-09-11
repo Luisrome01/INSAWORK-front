@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FaTrashAlt } from "react-icons/fa";
+import { FaTrashAlt, FaTimes } from "react-icons/fa";
 import "./css/ModalNotas.css";
 import InputGeneral from "../inputs/InputGeneral";
 import ModalConfirmDelete from "./ModalConfirmDelete";
@@ -86,7 +86,9 @@ const ModalNotas = ({ doctorId, onClose }) => {
             <div className="modal-notes-container">
                 <div className="modal-notes-header">
                     <h2 className="modal-notes-title">Notas</h2>
-                    <button className="modal-notes-close-button" onClick={handleClose}>X</button>
+                    <button className="modal-notes-close-button" onClick={handleClose}>
+                        <FaTimes />
+                    </button>
                 </div>
                 <div className="modal-notes-body">
                     <div className="note-input-container">

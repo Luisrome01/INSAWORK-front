@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./css/ModalCreateAptitude.css";
 import { showErrorMessage, showSuccessMessage, showWarningMessage } from "../messageBar/MessageBar";
+import { FaTimes } from "react-icons/fa";
 
 const ModalCreateAptitude = ({ closeModal }) => {
     const [cedulaPaciente, setCedulaPaciente] = useState("");
@@ -62,7 +63,9 @@ const ModalCreateAptitude = ({ closeModal }) => {
             <div className="modalCreateAptitudeBox">
                 <div className="modalHeader">
                     <h2>Crear Prueba de Aptitud</h2>
-                    <button className="modalCloseButtonn" onClick={() => closeModal(false)}>X</button>
+                    <button className="usuarioCloseButton" onClick={() => closeModal(false)}>
+                        <FaTimes />
+                    </button>
                 </div>
                 <div className="modalBody">
                     <div className="formGroup">

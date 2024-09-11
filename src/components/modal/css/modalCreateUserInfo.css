@@ -1,129 +1,138 @@
 .modal-userinfo-overlay {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1000;
-    background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .modal-userinfo {
-    background: white;
-    border-radius: 8px;
-    padding: 20px;
-    width: 70%; /* Reduce el ancho para hacerlo más pequeño */
-    max-width: 400px; /* Ancho máximo más pequeño */
-    max-height: 70vh; /* Limita la altura del modal */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    position: relative;
-    overflow: hidden; /* Ocultamos los scrolls para que no se vean */
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  width: 70%; /* Reduce el ancho para hacerlo más pequeño */
+  max-width: 400px; /* Ancho máximo más pequeño */
+  max-height: 70vh; /* Limita la altura del modal */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden; /* Ocultamos los scrolls para que no se vean */
 }
 
 .modal-userinfo-body {
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto; /* Scroll vertical activado */
-    max-height: 50vh; /* Limita la altura del contenido para que haya scroll si es necesario */
-    padding-right: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; /* Scroll vertical activado */
+  max-height: 50vh; /* Limita la altura del contenido para que haya scroll si es necesario */
+  padding-right: 10px;
 }
 
 /* Scrollbar invisible */
 .modal-userinfo-body::-webkit-scrollbar {
-    width: 0px;
+  width: 0px;
 }
 
 .modal-userinfo-body {
-    scrollbar-width: none; /* Oculta el scrollbar en Firefox */
+  scrollbar-width: none; /* Oculta el scrollbar en Firefox */
 }
 
 .modal-userinfo-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .modal-userinfo-header h2 {
-    margin: 0;
-    font-size: 24px;
-    font-weight: bold;
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .modal-userinfo-close {
-    background: #FF0000;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 35px;
-    height: 35px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background 0.3s;
+  background: #ff0000;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
 }
 
 .modal-userinfo-close:hover {
-    background: #e60000;
+  background: #e60000;
 }
 
 .form-group {
-    margin-bottom: 15px;
-    min-width: 300px; /* Asegura que los inputs sean lo suficientemente anchos */
+  margin-bottom: 15px;
+  min-width: 300px; /* Asegura que los inputs sean lo suficientemente anchos */
+}
+
+.form-group-firma {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+  min-width: 300px; /* Asegura que los inputs sean lo suficientemente anchos */
 }
 
 .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 600;
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
 }
 
 .form-group input {
-    width: calc(100% - 16px);
-    padding: 8px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: white;
+  width: calc(100% - 16px);
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
 }
 
 .userInfoFirmaImage {
-    width: 300px;
-    height: 150px;
-    border-radius: 8px;
-    object-fit: cover;
-    border: 2px solid #ccc;
-    cursor: pointer;
-    display: block;
-    margin: 10px auto;
+  width: 300px;
+  height: 150px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 2px solid #ccc;
+  cursor: pointer;
+  display: block;
+  margin: 10px auto;
 }
 
 .userInfoFirmaImage.placeholder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f0f0f0;
-    color: #888;
-    font-size: 16px;
-    text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  color: #888;
+  font-size: 16px;
+  text-align: center;
 }
 
 .modal-userinfo-footer {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
 }
 
 .modal-userinfo-btn {
-    padding: 12px;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background 0.3s;
-    color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+  color: white;
 }
 
 .modal-userinfo-btn-primary,
@@ -131,20 +140,16 @@
 .modal-userinfo-btn-close,
 .modal-userinfo-btn-back,
 .modal-userinfo-btn-submit {
-    background-color: rgba(150, 170, 240, 0.9);
-}
-
-.modal-userinfo-btn-primary:hover,
-.modal-userinfo-btn-logout:hover,
-.modal-userinfo-btn-close:hover,
-.modal-userinfo-btn-back:hover,
-.modal-userinfo-btn-submit:hover {
-    background-color: rgba(150, 170, 240, 0.9);
+  background-color: #005bff;
+  width: 100%;
+  height: 40px;
+  border-radius: 15px;
 }
 
 .userInfoMessage {
-    margin-top: 20px;
-    font-size: 14px;
-    color: #333;
-    text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #333;
+  text-align: center;
 }

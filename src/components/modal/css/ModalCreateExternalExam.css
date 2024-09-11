@@ -37,33 +37,36 @@
 }
 
 .modal-create-external-exam-close-button:hover {
-    color: #aebbfd; /* Cambia de color al pasar el mouse */
+    color: #ff1919; /* Cambia de color al pasar el mouse */
 }
 
 .modal-create-external-exam-input,
 .modal-create-external-exam-select {
-    width: 100%;
+    /* width: 100%; */
     padding: 8px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 1rem;
+    max-width: 400px;
 }
 
 .modal-create-external-exam-submit-btn {
     display: block;
     width: 100%;
     padding: 8px;
-    background-color: #aebbfd; /* Color personalizado */
+    background-color: #005BFF; /* Color personalizado */
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 10px;
     font-size: 1rem;
     cursor: pointer;
     margin-top: 10px;
     text-align: center;
 }
 
-.modal-create-external-exam-submit-btn:hover {
-    background-color: #aebbfd; /* Cambia de color al pasar el mouse */
+.modal-create-external-exam-body form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
